@@ -1,7 +1,8 @@
-mingw32-make PLATFORM=PLATFORM_DESKTOP
 <<<<<<< HEAD
+mingw32-make PLATFORM=PLATFORM_DESKTOP
 
 git clone https://github.com/Thyago23/Projeto-Game_IP
+
 =======
 Alcristi
 >>>>>>> 3fcf1aed06384fffc76fd6f7b0e1d937be8be63e
