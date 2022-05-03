@@ -5,6 +5,7 @@
 #include "raylib.h"
 
 typedef struct{
+    char name[20];
     int vida;
     int canJump;
 } Player;
@@ -45,7 +46,7 @@ int main(void){
 
     Player player;
     player.canJump = 0;
-    player.vida = 3;
+    player.vida = 1;
 
     SetTargetFPS(450);
     while (!WindowShouldClose()){
@@ -99,6 +100,10 @@ int main(void){
                 if (scrollingBack <= -background.width*4){scrollingBack = 0;}
                 if (scrollingMid <= -midground.width*4){scrollingMid = 0;}
                 if (scrollingFore <= -foreground.width*4){scrollingFore = 0;}
+
+                if(IsKeyPressed(KEY_RIGHT)){player.vida++;}
+                if(IsKeyPressed(KEY_LEFT)){player.vida--;}
+
             } break;
             default:
                 break;
@@ -138,10 +143,11 @@ int main(void){
                     if(direcao == 1 || direcao == 0)DrawTextureRec(scarfy, (Rectangle){(scarfy.width/6)*(framesCounter % 6), 0, scarfy.width/6,scarfy.height}, characterPosition, WHITE);
                     if(direcao == -1)DrawTextureRec(scarfy_2, (Rectangle){(scarfy_2.width/6)*(framesCounter % 6), 0, scarfy_2.width/6,scarfy_2.height}, characterPosition, WHITE);
 
-                    DrawTextureEx(Heart1, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
+                    if(player.vida >= 1)DrawTextureEx(Heart1, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
                     DrawTextureEx(Heart2, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
-                    DrawTextureEx(Heart1, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
+                    if(player.vida >= 2)DrawTextureEx(Heart1, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
                     DrawTextureEx(Heart2, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
+                    if(player.vida == 3)DrawTextureEx(Heart1, (Vector2){135, 55}, 0.0f, 3.0f, WHITE);
                     DrawTextureEx(Heart2, (Vector2){135, 55}, 0.0f, 3.0f, WHITE);
 
                     DrawText("GAMEPLAY SCREEN", 50, 80, 40, BLACK);
