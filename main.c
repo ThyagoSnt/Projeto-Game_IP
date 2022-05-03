@@ -4,22 +4,22 @@
 #include <math.h>
 #include "raylib.h"
 
-typedef struct{
+typedef struct{ //ESTRUTURA DO PLAYER
     char name[20];
     int vida;
     int canJump;
 } Player;
 
-typedef enum GameScreen{
-    TITLE = 0, MENU, GAMEPLAY
+typedef enum GameScreen{ //ESTRUTURA DE TELAS
+    TITLE, MENU, GAMEPLAY
 } GameScreen;
 
 int main(void){
     const int screenWidth = 1260;
     const int screenHeight = 800;
 
-    InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1");
-    InitAudioDevice();
+    InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIALIZANDO A JANELA
+    InitAudioDevice(); //INICIALIZANDO O SISTEMA DE AUDIO
 
     GameScreen currentScreen = TITLE; //SETANDO O INICIO DO GAME NA TELA DE TITULO DO GAME
 
@@ -183,7 +183,7 @@ int main(void){
     UnloadTexture(Heart1);
     UnloadTexture(Heart2);
 
-    //FECHANDO O AUDIO E A TELA
+    //FECHANDO OS SISTEMAS DE AUDIO E A TELA
     CloseAudioDevice();
     CloseWindow();
 
