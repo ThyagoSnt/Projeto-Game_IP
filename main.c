@@ -67,7 +67,7 @@ int main(void){
                     currentScreen = GAMEPLAY;
                 }
             } break;
-            case MENU: //MECANICAS DA DELA DE MENU
+            case MENU: //MECANICAS DA TELA DE MENU
             {
                 if(IsKeyPressed(KEY_M)){
                     currentScreen = GAMEPLAY;
@@ -107,8 +107,8 @@ int main(void){
                 if (scrollingFore <= -foreground.width*4){scrollingFore = 0;}
 
                 //TESTE DE ALTERAR A VIDA COM AS SETAS DO TECLADO
-                if(IsKeyPressed(KEY_RIGHT)){player.vida++;}
-                if(IsKeyPressed(KEY_LEFT)){player.vida--;}
+                if(IsKeyPressed(KEY_RIGHT) && (player.vida <= 2)){player.vida++;}
+                if(IsKeyPressed(KEY_LEFT) && (player.vida >= 1)){player.vida--;}
 
             } break;
             default:
