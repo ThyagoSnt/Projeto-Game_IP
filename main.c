@@ -43,8 +43,6 @@ int main(void){
     int direcao = 0; 
     int characterRadius = 125;
 
-    int gameStatus = 0;
-
     Player player;
     player.canJump = 0;
     player.vida = 3;
@@ -63,53 +61,47 @@ int main(void){
             {
                 if(IsKeyPressed(KEY_ENTER)){
                     currentScreen = GAMEPLAY;
-                    gameStatus = 1;
                 }
             } break;
             case MENU:
             {
                 if(IsKeyPressed(KEY_M)){
                     currentScreen = GAMEPLAY;
-                    gameStatus = 1;
                 }
             } break;
             case GAMEPLAY:
             {
                 if(IsKeyPressed(KEY_M)){
                     currentScreen = MENU;
-                    gameStatus = 0;
                 }
+                    if(IsKeyDown(KEY_D) && (characterPosition.x+characterRadius < screenWidth)){
+                        characterPosition.x += 2.0f;
+                        if(characterPosition.x > 560){
+                            characterPosition.x = 560;
+                            scrollingBack -= 0.1f;
+                            scrollingMid -= 0.5f;
+                            scrollingFore -= 1.4f;
+                        }
+                        direcao = 1;
+                    }
+                else if(IsKeyDown(KEY_A) && characterPosition.x > 0){
+                    characterPosition.x -= 2.0f;
+                    direcao = -1;
+                }
+
+                //PULO
+                if(IsKeyDown(KEY_SPACE) && (player.canJump == 0)) player.canJump = 1;
+                if((player.canJump == 1) && (characterPosition.y != 350)) characterPosition.y -= 2;
+                if(characterPosition.y == 350) player.canJump = 2;
+                if((player.canJump == 2) && (characterPosition.y != 628)) characterPosition.y += 2;
+                if(characterPosition.y == 628) player.canJump = 0;
+
+                if (scrollingBack <= -background.width*4){scrollingBack = 0;}
+                if (scrollingMid <= -midground.width*4){scrollingMid = 0;}
+                if (scrollingFore <= -foreground.width*4){scrollingFore = 0;}
             } break;
             default:
                 break;
-        }
-
-        if(gameStatus == 1){
-            if(IsKeyDown(KEY_D) && (characterPosition.x+characterRadius < screenWidth)){
-            characterPosition.x += 2.0f;
-            if(characterPosition.x > 560){
-                characterPosition.x = 560;
-                scrollingBack -= 0.1f;
-                scrollingMid -= 0.5f;
-                scrollingFore -= 1.4f;
-            }
-            direcao = 1;
-            }
-            else if(IsKeyDown(KEY_A) && characterPosition.x > 0){
-                characterPosition.x -= 2.0f;
-                direcao = -1;
-            }
-
-            //PULO
-            if(IsKeyDown(KEY_SPACE) && (player.canJump == 0)) player.canJump = 1;
-            if((player.canJump == 1) && (characterPosition.y != 350)) characterPosition.y -= 2;
-            if(characterPosition.y == 350) player.canJump = 2;
-            if((player.canJump == 2) && (characterPosition.y != 628)) characterPosition.y += 2;
-            if(characterPosition.y == 628) player.canJump = 0;
-
-            if (scrollingBack <= -background.width*4){scrollingBack = 0;}
-            if (scrollingMid <= -midground.width*4){scrollingMid = 0;}
-            if (scrollingFore <= -foreground.width*4){scrollingFore = 0;}
         }
 
         BeginDrawing();
