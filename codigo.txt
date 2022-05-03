@@ -1,1 +1,3 @@
 mingw32-make PLATFORM=PLATFORM_DESKTOP
+
+git clone https://github.com/Thyago23/Projeto-Game_IP

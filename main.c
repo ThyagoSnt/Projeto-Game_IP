@@ -5,19 +5,22 @@
 #include "raylib.h"
 
 typedef struct{
-    char name[20];
     int vida;
     int canJump;
 } Player;
 
-int main(void){
-    const int larguraTela = 1260;
-    const int alturaTela = 800;
+typedef enum GameScreen{
+    TITLE = 0, MENU, GAMEPLAY
+} GameScreen;
 
-    InitWindow(larguraTela, alturaTela, "Projeto_versao_0.1");
+int main(void){
+    const int screenWidth = 1260;
+    const int screenHeight = 800;
+
+    InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1");
     InitAudioDevice();
 
-    //GameScreen currentScreen = LOGO;
+    GameScreen currentScreen = TITLE;
 
     //CARREGANDO ASS TEXTURAS
     Texture2D scarfy = LoadTexture("assets/personagem/scarfy.png");
@@ -27,6 +30,7 @@ int main(void){
     Texture2D background = LoadTexture("assets/background/background_layer_1.png");
     Texture2D midground = LoadTexture("assets/background/background_layer_2.png");
     Texture2D foreground = LoadTexture("assets/background/background_layer_3.png");
+    Texture2D title = LoadTexture("assets/src/title_game.png");
 
     Vector2 characterPosition = {240, 628};
 
@@ -35,9 +39,11 @@ int main(void){
     float scrollingFore = 0.0f;
 
     float time = 0.0f;
-    int currentFrame = 0;
+    int framesCounter = 0;
     int direcao = 0; 
     int characterRadius = 125;
+
+    int gameStatus = 0;
 
     Player player;
     player.canJump = 0;
@@ -46,44 +52,40 @@ int main(void){
     SetTargetFPS(450);
     while (!WindowShouldClose()){
 
-        /* switch(currentScreen){
-            case LOGO:
-            {
-                framesCounter++;
-                if (framesCounter > 120){
-                    currentScreen = TITLE;
-                }
-            } break;
+        time += GetFrameTime();
+        if(time >= 0.1f){
+            time = 0.0f;
+            framesCounter += 1;
+        }
+
+        switch(currentScreen){
             case TITLE:
             {
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP)){
+                if(IsKeyPressed(KEY_ENTER)){
                     currentScreen = GAMEPLAY;
+                    gameStatus = 1;
+                }
+            } break;
+            case MENU:
+            {
+                if(IsKeyPressed(KEY_M)){
+                    currentScreen = GAMEPLAY;
+                    gameStatus = 1;
                 }
             } break;
             case GAMEPLAY:
             {
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP)){
-                    currentScreen = ENDING;
+                if(IsKeyPressed(KEY_M)){
+                    currentScreen = MENU;
+                    gameStatus = 0;
                 }
             } break;
-            case ENDING:
-            {
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP)){
-                    currentScreen = TITLE;
-                }
-            } break;
-
             default:
                 break;
-        } */
-
-        time += GetFrameTime();
-        if(time >= 0.1f){
-            time = 0.0f;
-            currentFrame += 1;
         }
 
-        if(IsKeyDown(KEY_D) && (characterPosition.x+characterRadius < larguraTela)){
+        if(gameStatus == 1){
+            if(IsKeyDown(KEY_D) && (characterPosition.x+characterRadius < screenWidth)){
             characterPosition.x += 2.0f;
             if(characterPosition.x > 560){
                 characterPosition.x = 560;
@@ -92,43 +94,70 @@ int main(void){
                 scrollingFore -= 1.4f;
             }
             direcao = 1;
-        }
-        else if(IsKeyDown(KEY_A) && characterPosition.x > 0){
-            characterPosition.x -= 2.0f;
-            direcao = -1;
-        }
+            }
+            else if(IsKeyDown(KEY_A) && characterPosition.x > 0){
+                characterPosition.x -= 2.0f;
+                direcao = -1;
+            }
 
-        if(IsKeyDown(KEY_SPACE) && (player.canJump == 0)) player.canJump = 1;
-        if((player.canJump == 1) && (characterPosition.y != 350)) characterPosition.y -= 2;
-        if(characterPosition.y == 350) player.canJump = 2;
-        if((player.canJump == 2) && (characterPosition.y != 628)) characterPosition.y += 2;
-        if(characterPosition.y == 628) player.canJump = 0;
+            //PULO
+            if(IsKeyDown(KEY_SPACE) && (player.canJump == 0)) player.canJump = 1;
+            if((player.canJump == 1) && (characterPosition.y != 350)) characterPosition.y -= 2;
+            if(characterPosition.y == 350) player.canJump = 2;
+            if((player.canJump == 2) && (characterPosition.y != 628)) characterPosition.y += 2;
+            if(characterPosition.y == 628) player.canJump = 0;
 
-        if (scrollingBack <= -background.width*4){scrollingBack = 0;}
-        if (scrollingMid <= -midground.width*4){scrollingMid = 0;}
-        if (scrollingFore <= -foreground.width*4){scrollingFore = 0;}
+            if (scrollingBack <= -background.width*4){scrollingBack = 0;}
+            if (scrollingMid <= -midground.width*4){scrollingMid = 0;}
+            if (scrollingFore <= -foreground.width*4){scrollingFore = 0;}
+        }
 
         BeginDrawing();
 
             ClearBackground(BLACK);
 
-            DrawTextureEx(background, (Vector2){ scrollingBack, 40 }, 0.0f, 4.0f, WHITE);
-            DrawTextureEx(background, (Vector2){ background.width*4 + scrollingBack, 40 }, 0.0f, 4.0f, WHITE);
+            switch(currentScreen)
+            {
+                case TITLE:
+                {
+                    DrawTextureEx(title, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
+                    DrawText("TITLE SCREEN", (screenWidth/2)-150, screenHeight/2, 40, BLACK);
+                    DrawText("PRESS ENTER TO JUMP TO GAMEPLAY SCREEN", (screenWidth/2)-450, (screenHeight/2)+50, 40, BLACK);
 
-            DrawTextureEx(midground, (Vector2){ scrollingMid, 40 }, 0.0f, 4.0f, WHITE);
-            DrawTextureEx(midground, (Vector2){ midground.width*4 + scrollingMid, 40 }, 0.0f, 4.0f, WHITE);
+                } break;
+                case MENU:
+                {
+                    DrawTextureEx(title, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
+                    DrawText("MENU SCREEN", (screenWidth/2)-150, screenHeight/2, 40, BLACK);
+                    DrawText("PRESS M to JUMP TO GAMEPLAY SCREEN", (screenWidth/2)-450, (screenHeight/2)+50, 40, BLACK);
 
-            DrawTextureEx(foreground, (Vector2){ scrollingFore, 40 }, 0.0f, 4.0f, WHITE);
-            DrawTextureEx(foreground, (Vector2){ foreground.width*4 + scrollingFore, 40 }, 0.0f, 4.0f, WHITE);
+                } break;
+                case GAMEPLAY:
+                {
+                    DrawTextureEx(background, (Vector2){ scrollingBack, 40 }, 0.0f, 4.0f, WHITE);
+                    DrawTextureEx(background, (Vector2){ background.width*4 + scrollingBack, 40 }, 0.0f, 4.0f, WHITE);
 
-            if(direcao == 1 || direcao == 0)DrawTextureRec(scarfy, (Rectangle){(scarfy.width/6)*(currentFrame % 6), 0, scarfy.width/6,scarfy.height}, characterPosition, WHITE);
-            if(direcao == -1)DrawTextureRec(scarfy_2, (Rectangle){(scarfy_2.width/6)*(currentFrame % 6), 0, scarfy_2.width/6,scarfy_2.height}, characterPosition, WHITE);
+                    DrawTextureEx(midground, (Vector2){ scrollingMid, 40 }, 0.0f, 4.0f, WHITE);
+                    DrawTextureEx(midground, (Vector2){ midground.width*4 + scrollingMid, 40 }, 0.0f, 4.0f, WHITE);
 
-            DrawTextureEx(Heart1, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
-            DrawTextureEx(Heart2, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
-            DrawTextureEx(Heart1, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
-            DrawTextureEx(Heart2, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
-            DrawTextureEx(Heart2, (Vector2){135, 55}, 0.0f, 3.0f, WHITE);
+                    DrawTextureEx(foreground, (Vector2){ scrollingFore, 40 }, 0.0f, 4.0f, WHITE);
+                    DrawTextureEx(foreground, (Vector2){ foreground.width*4 + scrollingFore, 40 }, 0.0f, 4.0f, WHITE);
+
+                    if(direcao == 1 || direcao == 0)DrawTextureRec(scarfy, (Rectangle){(scarfy.width/6)*(framesCounter % 6), 0, scarfy.width/6,scarfy.height}, characterPosition, WHITE);
+                    if(direcao == -1)DrawTextureRec(scarfy_2, (Rectangle){(scarfy_2.width/6)*(framesCounter % 6), 0, scarfy_2.width/6,scarfy_2.height}, characterPosition, WHITE);
+
+                    DrawTextureEx(Heart1, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
+                    DrawTextureEx(Heart2, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
+                    DrawTextureEx(Heart1, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
+                    DrawTextureEx(Heart2, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
+                    DrawTextureEx(Heart2, (Vector2){135, 55}, 0.0f, 3.0f, WHITE);
+
+                    DrawText("GAMEPLAY SCREEN", 50, 80, 40, BLACK);
+                    DrawText("PRESS M TO JUMP TO MENU SCREEN", 50, 120, 20, BLACK);
+
+                } break;
+                default: break;
+            } 
             
         EndDrawing();
     }
