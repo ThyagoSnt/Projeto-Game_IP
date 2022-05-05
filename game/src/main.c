@@ -1,4 +1,9 @@
 #include "../include/game.h"
+#include "mechanicGame.c"
+#include "initFuctions.c"
+#include "handleTexture.c"
+#include "draw.c"
+
 int main(void)
 {
 
