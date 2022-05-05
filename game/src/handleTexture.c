@@ -16,6 +16,8 @@ void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *m
 	//CARREGANDO ASS TEXTURAS
 	persona->personRight = LoadTexture("assets/personagem/scarfy.png");
 	persona->personLeft = LoadTexture("assets/personagem/scarfy_2.png");
+	persona->personStopRight = LoadTexture("assets/personagem/stop.png");
+	persona->personStopLeft = LoadTexture("assets/personagem/stopLeft.png");
 	life->heartFull = LoadTexture("assets/gui/Heart1.png");
 	life->heartEmpty = LoadTexture("assets/gui/Heart2.png");
 	background->back = LoadTexture("assets/background/background_layer_1.png");

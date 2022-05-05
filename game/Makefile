@@ -2,6 +2,6 @@ FILE=./src/draw.c ./src/handleTexture.c ./src/initFuctions.c ./src/main.c ./src/
 all:compile run
 
 compile:
-	gcc $(FILE) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+	gcc -o game $(FILE) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 run:
-	./a.out
+	./game

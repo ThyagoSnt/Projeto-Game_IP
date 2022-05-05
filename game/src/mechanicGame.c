@@ -2,12 +2,14 @@
 
 void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen)
 {
-	if(IsKeyPressed(KEY_M))
+	if(IsKeyPressed(KEY_P))
 		*currentScreen = MENU;
 	//ALTERANDO A POSICAO DO PLAYER NO EIXO X
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + set->characterRadius < screenWidth))
 	{
-		player->characterPosition.x += 2.0f;
+		set->steps++;
+		player->stop = 0;
+		player->characterPosition.x += 1.0f;
 		if(player->characterPosition.x > 560)
 		{
 			player->characterPosition.x = 560;
@@ -19,7 +21,8 @@ void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *
 	}
 	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0)
 	{
-		player->characterPosition.x -= 2.0f;
+		player->stop = 0;
+		player->characterPosition.x -= 1.0f;
 		set->direction = -1;
 	}
 
@@ -46,18 +49,35 @@ void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *
 	//TESTE DE ALTERAR A VIDA COM AS SETAS DO TECLADO
 	if(IsKeyPressed(KEY_RIGHT) && (player->vida <= 2))
 		player->vida++;
-	if(IsKeyPressed(KEY_LEFT) && (player->vida >= 1))
+	if(set->steps == 900 && (player->vida >= 1))
+	{
 		player->vida--;
+		set->steps = 0;
+	}
+	if(player->vida == 0)
+		*currentScreen = GAME_OVER;
 }
 
-void TitleMechanics(GameScreen *currentScreen)
+void TitleMechanics(GameScreen *currentScreen, Menu *menu)
 {
-	if(IsKeyPressed(KEY_ENTER))
+	if(IsKeyPressed(KEY_ENTER) && menu->start == 1)
 		*currentScreen = GAMEPLAY;
+	else if(IsKeyPressed(KEY_ENTER) && menu->start == 0)
+		*currentScreen = INFO;
+	if(IsKeyPressed(KEY_UP))
+		menu->start = 1;
+	else if(IsKeyPressed(KEY_DOWN))
+		menu->start = 0;
 }
 
 void MenuMechanics(GameScreen *currentScreen)
 {
-	if(IsKeyPressed(KEY_M))
+	if(IsKeyPressed(KEY_P))
 		*currentScreen = GAMEPLAY;
+}
+
+void InfoMechanics(GameScreen *currentScreen, Menu *menu)
+{
+	if(IsKeyPressed(KEY_Z))
+		*currentScreen = TITLE;
 }

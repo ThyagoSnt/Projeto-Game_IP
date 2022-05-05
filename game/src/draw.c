@@ -14,10 +14,14 @@ void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player playe
 	DrawTextureEx(background.fore, (Vector2){ background.mid.width*4 + scroll.fore, 40 }, 0.0f, 4.0f, WHITE);
 
 	//ANIMACAO DO PLAYER
-	if(set.direction == 1 || set.direction == 0)
+	if((set.direction == 1 || set.direction == 0) && player.stop == 0)
 		DrawTextureRec(persona.personRight, (Rectangle){(persona.personRight.width/6)*(set.framesCounter % 6), 0, persona.personRight.width/6,persona.personRight.height}, player.characterPosition, WHITE);
-	if(set.direction == -1)
+	else if(set.direction == -1 && player.stop == 0)
 		DrawTextureRec(persona.personLeft, (Rectangle){(persona.personLeft.width/6)*(set.framesCounter % 6), 0, persona.personLeft.width/6,persona.personLeft.height}, player.characterPosition, WHITE);
+	else if((set.direction == 1 || set.direction == 0) && player.stop == 1)
+		DrawTextureEx(persona.personStopRight, player.characterPosition, 0.0f, 1.0f, WHITE);
+	else
+		DrawTextureEx(persona.personStopLeft, player.characterPosition, 0.0f, 1.0f, WHITE);
 
 	//VIDAS DO PLAYER
 	if(player.vida >= 1)
@@ -38,13 +42,29 @@ void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player playe
 void DrawMenu(Menu menu)
 {
 	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
-	DrawText("MENU SCREEN", (screenWidth/2)-150, screenHeight/2, 40, BLACK);
-	DrawText("PRESS M TO JUMP TO GAMEPLAY SCREEN", (screenWidth/2)-450, (screenHeight/2)+50, 40, BLACK);
+	DrawText("PAUSED", (menu.background.width/2) + 20, (screenHeight/2), 80, BLACK);
 }
 
 void DrawTitle(Menu menu)
 {
 	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
-	DrawText("TITLE SCREEN", (screenWidth/2)-150, screenHeight/2, 40, BLACK);
-	DrawText("PRESS ENTER TO JUMP TO GAMEPLAY SCREEN", (screenWidth/2)-450, (screenHeight/2)+50, 40, BLACK);
+	DrawText("Start", (menu.background.width + 240)/2, (menu.background.height + 160)/2, 40, BLACK);
+	DrawText("Info", (menu.background.width + 240)/2, (menu.background.height + 280)/2, 40, BLACK);
+	if(menu.start == 1)
+		DrawRectangleLines((menu.background.width + 150)/2,(menu.background.height + 160)/2,200,40,RED);
+	else
+		DrawRectangleLines((menu.background.width + 150)/2,(menu.background.height + 280)/2,200,40,RED);
+}
+
+void DrawInfo(Menu menu)
+{
+	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
+	DrawText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's\n .", 0, screenHeight/2, 40, BLACK);
+
+}
+
+void DrawGameOver()
+{
+	ClearBackground(BLACK);
+	DrawText("Game Over",screenWidth/2 -150,screenHeight/2 - 50,50,WHITE);
 }

@@ -15,12 +15,16 @@ typedef struct{ //ESTRUTURA DO PLAYER
     int vida;
     int canJump;
 	Vector2 characterPosition;
+	int stop;
 } Player;
 
 typedef struct
 {
 	Texture2D	personRight;
 	Texture2D	personLeft;
+	Texture2D	personStopRight;
+	Texture2D	personStopLeft;
+
 }Person;
 
 typedef struct
@@ -39,6 +43,7 @@ typedef struct
 typedef struct
 {
 	Texture2D	background;
+	int	start;
 }Menu;
 
 typedef struct
@@ -47,6 +52,8 @@ typedef struct
 	int		framesCounter;
 	int		direction;
 	int		characterRadius;
+	int		steps;
+	int		gameOver;
 }SetGame;
 
 typedef struct
@@ -56,9 +63,14 @@ typedef struct
 	float	fore;
 }Scroll;
 
+typedef struct
+{
+	Vector2 position;
+	Texture2D	plataform;
+}Plataform;
 
 typedef enum GameScreen{ //ESTRUTURA DE TELAS
-    TITLE, MENU, GAMEPLAY
+    TITLE, MENU, GAMEPLAY, INFO, GAME_OVER
 } GameScreen;
 
 void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player player, Heart life,Person persona);
@@ -68,7 +80,10 @@ void UnloadAllTexture(Person *persona, Heart *life,Background *background, Menu 
 void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu);
 void InitVar(Scroll *scroll, SetGame *set,Player *player);
 void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen);
-void TitleMechanics(GameScreen *currentScreen);
+void TitleMechanics(GameScreen *currentScreen,Menu *menu);
 void MenuMechanics(GameScreen *currentScreen);
+void InfoMechanics(GameScreen *currentScreen, Menu *menu);
+void DrawInfo(Menu menu);
+void DrawGameOver();
 
 #endif
