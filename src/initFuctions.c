@@ -1,6 +1,4 @@
 #include "../include/game.h"
-
-
 void InitVar(Scroll *scroll, SetGame *set,Player *player)
 {
 	scroll->back = 0.0f;

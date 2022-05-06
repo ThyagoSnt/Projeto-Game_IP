@@ -73,17 +73,17 @@ typedef enum GameScreen{ //ESTRUTURA DE TELAS
     TITLE, MENU, GAMEPLAY, INFO, GAME_OVER
 } GameScreen;
 
-// void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player player, Heart life,Person persona);
-// void DrawMenu(Menu menu);
-// void DrawTitle(Menu menu);
-// void UnloadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu);
-// void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu);
-// void InitVar(Scroll *scroll, SetGame *set,Player *player);
-// void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen);
-// void TitleMechanics(GameScreen *currentScreen,Menu *menu);
-// void MenuMechanics(GameScreen *currentScreen);
-// void InfoMechanics(GameScreen *currentScreen, Menu *menu);
-// void DrawInfo(Menu menu);
-// void DrawGameOver();
+void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player player, Heart life,Person persona);
+void DrawMenu(Menu menu);
+void DrawTitle(Menu menu);
+void UnloadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu);
+void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu);
+void InitVar(Scroll *scroll, SetGame *set,Player *player);
+void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen);
+void TitleMechanics(GameScreen *currentScreen,Menu *menu);
+void MenuMechanics(GameScreen *currentScreen);
+void InfoMechanics(GameScreen *currentScreen, Menu *menu);
+void DrawInfo(Menu menu);
+void DrawGameOver();
 
 #endif

@@ -1,5 +1,4 @@
 #include "../include/game.h"
-
 void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen)
 {
 	if(IsKeyPressed(KEY_P))
