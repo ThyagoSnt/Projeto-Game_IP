@@ -1,16 +1,15 @@
 #include "../include/game.h"
-void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen)
-{
-	if(IsKeyPressed(KEY_P))
+
+void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen){
+	if(IsKeyPressed(KEY_M))
 		*currentScreen = MENU;
+
 	//ALTERANDO A POSICAO DO PLAYER NO EIXO X
-	if(IsKeyDown(KEY_D) && (player->characterPosition.x + set->characterRadius < screenWidth))
-	{
+	if(IsKeyDown(KEY_D) && (player->characterPosition.x + set->characterRadius < screenWidth)){
 		set->steps++;
 		player->stop = 0;
 		player->characterPosition.x += 1.0f;
-		if(player->characterPosition.x > 560)
-		{
+		if(player->characterPosition.x > 560){
 			player->characterPosition.x = 560;
 			scroll->back -= 0.1f;
 			scroll->mid -= 0.5f;
@@ -18,8 +17,7 @@ void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *
 		}
 		set->direction = 1;
 	}
-	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0)
-	{
+	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0){
 		player->stop = 0;
 		player->characterPosition.x -= 1.0f;
 		set->direction = -1;
@@ -48,8 +46,7 @@ void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *
 	//TESTE DE ALTERAR A VIDA COM AS SETAS DO TECLADO
 	if(IsKeyPressed(KEY_RIGHT) && (player->vida <= 2))
 		player->vida++;
-	if(set->steps == 900 && (player->vida >= 1))
-	{
+	if(set->steps == 900 && (player->vida >= 1)){
 		player->vida--;
 		set->steps = 0;
 	}
@@ -57,8 +54,7 @@ void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *
 		*currentScreen = GAME_OVER;
 }
 
-void TitleMechanics(GameScreen *currentScreen, Menu *menu)
-{
+void TitleMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO TITULO PRINCIPAL
 	if(IsKeyPressed(KEY_ENTER) && menu->start == 1)
 		*currentScreen = GAMEPLAY;
 	else if(IsKeyPressed(KEY_ENTER) && menu->start == 0)
@@ -69,14 +65,12 @@ void TitleMechanics(GameScreen *currentScreen, Menu *menu)
 		menu->start = 0;
 }
 
-void MenuMechanics(GameScreen *currentScreen)
-{
-	if(IsKeyPressed(KEY_P))
+void MenuMechanics(GameScreen *currentScreen){
+	if(IsKeyPressed(KEY_M))
 		*currentScreen = GAMEPLAY;
 }
 
-void InfoMechanics(GameScreen *currentScreen, Menu *menu)
-{
+void InfoMechanics(GameScreen *currentScreen, Menu *menu){
 	if(IsKeyPressed(KEY_Z))
 		*currentScreen = TITLE;
 }

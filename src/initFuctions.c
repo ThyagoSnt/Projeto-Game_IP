@@ -1,6 +1,6 @@
 #include "../include/game.h"
-void InitVar(Scroll *scroll, SetGame *set,Player *player)
-{
+
+void InitVar(Scroll *scroll, SetGame *set,Player *player){
 	scroll->back = 0.0f;
 	scroll->mid = 0.0f;
 	scroll->fore = 0.0f;
@@ -17,4 +17,3 @@ void InitVar(Scroll *scroll, SetGame *set,Player *player)
 	player->vida = 3;
 	player->characterPosition = (Vector2){240, 628}; //POSICAO INICIAL DO PLAYER
 }
-

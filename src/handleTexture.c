@@ -1,18 +1,7 @@
 #include "../include/game.h"
-void UnloadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu)
-{
-	UnloadTexture(background->back);
-	UnloadTexture(background->mid);
-	UnloadTexture(background->fore);
-	UnloadTexture(persona->personRight);
-	UnloadTexture(persona->personLeft);
-	UnloadTexture(life->heartFull);
-	UnloadTexture(life->heartEmpty);
-}
 
-void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu)
-{
-	//CARREGANDO ASS TEXTURAS
+void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu){
+	//CARREGANDO AS TEXTURAS
 	persona->personRight = LoadTexture("../assets/personagem/scarfy.png");
 	persona->personLeft = LoadTexture("../assets/personagem/scarfy_2.png");
 	persona->personStopRight = LoadTexture("../assets/personagem/stop.png");
@@ -23,4 +12,15 @@ void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *m
 	background->mid = LoadTexture("../assets/background/background_layer_2.png");
 	background->fore= LoadTexture("../assets/background/background_layer_3.png");
 	menu->background = LoadTexture("../assets/title_game.png");
+}
+
+void UnloadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu){
+	//DESCARREGANDO AS TEXTURAS
+	UnloadTexture(background->back);
+	UnloadTexture(background->mid);
+	UnloadTexture(background->fore);
+	UnloadTexture(persona->personRight);
+	UnloadTexture(persona->personLeft);
+	UnloadTexture(life->heartFull);
+	UnloadTexture(life->heartEmpty);
 }

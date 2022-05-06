@@ -1,7 +1,7 @@
 #include "../include/game.h"
 
-void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player player, Heart life,Person persona)
-{
+void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player player, Heart life,Person persona){
+	//CENARIO DO FUNDO
 	DrawTextureEx(background.back, (Vector2){ scroll.back, 40 }, 0.0f, 4.0f, WHITE);
 	DrawTextureEx(background.back, (Vector2){ background.back.width*4 + scroll.back, 40 }, 0.0f, 4.0f, WHITE);
 
@@ -39,14 +39,12 @@ void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player playe
 	DrawText("PRESS M TO JUMP TO MENU SCREEN", 50, 160, 20, BLACK);
 }
 
-void DrawMenu(Menu menu)
-{
+void DrawMenu(Menu menu){
 	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
 	DrawText("PAUSED", (menu.background.width/2) + 20, (screenHeight/2), 80, BLACK);
 }
 
-void DrawTitle(Menu menu)
-{
+void DrawTitle(Menu menu){
 	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
 	DrawText("Start", (menu.background.width + 240)/2, (menu.background.height + 160)/2, 40, BLACK);
 	DrawText("Info", (menu.background.width + 240)/2, (menu.background.height + 280)/2, 40, BLACK);
@@ -56,15 +54,12 @@ void DrawTitle(Menu menu)
 		DrawRectangleLines((menu.background.width + 150)/2,(menu.background.height + 280)/2,200,40,RED);
 }
 
-void DrawInfo(Menu menu)
-{
+void DrawInfo(Menu menu){
 	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
 	DrawText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's\n .", 0, screenHeight/2, 40, BLACK);
-
 }
 
-void DrawGameOver()
-{
+void DrawGameOver(){
 	ClearBackground(BLACK);
 	DrawText("Game Over",screenWidth/2 -150,screenHeight/2 - 50,50,WHITE);
 }
