@@ -1,26 +1,27 @@
 #include "../include/game.h"
 
-void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen){
+void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico){
 	if(IsKeyPressed(KEY_M))
 		*currentScreen = MENU;
 
 	//ALTERANDO A POSICAO DO PLAYER NO EIXO X
-	if(IsKeyDown(KEY_D) && (player->characterPosition.x + set->characterRadius < screenWidth)){
-		set->steps++;
+	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
-		player->characterPosition.x += 1.0f;
+		player->characterPosition.x += 3.0f;
 		if(player->characterPosition.x > 560){
+			set->steps++;
 			player->characterPosition.x = 560;
 			scroll->back -= 0.1f;
 			scroll->mid -= 0.5f;
 			scroll->fore -= 1.4f;
+			fanatico->enemyPosition.x -= 2;
 		}
-		set->direction = 1;
+		player->direction = 1;
 	}
-	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0){
+	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0){ //MOVIMENTO DO PLAYER PARA ESQUERDA
 		player->stop = 0;
-		player->characterPosition.x -= 1.0f;
-		set->direction = -1;
+		player->characterPosition.x -= 3.0f;
+		player->direction = -1;
 	}
 
 	//MECANICA DE PULO
@@ -36,22 +37,38 @@ void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *
 		player->canJump = 0;
 
 	//MECANICA DO BACKGROUND
-	if (scroll->back <= -background->back.width*4)
+	if (scroll->back <= -background->back[set->map].width*4)
 		scroll->back = 0;
-	if (scroll->mid <= -background->mid.width*4)
+	if (scroll->mid <= -background->mid[set->map].width*4)
 		scroll->mid = 0;
-	if (scroll->fore <= -background->fore.width*4)
+	if (scroll->fore <= -background->fore[set->map].width*4)
 		scroll->fore = 0;
 
 	//TESTE DE ALTERAR A VIDA COM AS SETAS DO TECLADO
 	if(IsKeyPressed(KEY_RIGHT) && (player->vida <= 2))
 		player->vida++;
-	if(set->steps == 900 && (player->vida >= 1)){
+	if(IsKeyPressed(KEY_LEFT) && (player->vida >= 1))
 		player->vida--;
+	if(player->vida == 0)
+		*currentScreen = GAME_OVER; //TELA DE MORTE
+
+	if(set->steps == 3600){ //TROCA DE MAPA
+		set->map = 1;
 		set->steps = 0;
 	}
-	if(player->vida == 0)
-		*currentScreen = GAME_OVER;
+
+	//MECANICA DE MOVIMENTO DO FANATICO
+	if(fanatico->enemyPosition.x - player->characterPosition.x > 0){
+		fanatico->stop = 0;
+		fanatico->direction = -1;
+		fanatico->enemyPosition.x -= 1;
+	}
+	else if(fanatico->enemyPosition.x - player->characterPosition.x < 0){
+		fanatico->stop = 0;
+		fanatico->direction = 1;
+		fanatico->enemyPosition.x += 1;
+	}
+	else fanatico->stop = 1;
 }
 
 void TitleMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO TITULO PRINCIPAL
@@ -73,4 +90,12 @@ void MenuMechanics(GameScreen *currentScreen){
 void InfoMechanics(GameScreen *currentScreen, Menu *menu){
 	if(IsKeyPressed(KEY_Z))
 		*currentScreen = TITLE;
+}
+
+void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set){
+	if(IsKeyPressed(KEY_Z)){
+		player->vida = 3;
+		set->map = 1;
+		*currentScreen = TITLE;
+	}
 }
