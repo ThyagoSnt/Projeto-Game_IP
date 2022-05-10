@@ -1,45 +1,88 @@
 #include "../include/game.h"
 
-void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player player, Heart life,Person persona, Fantext fantxt, Fanatico fanatico){
-
-	//CENARIO DO FUNDO1
-	DrawTextureEx(background.back[set.map], (Vector2){ scroll.back, 40 }, 0.0f, 4.0f, WHITE);
-	DrawTextureEx(background.back[set.map], (Vector2){ background.back[set.map].width*4 + scroll.back, 40 }, 0.0f, 4.0f, WHITE);
-	//CENARIO DO MEIO1
-	DrawTextureEx(background.mid[set.map], (Vector2){ scroll.mid, 40 }, 0.0f, 4.0f, WHITE);
-	DrawTextureEx(background.mid[set.map], (Vector2){ background.mid[set.map].width*4 + scroll.mid, 40 }, 0.0f, 4.0f, WHITE);
-	//CENARIO DA FRENTE1
-	DrawTextureEx(background.fore[set.map], (Vector2){ scroll.fore, 40 }, 0.0f, 4.0f, WHITE);
-	DrawTextureEx(background.fore[set.map], (Vector2){ background.fore[set.map].width*4 + scroll.fore, 40 }, 0.0f, 4.0f, WHITE);
+void DrawGamePlay(Background background,SetGame set, Player player, Heart life,Fanatico fanatico, Goblin goblin, Cogumelo cogumelo, Olho olho){
+	//CENARIOS DO FUNDO
+	DrawTextureEx(background.backg[set.map], (Vector2){ background.back, 40 }, 0.0f, 4.0f, WHITE);
+	DrawTextureEx(background.backg[set.map], (Vector2){ background.backg[set.map].width*4 + background.back, 40 }, 0.0f, 4.0f, WHITE);
+	//CENARIOS DO MEIO
+	DrawTextureEx(background.midg[set.map], (Vector2){ background.mid, 40 }, 0.0f, 4.0f, WHITE);
+	DrawTextureEx(background.midg[set.map], (Vector2){ background.midg[set.map].width*4 + background.mid, 40 }, 0.0f, 4.0f, WHITE);
+	//CENARIOS DA FRENTE
+	DrawTextureEx(background.foreg[set.map], (Vector2){ background.fore, 40 }, 0.0f, 4.0f, WHITE);
+	DrawTextureEx(background.foreg[set.map], (Vector2){ background.foreg[set.map].width*4 + background.fore, 40 }, 0.0f, 4.0f, WHITE);
 
 	//ANIMACAO DO PLAYER
-	if((player.direction == 1 || player.direction == 0) && player.stop == 0) DrawTextureRec(persona.personRight, (Rectangle){(persona.personRight.width/6)*(set.framesCounter % 6), 0, persona.personRight.width/6, persona.personRight.height}, player.characterPosition, WHITE);
-	else if(player.direction == -1 && player.stop == 0) DrawTextureRec(persona.personLeft, (Rectangle){(persona.personLeft.width/6)*(set.framesCounter % 6), 0, persona.personLeft.width/6,persona.personLeft.height}, player.characterPosition, WHITE);
-	else if((player.direction == 1 || player.direction == 0) && player.stop == 1) DrawTextureEx(persona.personStopRight, player.characterPosition, 0.0f, 1.0f, WHITE);
-	else DrawTextureEx(persona.personStopLeft, player.characterPosition, 0.0f, 1.0f, WHITE);
+	if((player.direction == 1 || player.direction == 0) && player.stop == 0) 
+		DrawTextureRec(player.personRight, (Rectangle){(player.personRight.width/6)*(set.framesCounter % 6), 0, player.personRight.width/6, player.personRight.height}, player.characterPosition, WHITE);
+	else if(player.direction == -1 && player.stop == 0) 
+		DrawTextureRec(player.personLeft, (Rectangle){(player.personLeft.width/6)*(set.framesCounter % 6), 0, player.personLeft.width/6,player.personLeft.height}, player.characterPosition, WHITE);
+	else if((player.direction == 1 || player.direction == 0) && player.stop == 1) 
+		DrawTextureEx(player.personStopRight, player.characterPosition, 0.0f, 1.0f, WHITE);
+	else 
+		DrawTextureEx(player.personStopLeft, player.characterPosition, 0.0f, 1.0f, WHITE);
 
 	//ANIMACAO DO FANATICO
-	if(fanatico.direction == 1 && fanatico.stop == 0) DrawTextureRec(fantxt.walk_left, (Rectangle){(fantxt.walk_left.width/6)*(set.framesCounter % 6), 0, fantxt.walk_left.width/6, fantxt.walk_left.height}, fanatico.enemyPosition, WHITE);
-	else if(fanatico.direction == -1 && fanatico.stop == 0) DrawTextureRec(fantxt.walk_right, (Rectangle){(fantxt.walk_right.width/6)*(set.framesCounter % 6), 0, fantxt.walk_right.width/6, fantxt.walk_right.height}, fanatico.enemyPosition, WHITE);
-	else if(fanatico.direction == 1 && fanatico.stop == 1) DrawTextureEx(fantxt.stop_left, fanatico.enemyPosition, 0.0f, 1.0f, WHITE);
-	else DrawTextureEx(fantxt.stop_right, fanatico.enemyPosition, 0.0f, 1.0f, WHITE);
+	if(fanatico.direction == 1 && fanatico.stop == 0) 
+		DrawTextureRec(fanatico.walk_left, (Rectangle){(fanatico.walk_left.width/6)*(set.framesCounter % 6), 0, fanatico.walk_left.width/6, fanatico.walk_left.height}, fanatico.enemyPosition, WHITE);
+	else if(fanatico.direction == -1 && fanatico.stop == 0) 
+		DrawTextureRec(fanatico.walk_right, (Rectangle){(fanatico.walk_right.width/6)*(set.framesCounter % 6), 0, fanatico.walk_right.width/6, fanatico.walk_right.height}, fanatico.enemyPosition, WHITE);
+	else if(fanatico.direction == 1 && fanatico.stop == 1) 
+		DrawTextureEx(fanatico.stop_left, fanatico.enemyPosition, 0.0f, 1.0f, WHITE);
+	else 
+		DrawTextureEx(fanatico.stop_right, fanatico.enemyPosition, 0.0f, 1.0f, WHITE);
+
+	//ANIMACAO DO GOBLIN
+	/* if(goblin.direction == 1 && goblin.stop == 0) 
+		DrawTextureRec(goblin.walk_left, (Rectangle){(goblin.walk_left.width/6)*(set.framesCounter % 6), 0, goblin.walk_left.width/6, goblin.walk_left.height}, goblin.enemyPosition, WHITE);
+	else if(goblin.direction == -1 && goblin.stop == 0) 
+		DrawTextureRec(goblin.walk_right, (Rectangle){(goblin.walk_right.width/6)*(set.framesCounter % 6), 0, goblin.walk_right.width/6, goblin.walk_right.height}, goblin.enemyPosition, WHITE);
+	else if(goblin.direction == 1 && goblin.stop == 1) 
+		DrawTextureEx(goblin.stop_left, goblin.enemyPosition, 0.0f, 1.0f, WHITE);
+	else 
+		DrawTextureEx(goblin.stop_right, goblin.enemyPosition, 0.0f, 1.0f, WHITE); */
+
+	//ANIMACAO DO COGUMELO
+	/* if(cogumelo.direction == 1 && cogumelo.stop == 0) 
+		DrawTextureRec(cogumelo.walk_left, (Rectangle){(cogumelo.walk_left.width/6)*(set.framesCounter % 6), 0, cogumelo.walk_left.width/6, cogumelo.walk_left.height}, cogumelo.enemyPosition, WHITE);
+	else if(cogumelo.direction == -1 && cogumelo.stop == 0) 
+		DrawTextureRec(cogumelo.walk_right, (Rectangle){(cogumelo.walk_right.width/6)*(set.framesCounter % 6), 0, cogumelo.walk_right.width/6, cogumelo.walk_right.height}, cogumelo.enemyPosition, WHITE);
+	else if(cogumelo.direction == 1 && cogumelo.stop == 1) 
+		DrawTextureEx(cogumelo.stop_left, cogumelo.enemyPosition, 0.0f, 1.0f, WHITE);
+	else 
+		DrawTextureEx(cogumelo.stop_right, cogumelo.enemyPosition, 0.0f, 1.0f, WHITE); */
+
+	//ANIMACAO DO OLHO
+	/* if(olho.direction == 1 && olho.stop == 0) 
+		DrawTextureRec(olho.walk_left, (Rectangle){(olho.walk_left.width/6)*(set.framesCounter % 6), 0, olho.walk_left.width/6, olho.walk_left.height}, olho.enemyPosition, WHITE);
+	else if(olho.direction == -1 && olho.stop == 0) 
+		DrawTextureRec(olho.walk_right, (Rectangle){(olho.walk_right.width/6)*(set.framesCounter % 6), 0, olho.walk_right.width/6, olho.walk_right.height}, olho.enemyPosition, WHITE);
+	else if(olho.direction == 1 && olho.stop == 1) 
+		DrawTextureEx(olho.stop_left, olho.enemyPosition, 0.0f, 1.0f, WHITE);
+	else 
+		DrawTextureEx(olho.stop_right, olho.enemyPosition, 0.0f, 1.0f, WHITE); */
 
 	//VIDAS DO PLAYER
-	if(player.vida >= 1)DrawTextureEx(life.heartFull, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
+	if(player.vida >= 1) DrawTextureEx(life.heartFull, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
 		DrawTextureEx(life.heartEmpty, (Vector2){15, 55}, 0.0f, 3.0f, WHITE);
-	if(player.vida >= 2)DrawTextureEx(life.heartFull, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
+	if(player.vida >= 2) DrawTextureEx(life.heartFull, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
 		DrawTextureEx(life.heartEmpty, (Vector2){75, 55}, 0.0f, 3.0f, WHITE);
-	if(player.vida == 3)DrawTextureEx(life.heartFull, (Vector2){135, 55}, 0.0f, 3.0f, WHITE);
+	if(player.vida >= 3) DrawTextureEx(life.heartFull, (Vector2){135, 55}, 0.0f, 3.0f, WHITE);
 		DrawTextureEx(life.heartEmpty, (Vector2){135, 55}, 0.0f, 3.0f, WHITE);
+	if(player.vida >= 4) DrawTextureEx(life.heartFull, (Vector2){195, 55}, 0.0f, 3.0f, WHITE);
+		DrawTextureEx(life.heartEmpty, (Vector2){195, 55}, 0.0f, 3.0f, WHITE);
+	if(player.vida == 5) DrawTextureEx(life.heartFull, (Vector2){255, 55}, 0.0f, 3.0f, WHITE);
+		DrawTextureEx(life.heartEmpty, (Vector2){255, 55}, 0.0f, 3.0f, WHITE);
 
 	//TEXTO DE TESTE GAMEPLAY
-	if(set.map == 1){
+	if(set.map == 0){
 		DrawText("GAMEPLAY SCREEN", 50, 120, 40, BLACK);
-		DrawText("PRESS M TO JUMP TO MENU SCREEN", 50, 160, 20, BLACK);
+		DrawText("PRESS M TO MENU SCREEN", 50, 160, 20, BLACK);
+		DrawText("PRESS F11 TO FULL SCREEN MODE", 850, 160, 20, BLACK);
 	}
-	else if (set.map == 2){
+	else if(set.map == 1){
 		DrawText("GAMEPLAY SCREEN", 50, 120, 40, WHITE);
-		DrawText("PRESS M TO JUMP TO MENU SCREEN", 50, 160, 20, WHITE);
+		DrawText("PRESS M TO MENU SCREEN", 50, 160, 20, WHITE);
+		DrawText("PRESS F11 TO FULL SCREEN MODE", 850, 160, 20, WHITE);
 	}
 }
 

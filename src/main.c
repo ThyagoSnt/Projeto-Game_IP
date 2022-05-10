@@ -3,23 +3,23 @@
 int main(void){
 	//INICIANDO AS STRUCTS
 	Player		player;
-	Person		persona;
-	Fanatico	fanatico;
-	Fantext		fantxt;
 	Heart		life;
 	Background	background;
 	Menu		menu;
 	GameScreen	currentScreen = TITLE; //SETANDO O INICIO DO GAME NA TELA DE TITULO DO GAME
-	Scroll		scroll;
 	SetGame		set;
+	Fanatico	fanatico;
+	Goblin		goblin;
+	Cogumelo	cogumelo;
+	Olho		olho;
 
 	//INICIANDO O SISTEMA DO JOGO
 	InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIALIZANDO A JANELA
 	InitAudioDevice(); //INICIALIZANDO O SISTEMA DE AUDIO
 	SetExitKey(KEY_RIGHT_CONTROL);
 
-	LoadAllTexture(&persona,&life,&background,&menu,&set, &fantxt); // CARREGANDO TODAS AS TEXTURAS
-	InitVar(&scroll,&set,&player,&fanatico); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
+	LoadAllTexture(&player,&life,&background,&menu,&set, &fanatico,&goblin,&cogumelo,&olho); // CARREGANDO TODAS AS TEXTURAS
+	InitVar(&background,&set,&player,&fanatico,&goblin,&cogumelo,&olho); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
 
 	menu.start = 1;
 
@@ -30,6 +30,10 @@ int main(void){
 		if(set.time >= 0.1f){
 			set.time = 0.0f;
 			set.framesCounter += 1;
+		}
+
+		if(IsKeyPressed(KEY_F11)){
+			ToggleFullscreen();
 		}
 
 		switch(currentScreen){
@@ -43,7 +47,7 @@ int main(void){
 				MenuMechanics(&currentScreen);
 			break;
 			case GAMEPLAY: //MECANICAS DA TELA DE GAMEPLAY
-				GameMechanics(&background, &scroll, &set, &player, &life, &currentScreen, &fanatico);
+				GameMechanics(&background, &set, &player, &life, &currentScreen, &fanatico, &goblin, &cogumelo, &olho);
 			break;
 			case GAME_OVER: //TELA DO GAMEOVER
 				OverMechanics(&currentScreen, &player, &set);
@@ -63,7 +67,7 @@ int main(void){
 					DrawMenu(menu);
 				break;
 				case GAMEPLAY: //TELA DO JOGO
-					DrawGamePlay(background,scroll,set,player,life,persona, fantxt, fanatico);
+					DrawGamePlay(background, set, player, life, fanatico, goblin, cogumelo, olho);
 					player.stop = 1;
 				break;
 				case GAME_OVER: //TELA DO GAMEOVER
@@ -74,7 +78,7 @@ int main(void){
 	}
 
 	//DESCARREGANDO AS TEXTURAS
-	UnloadAllTexture(&persona,&life,&background,&menu,&set,&fanatico);
+	UnloadAllTexture(&player,&life,&background,&menu,&set,&fanatico,&goblin,&cogumelo,&olho);
 
 	//FECHANDO OS SISTEMAS DE AUDIO E A TELA
 	CloseAudioDevice();
