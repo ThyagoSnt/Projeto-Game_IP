@@ -57,18 +57,25 @@ void GameMechanics(Background *background,SetGame *set, Player *player, Heart *l
 		set->steps = 0;
 	}
 
-	//MECANICA DE MOVIMENTO DO FANATICO
-	if(fanatico->enemyPosition.x - player->characterPosition.x > 200){
+	//MECANICA DE MOVIMENTO & HIT DO FANATICO
+	if((fanatico->enemyPosition.x - player->characterPosition.x > 200) && (fanatico->enemyPosition.x - player->characterPosition.x < 600)){
 		fanatico->stop = 0;
 		fanatico->direction = -1;
 		fanatico->enemyPosition.x -= 1;
 	}
-	else if(fanatico->enemyPosition.x - player->characterPosition.x < -200){
+	else if((fanatico->enemyPosition.x - player->characterPosition.x < -200) && (fanatico->enemyPosition.x - player->characterPosition.x > -600)){
 		fanatico->stop = 0;
 		fanatico->direction = 1;
 		fanatico->enemyPosition.x += 1;
 	}
 	else fanatico->stop = 1;
+
+	if(player->esperaHit != 0)
+		player->esperaHit--;
+	if((fanatico->enemyPosition.x - player->characterPosition.x < 5) && (fanatico->enemyPosition.y - player->characterPosition.y < 170) && (player->esperaHit == 0)){
+		player->vida--;
+		player->esperaHit = 451;
+	}
 
 	//MECANICA DE MOVIMENTO DO GOBLIN
 	/* if(goblin->enemyPosition.x - player->characterPosition.x > 100){
@@ -133,8 +140,7 @@ void InfoMechanics(GameScreen *currentScreen, Menu *menu){
 
 void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set){
 	if(IsKeyPressed(KEY_Z)){
-		player->vida = 3;
-		set->map = 1;
+		player->vida = 4;
 		*currentScreen = TITLE;
 	}
 }

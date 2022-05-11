@@ -19,6 +19,7 @@ void InitVar(Background *background, SetGame *set,Player *player, Fanatico *fana
 	player->canJump = 0;
 	player->vida = 3;
 	player->direction = 0;
+	player->esperaHit = 0;
 	player->characterRadius = 125;
 	player->characterPosition = (Vector2){240, 628}; //POSICAO INICIAL DO PLAYER
 

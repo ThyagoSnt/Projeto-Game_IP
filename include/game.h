@@ -10,22 +10,19 @@
 #define screenWidth  1260
 #define screenHeight  800
 
-typedef struct{ //ESTRUTURA DO PLAYER
-    char name[20];
+typedef struct{ //ATRIBUTOS DO PLAYER
     int vida;
     int canJump;
 	int	direction;
 	int	characterRadius;
 	int stop;
+	int esperaHit;
 	Vector2 characterPosition;
-} Player;
-
-typedef struct{ //DIRECAO DA ANIMACAO DO PLAYER
 	Texture2D personRight;
 	Texture2D personLeft;
 	Texture2D personStopRight;
 	Texture2D personStopLeft;
-}Person;
+}Player;
 
 typedef struct{ //ANIMACAO DA VIDA
 	Texture2D heartFull;
@@ -33,21 +30,18 @@ typedef struct{ //ANIMACAO DA VIDA
 }Heart;
 
 typedef struct{ //TEXTURAS BACKGROUND DO GAME
-	Texture2D back[2];
-	Texture2D mid[2];
-	Texture2D fore[2];
-}Background;
-
-typedef struct{ //MECANICAS DO BACK GROUND DO GAME
 	float back;
 	float mid;
 	float fore;
-}Scroll;
+	Texture2D backg[2];
+	Texture2D midg[2];
+	Texture2D foreg[2];
+} Background;
 
 typedef struct{ //BACKGROUND MENU
 	Texture2D	background;
 	int	start;
-}Menu;
+} Menu;
 
 typedef struct{ //VARIAVEIS DE AUXILIO
 	float time;
@@ -55,42 +49,76 @@ typedef struct{ //VARIAVEIS DE AUXILIO
 	int	framesCounter;
 	int	steps;
 	int	gameOver;
-}SetGame;
+} SetGame;
 
 typedef struct{ //MECANICAS DE COLISAO
 	Vector2 position;
 	Texture2D plataform;
-}Plataform;
+} Plataform;
 
 typedef enum GameScreen{ //ESTRUTURA DE TELAS
     TITLE, MENU, GAMEPLAY, INFO, GAME_OVER
 } GameScreen;
 
-typedef struct{ //ATRIBUTOS DO FANTICO
+typedef struct{ //ATRIBUTOS DO FANATICO
 	int hp;
 	int damage;
 	int direction;
 	int stop;
 	Vector2 enemyPosition;
-} Fanatico;
-
-typedef struct{ //TEXTURA DO FANTICO
 	Texture2D walk_right;
 	Texture2D walk_left;
 	Texture2D stop_left;
 	Texture2D stop_right;
-} Fantext;
+} Fanatico;
 
-void DrawGamePlay(Background background, Scroll scroll,SetGame set, Player player, Heart life, Person persona, Fantext fantxt, Fanatico fanatico);
+typedef struct{ //ATRIBUTOS DO GOBLIN
+	int hp;
+	int damage;
+	int direction;
+	int stop;
+	Vector2 enemyPosition;
+	Texture2D walk_right;
+	Texture2D walk_left;
+	Texture2D stop_left;
+	Texture2D stop_right;
+} Goblin;
+
+typedef struct{ //ATRIBUTOS DO COGUMELO
+	int hp;
+	int damage;
+	int direction;
+	int stop;
+	Vector2 enemyPosition;
+	Texture2D walk_right;
+	Texture2D walk_left;
+	Texture2D stop_left;
+	Texture2D stop_right;
+} Cogumelo;
+
+typedef struct{ //ATRIBUTOS DO OLHO
+	int hp;
+	int damage;
+	int direction;
+	int stop;
+	Vector2 enemyPosition;
+	Texture2D walk_right;
+	Texture2D walk_left;
+	Texture2D stop_left;
+	Texture2D stop_right;
+} Olho;
+
+void DrawGamePlay(Background background,SetGame set, Player player, Heart life, Fanatico fanatico, Goblin goblin, Cogumelo cogumelo, Olho olho);
 void DrawMenu(Menu menu);
 void DrawTitle(Menu menu);
-void LoadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu, SetGame *set, Fantext *fantxt);
-void UnloadAllTexture(Person *persona, Heart *life,Background *background, Menu *menu, SetGame *set, Fantext *fantxt);
-void InitVar(Scroll *scroll, SetGame *set,Player *player, Fanatico *fanatico);
-void GameMechanics(Background *background, Scroll *scroll,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico);
+void LoadAllTexture(Player *player, Heart *life,Background *background, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void UnloadAllTexture(Player *player, Heart *life,Background *background, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void InitVar(Background *background, SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void GameMechanics(Background *background,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
 void TitleMechanics(GameScreen *currentScreen,Menu *menu);
 void MenuMechanics(GameScreen *currentScreen);
 void InfoMechanics(GameScreen *currentScreen, Menu *menu);
+void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set);
 void DrawInfo(Menu menu);
 void DrawGameOver();
 
