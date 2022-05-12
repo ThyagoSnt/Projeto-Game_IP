@@ -64,13 +64,13 @@ int main(void){
 			case MENU: //MECANICAS DA TELA DE MENU
 				MenuMechanics(&currentScreen, &menu);
 				break;
-			case OPTIONS: //TELA  DAS OPCOES
+			case OPTIONS: //MECANICA DAS OPCOES
 				OptionsMechanics(&currentScreen, &menu);
 				break;
-			case SAVEGAME: //TELA DO SAVEGAME
+			case SAVEGAME: //MECANICA DO SAVEGAME
 				SaveMechanics(&currentScreen, &menu);
 				break;
-			case EXIT:
+			case EXIT: //MECANICA DO EXIT
 				ExitMechanics(&currentScreen, &menu);
 				break;
 			case GAMEPLAY: //MECANICAS DA TELA DE GAMEPLAY
@@ -96,7 +96,7 @@ int main(void){
 				case OPTIONS: //TELA  DAS OPCOES
 					DrawOptions(menu);
 					break;
-				case EXIT:
+				case EXIT: //TELA DO EXIT
 					DrawExit(menu);
 					break;
 				case SAVEGAME: //TELA DO SAVEGAME
@@ -119,6 +119,7 @@ int main(void){
 	UnloadMusicStream(set.music.jump);
 	UnloadMusicStream(set.music.run);
 	UnloadMusicStream(set.music.natureza);
+	
 	//FECHANDO OS SISTEMAS DE AUDIO E A TELA
 	CloseAudioDevice();
 	CloseWindow();

@@ -1,6 +1,7 @@
 #ifndef GAME_IP
 #define GAME_IP
 
+//INCLUDES
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

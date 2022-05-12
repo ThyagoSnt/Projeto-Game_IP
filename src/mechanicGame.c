@@ -33,7 +33,7 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 	}
 }
 
-void setRec(Player *player,Fanatico *fanatico, Plataform * plataform){
+void setRec(Player *player,Fanatico *fanatico, Plataform * plataform){ //SETANDO AS COLISOES
 	player->rec.x = player->characterPosition.x + 50;
 	player->rec.y = player->characterPosition.y;
 	fanatico->rec.x = fanatico->enemyPosition.x;
@@ -98,6 +98,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		set->map = 1;
 		set->steps = 0;
 	}
+
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
 	if(set->steps  > 3000 && set->steps < 3400)
 	{
@@ -107,8 +108,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 			fanatico->enemyPosition.x -= 2.0;
 
 	}
-	if(fanatico->enemyPosition.x < 1000)
-	{
+	if(fanatico->enemyPosition.x < 1000){
 		UpdateMusicStream(set->music.startFanatic);
 		StopMusicStream(set->music.start);
 	}
@@ -126,7 +126,6 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	}
 	else
 		fanatico->stop = 1;
-
 	if(player->esperaHit != 0)
 		player->esperaHit--;
 	if(CheckCollisionRecs(player->rec,fanatico->rec) && player->esperaHit == 0){
@@ -147,7 +146,7 @@ void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music){ //MECA
 		menu->start = 0;
 }
 
-void MenuMechanics(GameScreen *currentScreen, Menu *menu){
+void MenuMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO MENU
 	if(IsKeyPressed(KEY_ENTER) && menu->inGame == 1)
 		*currentScreen = TITLE;
 	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 2)
@@ -163,23 +162,23 @@ void MenuMechanics(GameScreen *currentScreen, Menu *menu){
 		menu->inGame++;
 }
 
-void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music){
+void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music){ //MECANICAS DA INFO
 	UpdateMusicStream(*music);
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = TITLE;
 }
 
-void OptionsMechanics(GameScreen *currentScreen, Menu *menu){
+void OptionsMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DA OPCOES
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = MENU;
 }
 
-void SaveMechanics(GameScreen *currentScreen, Menu *menu){
+void SaveMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO SAVE
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = MENU;
 }
 
-void ExitMechanics(GameScreen *currentScreen, Menu *menu){
+void ExitMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO EXIT
 	if(IsKeyPressed(KEY_ENTER) && (menu->exit == 1))
 		exit(1);
 	else if(IsKeyPressed(KEY_ENTER) && (menu->exit == 2))
@@ -191,7 +190,7 @@ void ExitMechanics(GameScreen *currentScreen, Menu *menu){
 		menu->exit = 2;
 }
 
-void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set){
+void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set){ //MECANICAS DO GAMEOVER
 	if(IsKeyPressed(KEY_ESCAPE)){
 		player->vida = 4;
 		*currentScreen = TITLE;

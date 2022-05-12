@@ -10,8 +10,10 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	//GUI
 	life->heartFull = LoadTexture("../assets/gui/Heart1.png");
 	life->heartEmpty = LoadTexture("../assets/gui/Heart2.png");
+
 	//Plataforma
 	plataforma->plataform = LoadTexture("../assets/img_teste/plat.png");
+
 	//TELAS DE FUNDO
 	background->backg[0] = LoadTexture("../assets/background/background1.png");
 	background->midg[0] = LoadTexture("../assets/background/midground1.png");
