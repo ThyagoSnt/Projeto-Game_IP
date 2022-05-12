@@ -1,7 +1,10 @@
 #include "../include/game.h"
-static int	descer;
+
+static int	descer = 0;
+static int colision = 0;
+
 void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
-	bool colision;
+	colision = 0;
 
 	if(CheckCollisionRecs(player->rec,plataform->rec))
 		colision = 1;
@@ -9,10 +12,8 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 		player->canJump = 1;
 	if(player->canJump!= 0)
 		UpdateMusicStream(set->music.jump);
-	if(colision)
-	{
-		if(player->characterPosition.y > plataform->position.y)
-		{
+	if(colision){
+		if(player->characterPosition.y > plataform->position.y){
 			descer = 1;
 			player->characterPosition.y += 2;
 			player->canJump = 2;
@@ -20,8 +21,7 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 		else
 			player->canJump = 2;
 	}
-	else
-	{
+	else{
 		if((player->canJump == 1) && ((player->characterPosition.y != 300)))
 			player->characterPosition.y -= 2;
 		if(player->characterPosition.y == 300)

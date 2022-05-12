@@ -106,8 +106,12 @@ void DrawTitle(Menu menu){
 
 void DrawInfo(Menu menu){
 	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
-	DrawText("EXAMPLE TEXT FOR INFO SCREEN\n .", (screenWidth/2) - 280, screenHeight/2, 40, BLACK);
-	DrawText("PRESS Z TO JUMP TO TITLE\n .", (screenWidth/2) - 280, (screenHeight/2)+80, 40, BLACK);
+	DrawText("Main Menu", (menu.background.width + 120)/2, (menu.background.height + 160)/2, 40, BLACK);
+	DrawText("Options", (menu.background.width + 160)/2, (menu.background.height + 160)/2, 40, BLACK);
+	DrawText("Save Game", (menu.background.width + 200)/2, (menu.background.height + 160)/2, 40, BLACK);
+	DrawText("Exit", (menu.background.width + 240)/2, (menu.background.height + 280)/2, 40, BLACK);
+	//if(menu.start == 1) DrawRectangleLines((menu.background.width + 190)/2,(menu.background.height + 160)/2,200,40,RED);
+	//else DrawRectangleLines((menu.background.width + 215)/2,(menu.background.height + 280)/2,100,40,RED);
 }
 
 void DrawGameOver(){
