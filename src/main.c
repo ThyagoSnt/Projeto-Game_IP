@@ -24,15 +24,12 @@ void SetVolume(Game_music *music)
 int main(void){
 	//INICIANDO AS STRUCTS
 	Player		player;
+	Fanatico 	fanatico;
 	Heart		life;
 	Background	background;
 	Menu		menu;
 	GameScreen	currentScreen = TITLE; //SETANDO O INICIO DO GAME NA TELA DE TITULO DO GAME
 	SetGame		set;
-	Fanatico	fanatico;
-	Goblin		goblin;
-	Cogumelo	cogumelo;
-	Olho		olho;
 	Plataform	plataform;
 
 	//INICIANDO O SISTEMA DO JOGO
@@ -40,11 +37,10 @@ int main(void){
 	SetExitKey(KEY_RIGHT_CONTROL);
 
 	InitAudioDevice();
-	LoadAllTexture(&player,&life,&background,&plataform,&menu,&set, &fanatico,&goblin,&cogumelo,&olho); // CARREGANDO TODAS AS TEXTURAS
-	InitVar(&background,&plataform,&set,&player,&fanatico,&goblin,&cogumelo,&olho); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
+	LoadAllTexture(&player,&life,&background,&plataform,&menu,&set, &fanatico); // CARREGANDO TODAS AS TEXTURAS
+	InitVar(&background,&plataform,&set,&player,&menu, &fanatico); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
 	LoadAllMusic(&set.music);
 	SetVolume(&set.music);
-	menu.start = 1;
 
 	SetTargetFPS(450); //SETANDO A TAXA DE FPS DO GAME
 	while (!WindowShouldClose()){
@@ -61,19 +57,28 @@ int main(void){
 		switch(currentScreen){
 			case TITLE: //MECANICAS DA TELA DO TITULO DO GAME
 				TitleMechanics(&currentScreen,&menu,&set.music.menu);
-			break;
+				break;
 			case INFO: //MECANICAS DA TELA DE INFO
 				InfoMechanics(&currentScreen,&menu,&set.music.menu);
-			break;
+				break;
 			case MENU: //MECANICAS DA TELA DE MENU
-				MenuMechanics(&currentScreen);
-			break;
+				MenuMechanics(&currentScreen, &menu);
+				break;
+			case OPTIONS: //MECANICA DAS OPCOES
+				OptionsMechanics(&currentScreen, &menu);
+				break;
+			case SAVEGAME: //MECANICA DO SAVEGAME
+				SaveMechanics(&currentScreen, &menu);
+				break;
+			case EXIT: //MECANICA DO EXIT
+				ExitMechanics(&currentScreen, &menu);
+				break;
 			case GAMEPLAY: //MECANICAS DA TELA DE GAMEPLAY
-				GameMechanics(&background, &set,&plataform,&player, &life, &currentScreen, &fanatico, &goblin, &cogumelo, &olho);
-			break;
+				GameMechanics(&background, &set,&plataform,&player, &life, &currentScreen, &fanatico);
+				break;
 			case GAME_OVER: //TELA DO GAMEOVER
 				OverMechanics(&currentScreen, &player, &set);
-			break;
+				break;
 		}
 
 		BeginDrawing();
@@ -81,30 +86,40 @@ int main(void){
 			switch(currentScreen){
 				case TITLE: //TELA DO TITULO DO GAME
 					DrawTitle(menu);
-				break;
-				case INFO:
+					break;
+				case INFO: //TELA DE INFORMACOES
 					DrawInfo(menu);
-				break;
+					break;
 				case MENU: //TELA DO MENU EM JOGO
 					DrawMenu(menu);
-				break;
+					break;
+				case OPTIONS: //TELA  DAS OPCOES
+					DrawOptions(menu);
+					break;
+				case EXIT: //TELA DO EXIT
+					DrawExit(menu);
+					break;
+				case SAVEGAME: //TELA DO SAVEGAME
+					DrawSave(menu);
+					break;
 				case GAMEPLAY: //TELA DO JOGO
-					DrawGamePlay(background, set, plataform,player, life, fanatico, goblin, cogumelo, olho);
+					DrawGamePlay(background, set, plataform,player, life, fanatico);
 					player.stop = 1;
-				break;
+					break;
 				case GAME_OVER: //TELA DO GAMEOVER
 					DrawGameOver();
-				break;
+					break;
 			}
 		EndDrawing();
 	}
 
 	//DESCARREGANDO AS TEXTURAS
-	UnloadAllTexture(&player,&life,&background,&plataform,&menu,&set,&fanatico,&goblin,&cogumelo,&olho);
+	UnloadAllTexture(&player,&life,&background,&plataform,&menu,&set,&fanatico);
 	UnloadMusicStream(set.music.menu);
 	UnloadMusicStream(set.music.jump);
 	UnloadMusicStream(set.music.run);
 	UnloadMusicStream(set.music.natureza);
+	
 	//FECHANDO OS SISTEMAS DE AUDIO E A TELA
 	CloseAudioDevice();
 	CloseWindow();
