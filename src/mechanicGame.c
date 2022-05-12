@@ -7,7 +7,7 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 		colision = 1;
 	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))
 		player->canJump = 1;
-	if(player->canJump!= 0)
+	if(player->canJump!= 0 && !colision)
 		UpdateMusicStream(set->music.jump);
 	if(colision)
 	{
@@ -97,7 +97,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		set->steps = 0;
 	}
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
-	if(set->steps  > 3000 && set->steps < 3400)
+	if(set->steps  > 3000 && set->steps < 300)
 	{
 		if(fanatico->enemyPosition.x - player->characterPosition.x < 0)
 			fanatico->enemyPosition.x += 2.0;

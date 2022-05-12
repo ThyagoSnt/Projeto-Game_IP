@@ -28,6 +28,7 @@ typedef struct{ //ATRIBUTOS DO PLAYER
 typedef struct{ //ANIMACAO DA VIDA
 	Texture2D heartFull;
 	Texture2D heartEmpty;
+	Texture2D portion;
 }Heart;
 
 typedef struct{ //TEXTURAS BACKGROUND DO GAME
