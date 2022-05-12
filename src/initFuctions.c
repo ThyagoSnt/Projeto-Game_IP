@@ -1,11 +1,17 @@
 #include "../include/game.h"
 
-void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
+void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico){
 
 	//MECANICA DE ROLAGEM DE MAPA
 	background->back = 0.0f;
 	background->mid = 0.0f;
 	background->fore = 0.0f;
+
+	//MECANICAS DE MENU
+	menu->start = 1;
+	menu->inGame = 1;
+	menu->exit = 1;
+
 	//ATRIBUTOS PLATAFORMA
 	platafoma->position = (Vector2){1200,500};
 	platafoma->rec.width = platafoma->plataform.width;
@@ -39,25 +45,4 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->rec.height = fanatico->stop_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y; //POSICAO INICIAL DO FANATICO
-
-	//ATRIBUTOS DO GOBLIN
-	goblin->damage = 2;
-	goblin->hp = 4;
-	goblin->direction = -1;
-	goblin->stop = 0;
-	goblin->enemyPosition = (Vector2){1350, 610}; //POSICAO INICIAL DO GOBLIN
-
-	//ATRIBUTOS DO COGUMELO
-	cogumelo->damage = 2;
-	cogumelo->hp = 6;
-	cogumelo->direction = -1;
-	cogumelo->stop = 0;
-	cogumelo->enemyPosition = (Vector2){1350, 610}; //POSICAO INICIAL DO COGUMELO
-
-	//ATRIBUTOS DO OLHO
-	olho->damage = 1;
-	olho->hp = 2;
-	olho->direction = -1;
-	olho->stop = 0;
-	olho->enemyPosition = (Vector2){1350, 180}; //POSICAO INICIAL DO OLHO
 }

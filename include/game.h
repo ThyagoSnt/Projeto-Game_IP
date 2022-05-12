@@ -25,6 +25,19 @@ typedef struct{ //ATRIBUTOS DO PLAYER
 	Rectangle rec;
 }Player;
 
+typedef struct{ //ATRIBUTOS DO FANATICO
+	int hp;
+	int damage;
+	int direction;
+	int stop;
+	Vector2 enemyPosition;
+	Texture2D walk_right;
+	Texture2D walk_left;
+	Texture2D stop_left;
+	Texture2D stop_right;
+	Rectangle rec;
+}Fanatico;
+
 typedef struct{ //ANIMACAO DA VIDA
 	Texture2D heartFull;
 	Texture2D heartEmpty;
@@ -42,10 +55,11 @@ typedef struct{ //TEXTURAS BACKGROUND DO GAME
 typedef struct{ //BACKGROUND MENU
 	Texture2D	background;
 	int	start;
+	int inGame;
+	int exit;
 } Menu;
 
-typedef struct
-{
+typedef struct{
 	Music	start;
 	Music	natureza;
 	Music	jump;
@@ -71,70 +85,27 @@ typedef struct{ //MECANICAS DE COLISAO
 } Plataform;
 
 typedef enum GameScreen{ //ESTRUTURA DE TELAS
-    TITLE, MENU, GAMEPLAY, INFO, GAME_OVER
+    TITLE, MENU, GAMEPLAY, INFO, GAME_OVER, OPTIONS, SAVEGAME, EXIT
 } GameScreen;
 
-typedef struct{ //ATRIBUTOS DO FANATICO
-	int hp;
-	int damage;
-	int direction;
-	int stop;
-	Vector2 enemyPosition;
-	Texture2D walk_right;
-	Texture2D walk_left;
-	Texture2D stop_left;
-	Texture2D stop_right;
-	Rectangle rec;
-}Fanatico;
-
-typedef struct{ //ATRIBUTOS DO GOBLIN
-	int hp;
-	int damage;
-	int direction;
-	int stop;
-	Vector2 enemyPosition;
-	Texture2D walk_right;
-	Texture2D walk_left;
-	Texture2D stop_left;
-	Texture2D stop_right;
-} Goblin;
-
-typedef struct{ //ATRIBUTOS DO COGUMELO
-	int hp;
-	int damage;
-	int direction;
-	int stop;
-	Vector2 enemyPosition;
-	Texture2D walk_right;
-	Texture2D walk_left;
-	Texture2D stop_left;
-	Texture2D stop_right;
-} Cogumelo;
-
-typedef struct{ //ATRIBUTOS DO OLHO
-	int hp;
-	int damage;
-	int direction;
-	int stop;
-	Vector2 enemyPosition;
-	Texture2D walk_right;
-	Texture2D walk_left;
-	Texture2D stop_left;
-	Texture2D stop_right;
-} Olho;
-
-void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player player, Heart life, Fanatico fanatico, Goblin goblin, Cogumelo cogumelo, Olho olho);
-void DrawMenu(Menu menu);
-void DrawTitle(Menu menu);
-void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
-void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
-void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
-void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico);
+void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico);
+void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico);
+void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico);
 void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music);
-void MenuMechanics(GameScreen *currentScreen);
+void MenuMechanics(GameScreen *currentScreen, Menu *menu);
 void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music);
 void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set);
+void OptionsMechanics(GameScreen *currentScreen, Menu *menu);
+void SaveMechanics(GameScreen *currentScreen, Menu *menu);
+void ExitMechanics(GameScreen *currentScreen, Menu *menu);
 void DrawInfo(Menu menu);
 void DrawGameOver();
+void DrawOptions(Menu menu);
+void DrawSave(Menu menu);
+void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player player, Heart life, Fanatico fanatico);
+void DrawMenu(Menu menu);
+void DrawTitle(Menu menu);
+void DrawExit(Menu menu);
 
 #endif

@@ -32,8 +32,8 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 			player->canJump = 0;
 	}
 }
-void setRec(Player *player,Fanatico *fanatico, Plataform * plataform)
-{
+
+void setRec(Player *player,Fanatico *fanatico, Plataform * plataform){
 	player->rec.x = player->characterPosition.x + 50;
 	player->rec.y = player->characterPosition.y;
 	fanatico->rec.x = fanatico->enemyPosition.x;
@@ -41,13 +41,14 @@ void setRec(Player *player,Fanatico *fanatico, Plataform * plataform)
 	plataform->rec.x = plataform->position.x;
 	plataform->rec.y = plataform->position.y;
 }
-void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
+
+void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico){
 
 	UpdateMusicStream(set->music.natureza);
 	UpdateMusicStream(set->music.start);
 	setRec(player,fanatico,platafoma);
 
-	if(IsKeyPressed(KEY_M))
+	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = MENU;
 
 	//ALTERANDO A POSICAO DO PLAYER NO EIXO X
@@ -89,6 +90,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		player->vida++;
 	if(IsKeyPressed(KEY_LEFT) && (player->vida >= 1))
 		player->vida--;
+
 	if(player->vida == 0)
 		*currentScreen = GAME_OVER; //TELA DE MORTE
 
@@ -131,45 +133,6 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		player->vida--;
 		player->esperaHit = 451;
 	}
-
-	//MECANICA DE MOVIMENTO DO GOBLIN
-	//  if(goblin->enemyPosition.x - player->characterPosition.x > 100){
-	// 	goblin->stop = 0;
-	// 	goblin->direction = -1;
-	// 	goblin->enemyPosition.x -= 1;
-	// }
-	// else if(goblin->enemyPosition.x - player->characterPosition.x < -100){
-	// 	goblin->stop = 0;
-	// 	goblin->direction = 1;
-	// 	goblin->enemyPosition.x += 1;
-	// }
-	// else goblin->stop = 1;
-
-	//MECANICA DE MOVIMENTO DO COGUMELO
-	/* if(cogumelo->enemyPosition.x - player->characterPosition.x > 100){
-		cogumelo->stop = 0;
-		cogumelo->direction = -1;
-		cogumelo->enemyPosition.x -= 1;
-	}
-	else if(cogumelo->enemyPosition.x - player->characterPosition.x < -100){
-		cogumelo->stop = 0;
-		cogumelo->direction = 1;
-		cogumelo->enemyPosition.x += 1;
-	}
-	else cogumelo->stop = 1; */
-
-	//MECANICA DE MOVIMENTO DO OLHO
-	/* if(olho->enemyPosition.x - player->characterPosition.x > 100){
-		olho->stop = 0;
-		olho->direction = -1;
-		olho->enemyPosition.x -= 1;
-	}
-	else if(olho->enemyPosition.x - player->characterPosition.x < -100){
-		olho->stop = 0;
-		olho->direction = 1;
-		olho->enemyPosition.x += 1;
-	}
-	else olho->stop = 1; */
 }
 
 void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music){ //MECANICAS DO TITULO PRINCIPAL
@@ -184,19 +147,52 @@ void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music){ //MECA
 		menu->start = 0;
 }
 
-void MenuMechanics(GameScreen *currentScreen){
-	if(IsKeyPressed(KEY_M))
-		*currentScreen = GAMEPLAY;
+void MenuMechanics(GameScreen *currentScreen, Menu *menu){
+	if(IsKeyPressed(KEY_ENTER) && menu->inGame == 1)
+		*currentScreen = TITLE;
+	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 2)
+		*currentScreen = OPTIONS;
+	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 3)
+		*currentScreen = SAVEGAME;
+	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 4)
+		*currentScreen = EXIT;
+
+	if(IsKeyPressed(KEY_UP) && (menu->inGame) > 1)
+		menu->inGame--;
+	else if(IsKeyPressed(KEY_DOWN) && (menu->inGame) < 4)
+		menu->inGame++;
 }
 
 void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music){
 	UpdateMusicStream(*music);
-	if(IsKeyPressed(KEY_Z))
+	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = TITLE;
 }
 
+void OptionsMechanics(GameScreen *currentScreen, Menu *menu){
+	if(IsKeyPressed(KEY_ESCAPE))
+		*currentScreen = MENU;
+}
+
+void SaveMechanics(GameScreen *currentScreen, Menu *menu){
+	if(IsKeyPressed(KEY_ESCAPE))
+		*currentScreen = MENU;
+}
+
+void ExitMechanics(GameScreen *currentScreen, Menu *menu){
+	if(IsKeyPressed(KEY_ENTER) && (menu->exit == 1))
+		exit(1);
+	else if(IsKeyPressed(KEY_ENTER) && (menu->exit == 2))
+		*currentScreen = MENU;
+
+	if(IsKeyPressed(KEY_LEFT))
+		menu->exit = 1;
+	else if(IsKeyPressed(KEY_RIGHT))
+		menu->exit = 2;
+}
+
 void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set){
-	if(IsKeyPressed(KEY_Z)){
+	if(IsKeyPressed(KEY_ESCAPE)){
 		player->vida = 4;
 		*currentScreen = TITLE;
 	}
