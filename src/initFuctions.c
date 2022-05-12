@@ -1,11 +1,15 @@
 #include "../include/game.h"
 
-void InitVar(Background *background, SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
+void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
 
 	//MECANICA DE ROLAGEM DE MAPA
 	background->back = 0.0f;
 	background->mid = 0.0f;
 	background->fore = 0.0f;
+	//ATRIBUTOS PLATAFORMA
+	platafoma->position = (Vector2){1200,500};
+	platafoma->rec.width = platafoma->plataform.width;
+	platafoma->rec.height = platafoma->plataform.height;
 
 	//MECANICAS EXTRAS
 	set->map = 0;
@@ -22,13 +26,19 @@ void InitVar(Background *background, SetGame *set,Player *player, Fanatico *fana
 	player->esperaHit = 0;
 	player->characterRadius = 125;
 	player->characterPosition = (Vector2){240, 628}; //POSICAO INICIAL DO PLAYER
+	player->rec.width = player->personStopLeft.width - 100;
+	player->rec.height = player->personStopLeft.height;
 
 	//ATRIBUTOS DO FANATICO
 	fanatico->damage = 3;
 	fanatico->hp = 12;
 	fanatico->direction = -1;
 	fanatico->stop = 0;
-	fanatico->enemyPosition = (Vector2){1350, 590}; //POSICAO INICIAL DO FANATICO
+	fanatico->enemyPosition = (Vector2){1350, 590};
+	fanatico->rec.width = fanatico->stop_right.width;
+	fanatico->rec.height = fanatico->stop_right.height;
+	fanatico->rec.x = fanatico->enemyPosition.x;
+	fanatico->rec.y = fanatico->enemyPosition.y; //POSICAO INICIAL DO FANATICO
 
 	//ATRIBUTOS DO GOBLIN
 	goblin->damage = 2;

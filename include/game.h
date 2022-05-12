@@ -22,6 +22,7 @@ typedef struct{ //ATRIBUTOS DO PLAYER
 	Texture2D personLeft;
 	Texture2D personStopRight;
 	Texture2D personStopLeft;
+	Rectangle rec;
 }Player;
 
 typedef struct{ //ANIMACAO DA VIDA
@@ -54,6 +55,7 @@ typedef struct{ //VARIAVEIS DE AUXILIO
 typedef struct{ //MECANICAS DE COLISAO
 	Vector2 position;
 	Texture2D plataform;
+	Rectangle rec;
 } Plataform;
 
 typedef enum GameScreen{ //ESTRUTURA DE TELAS
@@ -70,7 +72,8 @@ typedef struct{ //ATRIBUTOS DO FANATICO
 	Texture2D walk_left;
 	Texture2D stop_left;
 	Texture2D stop_right;
-} Fanatico;
+	Rectangle rec;
+}Fanatico;
 
 typedef struct{ //ATRIBUTOS DO GOBLIN
 	int hp;
@@ -108,13 +111,13 @@ typedef struct{ //ATRIBUTOS DO OLHO
 	Texture2D stop_right;
 } Olho;
 
-void DrawGamePlay(Background background,SetGame set, Player player, Heart life, Fanatico fanatico, Goblin goblin, Cogumelo cogumelo, Olho olho);
+void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player player, Heart life, Fanatico fanatico, Goblin goblin, Cogumelo cogumelo, Olho olho);
 void DrawMenu(Menu menu);
 void DrawTitle(Menu menu);
-void LoadAllTexture(Player *player, Heart *life,Background *background, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
-void UnloadAllTexture(Player *player, Heart *life,Background *background, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
-void InitVar(Background *background, SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
-void GameMechanics(Background *background,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
+void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
 void TitleMechanics(GameScreen *currentScreen,Menu *menu);
 void MenuMechanics(GameScreen *currentScreen);
 void InfoMechanics(GameScreen *currentScreen, Menu *menu);

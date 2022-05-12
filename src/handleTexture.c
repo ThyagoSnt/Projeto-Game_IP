@@ -1,6 +1,6 @@
 #include "../include/game.h"
 
-void LoadAllTexture(Player *player, Heart *life,Background *background, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){ //CARREGANDO AS TEXTURAS
+void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma,Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){ //CARREGANDO AS TEXTURAS
 	//PERSONAGEM
 	player->personRight = LoadTexture("../assets/personagem/scarfy.png");
 	player->personLeft = LoadTexture("../assets/personagem/scarfy_2.png");
@@ -10,7 +10,8 @@ void LoadAllTexture(Player *player, Heart *life,Background *background, Menu *me
 	//GUI
 	life->heartFull = LoadTexture("../assets/gui/Heart1.png");
 	life->heartEmpty = LoadTexture("../assets/gui/Heart2.png");
-
+	//Plataforma
+	plataforma->plataform = LoadTexture("../assets/img_teste/plat.png");
 	//TELAS DE FUNDO
 	background->backg[0] = LoadTexture("../assets/background/background1.png");
 	background->midg[0] = LoadTexture("../assets/background/midground1.png");
@@ -45,7 +46,7 @@ void LoadAllTexture(Player *player, Heart *life,Background *background, Menu *me
 	olho->stop_left = LoadTexture("../assets/inimigos/Olho/idle_left.png");
 }
 
-void UnloadAllTexture(Player *player, Heart *life,Background *background, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
+void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
 	//DESCARREGANDO AS TEXTURAS
 	UnloadTexture(background->backg[0]);
 	UnloadTexture(background->midg[0]);
@@ -54,6 +55,7 @@ void UnloadAllTexture(Player *player, Heart *life,Background *background, Menu *
 	UnloadTexture(background->midg[1]);
 	UnloadTexture(background->foreg[1]);
 
+	UnloadTexture(plataforma->plataform);
 	UnloadTexture(player->personRight);
 	UnloadTexture(player->personLeft);
 	UnloadTexture(player->personStopRight);

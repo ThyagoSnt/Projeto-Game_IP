@@ -12,14 +12,15 @@ int main(void){
 	Goblin		goblin;
 	Cogumelo	cogumelo;
 	Olho		olho;
+	Plataform	plataform;
 
 	//INICIANDO O SISTEMA DO JOGO
 	InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIALIZANDO A JANELA
 	InitAudioDevice(); //INICIALIZANDO O SISTEMA DE AUDIO
 	SetExitKey(KEY_RIGHT_CONTROL);
 
-	LoadAllTexture(&player,&life,&background,&menu,&set, &fanatico,&goblin,&cogumelo,&olho); // CARREGANDO TODAS AS TEXTURAS
-	InitVar(&background,&set,&player,&fanatico,&goblin,&cogumelo,&olho); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
+	LoadAllTexture(&player,&life,&background,&plataform,&menu,&set, &fanatico,&goblin,&cogumelo,&olho); // CARREGANDO TODAS AS TEXTURAS
+	InitVar(&background,&plataform,&set,&player,&fanatico,&goblin,&cogumelo,&olho); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
 
 	menu.start = 1;
 
@@ -47,13 +48,13 @@ int main(void){
 				MenuMechanics(&currentScreen);
 			break;
 			case GAMEPLAY: //MECANICAS DA TELA DE GAMEPLAY
-				GameMechanics(&background, &set, &player, &life, &currentScreen, &fanatico, &goblin, &cogumelo, &olho);
+				GameMechanics(&background, &set,&plataform,&player, &life, &currentScreen, &fanatico, &goblin, &cogumelo, &olho);
 			break;
 			case GAME_OVER: //TELA DO GAMEOVER
 				OverMechanics(&currentScreen, &player, &set);
 			break;
 		}
-		
+
 		BeginDrawing();
 			ClearBackground(BLACK); //LIMPA O BACKGROUND ANTES DE CADA FRAME
 			switch(currentScreen){
@@ -67,7 +68,7 @@ int main(void){
 					DrawMenu(menu);
 				break;
 				case GAMEPLAY: //TELA DO JOGO
-					DrawGamePlay(background, set, player, life, fanatico, goblin, cogumelo, olho);
+					DrawGamePlay(background, set, plataform,player, life, fanatico, goblin, cogumelo, olho);
 					player.stop = 1;
 				break;
 				case GAME_OVER: //TELA DO GAMEOVER
@@ -78,7 +79,7 @@ int main(void){
 	}
 
 	//DESCARREGANDO AS TEXTURAS
-	UnloadAllTexture(&player,&life,&background,&menu,&set,&fanatico,&goblin,&cogumelo,&olho);
+	UnloadAllTexture(&player,&life,&background,&plataform,&menu,&set,&fanatico,&goblin,&cogumelo,&olho);
 
 	//FECHANDO OS SISTEMAS DE AUDIO E A TELA
 	CloseAudioDevice();

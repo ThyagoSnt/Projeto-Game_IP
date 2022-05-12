@@ -1,6 +1,46 @@
 #include "../include/game.h"
+static int	descer;
+void jumpMechanics(Player *player, Plataform *plataform){
+	bool colision;
 
-void GameMechanics(Background *background,SetGame *set, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
+	if(CheckCollisionRecs(player->rec,plataform->rec))
+		colision = 1;
+	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))
+		player->canJump = 1;
+
+	if(colision)
+	{
+		if(player->characterPosition.y > plataform->position.y)
+		{
+			descer = 1;
+			player->characterPosition.y += 2;
+			player->canJump = 2;
+		}
+		else
+			player->canJump = 2;
+	}
+	else
+	{
+		if((player->canJump == 1) && ((player->characterPosition.y != 300)))
+			player->characterPosition.y -= 2;
+		if(player->characterPosition.y == 300)
+			player->canJump = 2;
+		if((player->canJump == 2) && (((player->characterPosition.y != 628) && !colision) || descer))
+			player->characterPosition.y += 2;
+		if(player->characterPosition.y == 628)
+			player->canJump = 0;
+	}
+}
+
+void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
+
+	player->rec.x = player->characterPosition.x + 50;
+	player->rec.y = player->characterPosition.y;
+	fanatico->rec.x = fanatico->enemyPosition.x;
+	fanatico->rec.y = fanatico->enemyPosition.y;
+	platafoma->rec.x = platafoma->position.x;
+	platafoma->rec.y = platafoma->position.y;
+
 	if(IsKeyPressed(KEY_M))
 		*currentScreen = MENU;
 
@@ -9,6 +49,7 @@ void GameMechanics(Background *background,SetGame *set, Player *player, Heart *l
 		player->stop = 0;
 		player->characterPosition.x += 3.0f;
 		if(player->characterPosition.x > 560){
+			platafoma->position.x -= 0.5;
 			set->steps++;
 			player->characterPosition.x = 560;
 			background->back -= 0.1f;
@@ -25,16 +66,7 @@ void GameMechanics(Background *background,SetGame *set, Player *player, Heart *l
 	}
 
 	//MECANICA DE PULO
-	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))
-		player->canJump = 1;
-	if((player->canJump == 1) && (player->characterPosition.y != 400))
-		player->characterPosition.y -= 2;
-	if(player->characterPosition.y == 400)
-		player->canJump = 2;
-	if((player->canJump == 2) && (player->characterPosition.y != 628))
-		player->characterPosition.y += 2;
-	if(player->characterPosition.y == 628)
-		player->canJump = 0;
+	jumpMechanics(player,platafoma);
 
 	//MECANICA DO BACKGROUND
 	if (background->back <= -background->backg[set->map].width*4)
@@ -56,7 +88,6 @@ void GameMechanics(Background *background,SetGame *set, Player *player, Heart *l
 		set->map = 1;
 		set->steps = 0;
 	}
-
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
 	if((fanatico->enemyPosition.x - player->characterPosition.x > 200) && (fanatico->enemyPosition.x - player->characterPosition.x < 600)){
 		fanatico->stop = 0;
@@ -72,23 +103,23 @@ void GameMechanics(Background *background,SetGame *set, Player *player, Heart *l
 
 	if(player->esperaHit != 0)
 		player->esperaHit--;
-	if((fanatico->enemyPosition.x - player->characterPosition.x < 5) && (fanatico->enemyPosition.y - player->characterPosition.y < 170) && (player->esperaHit == 0)){
+	if(CheckCollisionRecs(player->rec,fanatico->rec) && player->esperaHit == 0){
 		player->vida--;
 		player->esperaHit = 451;
 	}
 
 	//MECANICA DE MOVIMENTO DO GOBLIN
-	/* if(goblin->enemyPosition.x - player->characterPosition.x > 100){
-		goblin->stop = 0;
-		goblin->direction = -1;
-		goblin->enemyPosition.x -= 1;
-	}
-	else if(goblin->enemyPosition.x - player->characterPosition.x < -100){
-		goblin->stop = 0;
-		goblin->direction = 1;
-		goblin->enemyPosition.x += 1;
-	}
-	else goblin->stop = 1; */
+	//  if(goblin->enemyPosition.x - player->characterPosition.x > 100){
+	// 	goblin->stop = 0;
+	// 	goblin->direction = -1;
+	// 	goblin->enemyPosition.x -= 1;
+	// }
+	// else if(goblin->enemyPosition.x - player->characterPosition.x < -100){
+	// 	goblin->stop = 0;
+	// 	goblin->direction = 1;
+	// 	goblin->enemyPosition.x += 1;
+	// }
+	// else goblin->stop = 1;
 
 	//MECANICA DE MOVIMENTO DO COGUMELO
 	/* if(cogumelo->enemyPosition.x - player->characterPosition.x > 100){

@@ -1,6 +1,6 @@
 #include "../include/game.h"
 
-void DrawGamePlay(Background background,SetGame set, Player player, Heart life,Fanatico fanatico, Goblin goblin, Cogumelo cogumelo, Olho olho){
+void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player player, Heart life, Fanatico fanatico, Goblin goblin, Cogumelo cogumelo, Olho olho){
 	//CENARIOS DO FUNDO
 	DrawTextureEx(background.backg[set.map], (Vector2){ background.back, 40 }, 0.0f, 4.0f, WHITE);
 	DrawTextureEx(background.backg[set.map], (Vector2){ background.backg[set.map].width*4 + background.back, 40 }, 0.0f, 4.0f, WHITE);
@@ -11,54 +11,58 @@ void DrawGamePlay(Background background,SetGame set, Player player, Heart life,F
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.foreg[set.map].width*4 + background.fore, 40 }, 0.0f, 4.0f, WHITE);
 
+	DrawRectangleLinesEx(plataforma.rec,1,WHITE);
+	DrawTextureEx(plataforma.plataform,plataforma.position,0,1,WHITE);
 	//ANIMACAO DO PLAYER
-	if((player.direction == 1 || player.direction == 0) && player.stop == 0) 
+	DrawRectangleLinesEx(player.rec,1.0,WHITE);
+	if((player.direction == 1 || player.direction == 0) && player.stop == 0)
 		DrawTextureRec(player.personRight, (Rectangle){(player.personRight.width/6)*(set.framesCounter % 6), 0, player.personRight.width/6, player.personRight.height}, player.characterPosition, WHITE);
-	else if(player.direction == -1 && player.stop == 0) 
+	else if(player.direction == -1 && player.stop == 0)
 		DrawTextureRec(player.personLeft, (Rectangle){(player.personLeft.width/6)*(set.framesCounter % 6), 0, player.personLeft.width/6,player.personLeft.height}, player.characterPosition, WHITE);
-	else if((player.direction == 1 || player.direction == 0) && player.stop == 1) 
+	else if((player.direction == 1 || player.direction == 0) && player.stop == 1)
 		DrawTextureEx(player.personStopRight, player.characterPosition, 0.0f, 1.0f, WHITE);
-	else 
+	else
 		DrawTextureEx(player.personStopLeft, player.characterPosition, 0.0f, 1.0f, WHITE);
 
 	//ANIMACAO DO FANATICO
-	if(fanatico.direction == 1 && fanatico.stop == 0) 
+	DrawRectangleLines(fanatico.enemyPosition.x,fanatico.enemyPosition.y,fanatico.walk_left.width/6,fanatico.walk_left.height,WHITE);
+	if(fanatico.direction == 1 && fanatico.stop == 0)
 		DrawTextureRec(fanatico.walk_left, (Rectangle){(fanatico.walk_left.width/6)*(set.framesCounter % 6), 0, fanatico.walk_left.width/6, fanatico.walk_left.height}, fanatico.enemyPosition, WHITE);
-	else if(fanatico.direction == -1 && fanatico.stop == 0) 
+	else if(fanatico.direction == -1 && fanatico.stop == 0)
 		DrawTextureRec(fanatico.walk_right, (Rectangle){(fanatico.walk_right.width/6)*(set.framesCounter % 6), 0, fanatico.walk_right.width/6, fanatico.walk_right.height}, fanatico.enemyPosition, WHITE);
-	else if(fanatico.direction == 1 && fanatico.stop == 1) 
+	else if(fanatico.direction == 1 && fanatico.stop == 1)
 		DrawTextureEx(fanatico.stop_left, fanatico.enemyPosition, 0.0f, 1.0f, WHITE);
-	else 
+	else
 		DrawTextureEx(fanatico.stop_right, fanatico.enemyPosition, 0.0f, 1.0f, WHITE);
 
 	//ANIMACAO DO GOBLIN
-	/* if(goblin.direction == 1 && goblin.stop == 0) 
-		DrawTextureRec(goblin.walk_left, (Rectangle){(goblin.walk_left.width/6)*(set.framesCounter % 6), 0, goblin.walk_left.width/6, goblin.walk_left.height}, goblin.enemyPosition, WHITE);
-	else if(goblin.direction == -1 && goblin.stop == 0) 
-		DrawTextureRec(goblin.walk_right, (Rectangle){(goblin.walk_right.width/6)*(set.framesCounter % 6), 0, goblin.walk_right.width/6, goblin.walk_right.height}, goblin.enemyPosition, WHITE);
-	else if(goblin.direction == 1 && goblin.stop == 1) 
-		DrawTextureEx(goblin.stop_left, goblin.enemyPosition, 0.0f, 1.0f, WHITE);
-	else 
-		DrawTextureEx(goblin.stop_right, goblin.enemyPosition, 0.0f, 1.0f, WHITE); */
+	//  if(goblin.direction == 1 && goblin.stop == 0)
+	// 	DrawTextureRec(goblin.walk_left, (Rectangle){(goblin.walk_left.width/6)*(set.framesCounter % 6), 0, goblin.walk_left.width/6, goblin.walk_left.height}, goblin.enemyPosition, WHITE);
+	// else if(goblin.direction == -1 && goblin.stop == 0)
+	// 	DrawTextureRec(goblin.walk_right, (Rectangle){(goblin.walk_right.width/6)*(set.framesCounter % 6), 0, goblin.walk_right.width/6, goblin.walk_right.height}, goblin.enemyPosition, WHITE);
+	// else if(goblin.direction == 1 && goblin.stop == 1)
+	// 	DrawTextureEx(goblin.stop_left, goblin.enemyPosition, 0.0f, 1.0f, WHITE);
+	// else
+	// 	DrawTextureEx(goblin.stop_right, goblin.enemyPosition, 0.0f, 1.0f, WHITE);
 
-	//ANIMACAO DO COGUMELO
-	/* if(cogumelo.direction == 1 && cogumelo.stop == 0) 
+	// //ANIMACAO DO COGUMELO
+	/* if(cogumelo.direction == 1 && cogumelo.stop == 0)
 		DrawTextureRec(cogumelo.walk_left, (Rectangle){(cogumelo.walk_left.width/6)*(set.framesCounter % 6), 0, cogumelo.walk_left.width/6, cogumelo.walk_left.height}, cogumelo.enemyPosition, WHITE);
-	else if(cogumelo.direction == -1 && cogumelo.stop == 0) 
+	else if(cogumelo.direction == -1 && cogumelo.stop == 0)
 		DrawTextureRec(cogumelo.walk_right, (Rectangle){(cogumelo.walk_right.width/6)*(set.framesCounter % 6), 0, cogumelo.walk_right.width/6, cogumelo.walk_right.height}, cogumelo.enemyPosition, WHITE);
-	else if(cogumelo.direction == 1 && cogumelo.stop == 1) 
+	else if(cogumelo.direction == 1 && cogumelo.stop == 1)
 		DrawTextureEx(cogumelo.stop_left, cogumelo.enemyPosition, 0.0f, 1.0f, WHITE);
-	else 
+	else
 		DrawTextureEx(cogumelo.stop_right, cogumelo.enemyPosition, 0.0f, 1.0f, WHITE); */
 
 	//ANIMACAO DO OLHO
-	/* if(olho.direction == 1 && olho.stop == 0) 
+	/* if(olho.direction == 1 && olho.stop == 0)
 		DrawTextureRec(olho.walk_left, (Rectangle){(olho.walk_left.width/6)*(set.framesCounter % 6), 0, olho.walk_left.width/6, olho.walk_left.height}, olho.enemyPosition, WHITE);
-	else if(olho.direction == -1 && olho.stop == 0) 
+	else if(olho.direction == -1 && olho.stop == 0)
 		DrawTextureRec(olho.walk_right, (Rectangle){(olho.walk_right.width/6)*(set.framesCounter % 6), 0, olho.walk_right.width/6, olho.walk_right.height}, olho.enemyPosition, WHITE);
-	else if(olho.direction == 1 && olho.stop == 1) 
+	else if(olho.direction == 1 && olho.stop == 1)
 		DrawTextureEx(olho.stop_left, olho.enemyPosition, 0.0f, 1.0f, WHITE);
-	else 
+	else
 		DrawTextureEx(olho.stop_right, olho.enemyPosition, 0.0f, 1.0f, WHITE); */
 
 	//VIDAS DO PLAYER
@@ -95,7 +99,7 @@ void DrawMenu(Menu menu){
 void DrawTitle(Menu menu){
 	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
 	DrawText("New Game", (menu.background.width + 200)/2, (menu.background.height + 160)/2, 40, BLACK);
-	DrawText("Info", (menu.background.width + 240)/2, (menu.background.height + 280)/2, 40, BLACK);	
+	DrawText("Info", (menu.background.width + 240)/2, (menu.background.height + 280)/2, 40, BLACK);
 	if(menu.start == 1) DrawRectangleLines((menu.background.width + 190)/2,(menu.background.height + 160)/2,200,40,RED);
 	else DrawRectangleLines((menu.background.width + 215)/2,(menu.background.height + 280)/2,100,40,RED);
 }
