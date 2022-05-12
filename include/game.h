@@ -46,10 +46,13 @@ typedef struct{ //BACKGROUND MENU
 
 typedef struct
 {
-	Music natureza;
-	Music jump;
-	Music run;
-	Music menu;
+	Music	start;
+	Music	natureza;
+	Music	jump;
+	Music	run;
+	Music	menu;
+	Music	ataqueFanatic;
+	Music	startFanatic;
 }Game_music;
 
 typedef struct{ //VARIAVEIS DE AUXILIO

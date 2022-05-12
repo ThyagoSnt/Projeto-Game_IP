@@ -5,6 +5,21 @@ void LoadAllMusic(Game_music *music)
 	music->jump = LoadMusicStream("../assets/audio/jump.mp3");
 	music->run = LoadMusicStream("../assets/audio/correndo.mp3");
 	music->natureza = LoadMusicStream("../assets/audio/natureza.mp3");
+	music->start = LoadMusicStream("../assets/audio/start_game.wav");
+	music->startFanatic = LoadMusicStream("../assets/audio/fanatic.wav");
+
+	PlayMusicStream(music->menu);
+	PlayMusicStream(music->jump);
+	PlayMusicStream(music->run);
+	PlayMusicStream(music->natureza);
+	PlayMusicStream(music->start);
+	PlayMusicStream(music->startFanatic);
+}
+
+void SetVolume(Game_music *music)
+{
+	SetMusicVolume(music->natureza,0.1);
+	SetMusicVolume(music->start,0.5);
 }
 int main(void){
 	//INICIANDO AS STRUCTS
@@ -19,6 +34,7 @@ int main(void){
 	Cogumelo	cogumelo;
 	Olho		olho;
 	Plataform	plataform;
+
 	//INICIANDO O SISTEMA DO JOGO
 	InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIAdd
 	SetExitKey(KEY_RIGHT_CONTROL);
@@ -27,14 +43,7 @@ int main(void){
 	LoadAllTexture(&player,&life,&background,&plataform,&menu,&set, &fanatico,&goblin,&cogumelo,&olho); // CARREGANDO TODAS AS TEXTURAS
 	InitVar(&background,&plataform,&set,&player,&fanatico,&goblin,&cogumelo,&olho); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
 	LoadAllMusic(&set.music);
-	PlayMusicStream(set.music.menu);
-	PlayMusicStream(set.music.jump);
-	PlayMusicStream(set.music.run);
-	PlayMusicStream(set.music.natureza);
-
-
-	SetMusicVolume(set.music.natureza,0.1);
-
+	SetVolume(&set.music);
 	menu.start = 1;
 
 	SetTargetFPS(450); //SETANDO A TAXA DE FPS DO GAME

@@ -32,17 +32,20 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 			player->canJump = 0;
 	}
 }
-
-void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
-
-	UpdateMusicStream(set->music.natureza);
-
+void setRec(Player *player,Fanatico *fanatico, Plataform * plataform)
+{
 	player->rec.x = player->characterPosition.x + 50;
 	player->rec.y = player->characterPosition.y;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y;
-	platafoma->rec.x = platafoma->position.x;
-	platafoma->rec.y = platafoma->position.y;
+	plataform->rec.x = plataform->position.x;
+	plataform->rec.y = plataform->position.y;
+}
+void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
+
+	UpdateMusicStream(set->music.natureza);
+	UpdateMusicStream(set->music.start);
+	setRec(player,fanatico,platafoma);
 
 	if(IsKeyPressed(KEY_M))
 		*currentScreen = MENU;
@@ -50,7 +53,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	//ALTERANDO A POSICAO DO PLAYER NO EIXO X
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
-		player->characterPosition.x += 3.0f;
+		player->characterPosition.x += 1.5f;
 		UpdateMusicStream(set->music.run);
 		if(player->characterPosition.x > 560){
 			platafoma->position.x -= 0.5;
@@ -66,7 +69,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0){ //MOVIMENTO DO PLAYER PARA ESQUERDA
 		UpdateMusicStream(set->music.run);
 		player->stop = 0;
-		player->characterPosition.x -= 3.0f;
+		player->characterPosition.x -= 1.5f;
 		player->direction = -1;
 	}
 
@@ -94,17 +97,25 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		set->steps = 0;
 	}
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
-	if((fanatico->enemyPosition.x - player->characterPosition.x > 200) && (fanatico->enemyPosition.x - player->characterPosition.x < 600)){
+	if(fanatico->enemyPosition.x < 1000)
+	{
+		UpdateMusicStream(set->music.startFanatic);
+		StopMusicStream(set->music.start);
+	}
+	if(fanatico->enemyPosition.x - player->characterPosition.x > -1000 && fanatico->enemyPosition.x - player->characterPosition.x < -500)
+		fanatico->enemyPosition.x += 1.3;
+	if((fanatico->enemyPosition.x - player->characterPosition.x > 20) && (fanatico->enemyPosition.x - player->characterPosition.x < 20000)){
 		fanatico->stop = 0;
 		fanatico->direction = -1;
-		fanatico->enemyPosition.x -= 1;
+		fanatico->enemyPosition.x -= 1.3;
 	}
-	else if((fanatico->enemyPosition.x - player->characterPosition.x < -200) && (fanatico->enemyPosition.x - player->characterPosition.x > -600)){
+	else if((fanatico->enemyPosition.x - player->characterPosition.x < -20) && (fanatico->enemyPosition.x - player->characterPosition.x > -20000)){
 		fanatico->stop = 0;
 		fanatico->direction = 1;
-		fanatico->enemyPosition.x += 1;
+		fanatico->enemyPosition.x += 1.3;
 	}
-	else fanatico->stop = 1;
+	else
+		fanatico->stop = 1;
 
 	if(player->esperaHit != 0)
 		player->esperaHit--;

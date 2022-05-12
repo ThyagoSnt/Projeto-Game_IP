@@ -10,11 +10,11 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 	//CENARIOS DA FRENTE
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.foreg[set.map].width*4 + background.fore, 40 }, 0.0f, 4.0f, WHITE);
-
-	DrawRectangleLinesEx(plataforma.rec,1,WHITE);
+	//PLATAFORMA
+	DrawRectangleLinesEx(plataforma.rec,1,BLANK);
 	DrawTextureEx(plataforma.plataform,plataforma.position,0,1,WHITE);
 	//ANIMACAO DO PLAYER
-	DrawRectangleLinesEx(player.rec,1.0,WHITE);
+	DrawRectangleLinesEx(player.rec,1.0,BLANK);
 	if((player.direction == 1 || player.direction == 0) && player.stop == 0)
 		DrawTextureRec(player.personRight, (Rectangle){(player.personRight.width/6)*(set.framesCounter % 6), 0, player.personRight.width/6, player.personRight.height}, player.characterPosition, WHITE);
 	else if(player.direction == -1 && player.stop == 0)
@@ -25,7 +25,7 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 		DrawTextureEx(player.personStopLeft, player.characterPosition, 0.0f, 1.0f, WHITE);
 
 	//ANIMACAO DO FANATICO
-	DrawRectangleLines(fanatico.enemyPosition.x,fanatico.enemyPosition.y,fanatico.walk_left.width/6,fanatico.walk_left.height,WHITE);
+	DrawRectangleLines(fanatico.enemyPosition.x,fanatico.enemyPosition.y,fanatico.walk_left.width/6,fanatico.walk_left.height - 50,BLANK);
 	if(fanatico.direction == 1 && fanatico.stop == 0)
 		DrawTextureRec(fanatico.walk_left, (Rectangle){(fanatico.walk_left.width/6)*(set.framesCounter % 6), 0, fanatico.walk_left.width/6, fanatico.walk_left.height}, fanatico.enemyPosition, WHITE);
 	else if(fanatico.direction == -1 && fanatico.stop == 0)
