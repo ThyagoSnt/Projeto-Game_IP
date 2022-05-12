@@ -13,14 +13,25 @@ int main(void){
 	Cogumelo	cogumelo;
 	Olho		olho;
 	Plataform	plataform;
-
+	Music		music;
 	//INICIANDO O SISTEMA DO JOGO
-	InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIALIZANDO A JANELA
-	InitAudioDevice(); //INICIALIZANDO O SISTEMA DE AUDIO
+	InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIAdd
 	SetExitKey(KEY_RIGHT_CONTROL);
+	music = LoadMusicStream("../assets/audio/music.mp3");
+	player.jump = LoadMusicStream("../assets/audio/jump.mp3");
+	player.run = LoadMusicStream("../assets/audio/correndo.mp3");
+	background.natureza = LoadMusicStream("../assets/audio/natureza.mp3");
 
 	LoadAllTexture(&player,&life,&background,&plataform,&menu,&set, &fanatico,&goblin,&cogumelo,&olho); // CARREGANDO TODAS AS TEXTURAS
 	InitVar(&background,&plataform,&set,&player,&fanatico,&goblin,&cogumelo,&olho); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
+
+	PlayMusicStream(music);
+	PlayMusicStream(player.jump);
+	PlayMusicStream(player.run);
+	PlayMusicStream(background.natureza);
+
+
+	SetMusicVolume(background.natureza,0.1);
 
 	menu.start = 1;
 
@@ -32,17 +43,20 @@ int main(void){
 			set.time = 0.0f;
 			set.framesCounter += 1;
 		}
-
+		if(IsKeyPressed(KEY_B))
+			PauseMusicStream(music);
+		else if(IsKeyPressed(KEY_U))
+			ResumeMusicStream(music);
 		if(IsKeyPressed(KEY_F11)){
 			ToggleFullscreen();
 		}
 
 		switch(currentScreen){
 			case TITLE: //MECANICAS DA TELA DO TITULO DO GAME
-				TitleMechanics(&currentScreen,&menu);
+				TitleMechanics(&currentScreen,&menu,&music);
 			break;
 			case INFO: //MECANICAS DA TELA DE INFO
-				InfoMechanics(&currentScreen,&menu);
+				InfoMechanics(&currentScreen,&menu,&music);
 			break;
 			case MENU: //MECANICAS DA TELA DE MENU
 				MenuMechanics(&currentScreen);
@@ -80,7 +94,10 @@ int main(void){
 
 	//DESCARREGANDO AS TEXTURAS
 	UnloadAllTexture(&player,&life,&background,&plataform,&menu,&set,&fanatico,&goblin,&cogumelo,&olho);
-
+	UnloadMusicStream(music);
+	UnloadMusicStream(player.jump);
+	UnloadMusicStream(player.run);
+	UnloadMusicStream(background.natureza);
 	//FECHANDO OS SISTEMAS DE AUDIO E A TELA
 	CloseAudioDevice();
 	CloseWindow();

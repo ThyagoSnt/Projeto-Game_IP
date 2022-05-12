@@ -23,6 +23,8 @@ typedef struct{ //ATRIBUTOS DO PLAYER
 	Texture2D personStopRight;
 	Texture2D personStopLeft;
 	Rectangle rec;
+	Music jump;
+	Music run;
 }Player;
 
 typedef struct{ //ANIMACAO DA VIDA
@@ -31,6 +33,7 @@ typedef struct{ //ANIMACAO DA VIDA
 }Heart;
 
 typedef struct{ //TEXTURAS BACKGROUND DO GAME
+	Music natureza;
 	float back;
 	float mid;
 	float fore;
@@ -118,9 +121,9 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
 void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho);
-void TitleMechanics(GameScreen *currentScreen,Menu *menu);
+void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music);
 void MenuMechanics(GameScreen *currentScreen);
-void InfoMechanics(GameScreen *currentScreen, Menu *menu);
+void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music);
 void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set);
 void DrawInfo(Menu menu);
 void DrawGameOver();

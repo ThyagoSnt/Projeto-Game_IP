@@ -7,7 +7,8 @@ void jumpMechanics(Player *player, Plataform *plataform){
 		colision = 1;
 	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))
 		player->canJump = 1;
-
+	if(player->canJump!= 0)
+		UpdateMusicStream(player->jump);
 	if(colision)
 	{
 		if(player->characterPosition.y > plataform->position.y)
@@ -34,6 +35,8 @@ void jumpMechanics(Player *player, Plataform *plataform){
 
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
 
+	UpdateMusicStream(background->natureza);
+
 	player->rec.x = player->characterPosition.x + 50;
 	player->rec.y = player->characterPosition.y;
 	fanatico->rec.x = fanatico->enemyPosition.x;
@@ -48,6 +51,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
 		player->characterPosition.x += 3.0f;
+		UpdateMusicStream(player->run);
 		if(player->characterPosition.x > 560){
 			platafoma->position.x -= 0.5;
 			set->steps++;
@@ -60,6 +64,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		player->direction = 1;
 	}
 	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0){ //MOVIMENTO DO PLAYER PARA ESQUERDA
+		UpdateMusicStream(player->run);
 		player->stop = 0;
 		player->characterPosition.x -= 3.0f;
 		player->direction = -1;
@@ -148,7 +153,8 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	else olho->stop = 1; */
 }
 
-void TitleMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO TITULO PRINCIPAL
+void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music){ //MECANICAS DO TITULO PRINCIPAL
+	UpdateMusicStream(*music);
 	if(IsKeyPressed(KEY_ENTER) && menu->start == 1)
 		*currentScreen = GAMEPLAY;
 	else if(IsKeyPressed(KEY_ENTER) && menu->start == 0)
@@ -164,7 +170,8 @@ void MenuMechanics(GameScreen *currentScreen){
 		*currentScreen = GAMEPLAY;
 }
 
-void InfoMechanics(GameScreen *currentScreen, Menu *menu){
+void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music){
+	UpdateMusicStream(*music);
 	if(IsKeyPressed(KEY_Z))
 		*currentScreen = TITLE;
 }
