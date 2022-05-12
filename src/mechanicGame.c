@@ -97,6 +97,14 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		set->steps = 0;
 	}
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
+	if(set->steps  > 3000 && set->steps < 3400)
+	{
+		if(fanatico->enemyPosition.x - player->characterPosition.x < 0)
+			fanatico->enemyPosition.x += 2.0;
+		else
+			fanatico->enemyPosition.x -= 2.0;
+
+	}
 	if(fanatico->enemyPosition.x < 1000)
 	{
 		UpdateMusicStream(set->music.startFanatic);
