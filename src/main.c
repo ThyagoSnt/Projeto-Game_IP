@@ -1,5 +1,11 @@
 #include "../include/game.h"
-
+void LoadAllMusic(Game_music *music)
+{
+	music->menu = LoadMusicStream("../assets/audio/music.mp3");
+	music->jump = LoadMusicStream("../assets/audio/jump.mp3");
+	music->run = LoadMusicStream("../assets/audio/correndo.mp3");
+	music->natureza = LoadMusicStream("../assets/audio/natureza.mp3");
+}
 int main(void){
 	//INICIANDO AS STRUCTS
 	Player		player;
@@ -13,25 +19,21 @@ int main(void){
 	Cogumelo	cogumelo;
 	Olho		olho;
 	Plataform	plataform;
-	Music		music;
 	//INICIANDO O SISTEMA DO JOGO
 	InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIAdd
 	SetExitKey(KEY_RIGHT_CONTROL);
-	music = LoadMusicStream("../assets/audio/music.mp3");
-	player.jump = LoadMusicStream("../assets/audio/jump.mp3");
-	player.run = LoadMusicStream("../assets/audio/correndo.mp3");
-	background.natureza = LoadMusicStream("../assets/audio/natureza.mp3");
 
+	InitAudioDevice();
 	LoadAllTexture(&player,&life,&background,&plataform,&menu,&set, &fanatico,&goblin,&cogumelo,&olho); // CARREGANDO TODAS AS TEXTURAS
 	InitVar(&background,&plataform,&set,&player,&fanatico,&goblin,&cogumelo,&olho); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
+	LoadAllMusic(&set.music);
+	PlayMusicStream(set.music.menu);
+	PlayMusicStream(set.music.jump);
+	PlayMusicStream(set.music.run);
+	PlayMusicStream(set.music.natureza);
 
-	PlayMusicStream(music);
-	PlayMusicStream(player.jump);
-	PlayMusicStream(player.run);
-	PlayMusicStream(background.natureza);
 
-
-	SetMusicVolume(background.natureza,0.1);
+	SetMusicVolume(set.music.natureza,0.1);
 
 	menu.start = 1;
 
@@ -43,20 +45,16 @@ int main(void){
 			set.time = 0.0f;
 			set.framesCounter += 1;
 		}
-		if(IsKeyPressed(KEY_B))
-			PauseMusicStream(music);
-		else if(IsKeyPressed(KEY_U))
-			ResumeMusicStream(music);
 		if(IsKeyPressed(KEY_F11)){
 			ToggleFullscreen();
 		}
 
 		switch(currentScreen){
 			case TITLE: //MECANICAS DA TELA DO TITULO DO GAME
-				TitleMechanics(&currentScreen,&menu,&music);
+				TitleMechanics(&currentScreen,&menu,&set.music.menu);
 			break;
 			case INFO: //MECANICAS DA TELA DE INFO
-				InfoMechanics(&currentScreen,&menu,&music);
+				InfoMechanics(&currentScreen,&menu,&set.music.menu);
 			break;
 			case MENU: //MECANICAS DA TELA DE MENU
 				MenuMechanics(&currentScreen);
@@ -94,10 +92,10 @@ int main(void){
 
 	//DESCARREGANDO AS TEXTURAS
 	UnloadAllTexture(&player,&life,&background,&plataform,&menu,&set,&fanatico,&goblin,&cogumelo,&olho);
-	UnloadMusicStream(music);
-	UnloadMusicStream(player.jump);
-	UnloadMusicStream(player.run);
-	UnloadMusicStream(background.natureza);
+	UnloadMusicStream(set.music.menu);
+	UnloadMusicStream(set.music.jump);
+	UnloadMusicStream(set.music.run);
+	UnloadMusicStream(set.music.natureza);
 	//FECHANDO OS SISTEMAS DE AUDIO E A TELA
 	CloseAudioDevice();
 	CloseWindow();

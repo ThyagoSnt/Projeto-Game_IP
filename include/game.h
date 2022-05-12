@@ -23,8 +23,6 @@ typedef struct{ //ATRIBUTOS DO PLAYER
 	Texture2D personStopRight;
 	Texture2D personStopLeft;
 	Rectangle rec;
-	Music jump;
-	Music run;
 }Player;
 
 typedef struct{ //ANIMACAO DA VIDA
@@ -33,7 +31,6 @@ typedef struct{ //ANIMACAO DA VIDA
 }Heart;
 
 typedef struct{ //TEXTURAS BACKGROUND DO GAME
-	Music natureza;
 	float back;
 	float mid;
 	float fore;
@@ -47,12 +44,21 @@ typedef struct{ //BACKGROUND MENU
 	int	start;
 } Menu;
 
+typedef struct
+{
+	Music natureza;
+	Music jump;
+	Music run;
+	Music menu;
+}Game_music;
+
 typedef struct{ //VARIAVEIS DE AUXILIO
 	float time;
 	int map;
 	int	framesCounter;
 	int	steps;
 	int	gameOver;
+	Game_music music;
 } SetGame;
 
 typedef struct{ //MECANICAS DE COLISAO

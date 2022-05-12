@@ -1,6 +1,6 @@
 #include "../include/game.h"
 static int	descer;
-void jumpMechanics(Player *player, Plataform *plataform){
+void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 	bool colision;
 
 	if(CheckCollisionRecs(player->rec,plataform->rec))
@@ -8,7 +8,7 @@ void jumpMechanics(Player *player, Plataform *plataform){
 	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))
 		player->canJump = 1;
 	if(player->canJump!= 0)
-		UpdateMusicStream(player->jump);
+		UpdateMusicStream(set->music.jump);
 	if(colision)
 	{
 		if(player->characterPosition.y > plataform->position.y)
@@ -35,7 +35,7 @@ void jumpMechanics(Player *player, Plataform *plataform){
 
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico, Goblin *goblin, Cogumelo *cogumelo, Olho *olho){
 
-	UpdateMusicStream(background->natureza);
+	UpdateMusicStream(set->music.natureza);
 
 	player->rec.x = player->characterPosition.x + 50;
 	player->rec.y = player->characterPosition.y;
@@ -51,7 +51,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
 		player->characterPosition.x += 3.0f;
-		UpdateMusicStream(player->run);
+		UpdateMusicStream(set->music.run);
 		if(player->characterPosition.x > 560){
 			platafoma->position.x -= 0.5;
 			set->steps++;
@@ -64,14 +64,14 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		player->direction = 1;
 	}
 	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0){ //MOVIMENTO DO PLAYER PARA ESQUERDA
-		UpdateMusicStream(player->run);
+		UpdateMusicStream(set->music.run);
 		player->stop = 0;
 		player->characterPosition.x -= 3.0f;
 		player->direction = -1;
 	}
 
 	//MECANICA DE PULO
-	jumpMechanics(player,platafoma);
+	jumpMechanics(player,platafoma,set);
 
 	//MECANICA DO BACKGROUND
 	if (background->back <= -background->backg[set->map].width*4)
