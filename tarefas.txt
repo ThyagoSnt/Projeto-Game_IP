@@ -1,0 +1,8 @@
+(....)Frutas para dar um up ou um down no personagem
+(....)Controle de velocidade do fanático
+(....)música (Menu,game,introdução);
+(....)Organizar o Menu
+(....)Organizar as informações(nossa história)
+(....)criar a entrada do jogo com o vídeo que tu mandou
+(....)Portal no final ou algo que indique que acabou a fase
+(....)Posições das plataformas e frutas

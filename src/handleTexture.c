@@ -30,7 +30,7 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	//GOBLIN
 	goblin->walk_right = LoadTexture("../assets/inimigos/Goblin/run_right.png");
 	goblin->walk_left = LoadTexture("../assets/inimigos/Goblin/run_left.png");
-	goblin->stop_right = LoadTexture("../assets/inimigos/Goblin/idle_right.png");
+	goblin->stop_right = LoadTexture("../assets/inimigos/Goblin/stop_right.png");
 	goblin->stop_left = LoadTexture("../assets/inimigos/Goblin/idle_left.png");
 
 	//COGUMELO

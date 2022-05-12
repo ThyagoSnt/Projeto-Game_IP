@@ -37,9 +37,9 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 
 	//ANIMACAO DO GOBLIN
 	//  if(goblin.direction == 1 && goblin.stop == 0)
-	// 	DrawTextureRec(goblin.walk_left, (Rectangle){(goblin.walk_left.width/6)*(set.framesCounter % 6), 0, goblin.walk_left.width/6, goblin.walk_left.height}, goblin.enemyPosition, WHITE);
+	// 	DrawTextureRec(goblin.walk_left, (Rectangle){(goblin.walk_left.width/8)*(set.framesCounter % 8), 0, goblin.walk_left.width/6, goblin.walk_left.height}, goblin.enemyPosition, WHITE);
 	// else if(goblin.direction == -1 && goblin.stop == 0)
-	// 	DrawTextureRec(goblin.walk_right, (Rectangle){(goblin.walk_right.width/6)*(set.framesCounter % 6), 0, goblin.walk_right.width/6, goblin.walk_right.height}, goblin.enemyPosition, WHITE);
+	// 	DrawTextureRec(goblin.walk_right, (Rectangle){(goblin.walk_right.width/8)*(set.framesCounter % 8), 0, goblin.walk_right.width/6, goblin.walk_right.height}, goblin.enemyPosition, WHITE);
 	// else if(goblin.direction == 1 && goblin.stop == 1)
 	// 	DrawTextureEx(goblin.stop_left, goblin.enemyPosition, 0.0f, 1.0f, WHITE);
 	// else
