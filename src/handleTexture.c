@@ -21,6 +21,8 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	background->backg[1] = LoadTexture("../assets/background/background2.png");
 	background->midg[1] = LoadTexture("../assets/background/midground2.png");
 	background->foreg[1] = LoadTexture("../assets/background/foreground2.png");
+	background->floor = LoadTexture("../assets/background/floor1.png");
+
 	menu->background = LoadTexture("../assets/background/title_game.png");
 
 	//FANATICO
@@ -38,6 +40,9 @@ void UnloadAllTexture(Player *player, Heart *life,Background *background,Platafo
 	UnloadTexture(background->backg[1]);
 	UnloadTexture(background->midg[1]);
 	UnloadTexture(background->foreg[1]);
+	UnloadTexture(background->floor);
+
+	UnloadTexture(menu->background);
 
 	UnloadTexture(plataforma->plataform);
 	UnloadTexture(player->personRight);

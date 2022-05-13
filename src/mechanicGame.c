@@ -77,14 +77,6 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	//MECANICA DE PULO
 	jumpMechanics(player,platafoma,set);
 
-	//MECANICA DO BACKGROUND
-	if (background->back <= -background->backg[set->map].width*4)
-		background->back = 0;
-	if (background->mid <= -background->midg[set->map].width*4)
-		background->mid = 0;
-	if (background->fore <= -background->foreg[set->map].width*4)
-		background->fore = 0;
-
 	//TESTE DE ALTERAR A VIDA COM AS SETAS DO TECLADO
 	if(IsKeyPressed(KEY_RIGHT) && (player->vida <= 4))
 		player->vida++;
@@ -100,8 +92,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	}
 
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
-	if(set->steps  > 3000 && set->steps < 3400)
-	{
+	if(set->steps  > 3000 && set->steps < 3400){
 		if(fanatico->enemyPosition.x - player->characterPosition.x < 0)
 			fanatico->enemyPosition.x += 2.0;
 		else
@@ -132,6 +123,14 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		player->vida--;
 		player->esperaHit = 451;
 	}
+
+	//MECANICA DO BACKGROUND
+	if (background->back <= -background->backg[set->map].width*4)
+		background->back = 0;
+	if (background->mid <= -background->midg[set->map].width*4)
+		background->mid = 0;
+	if (background->fore <= -background->foreg[set->map].width*4)
+		background->fore = 0;
 }
 
 void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music){ //MECANICAS DO TITULO PRINCIPAL
