@@ -63,6 +63,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 			background->back -= 0.1f;
 			background->mid -= 0.5f;
 			background->fore -= 1.4f;
+			background->floor -= 0.4f;
 			fanatico->enemyPosition.x -= 2;
 		}
 		player->direction = 1;
@@ -131,6 +132,8 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		background->mid = 0;
 	if (background->fore <= -background->foreg[set->map].width*4)
 		background->fore = 0;
+	if (background->floor <= -background->floorg.width*4)
+	background->floor = 0;
 }
 
 void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music){ //MECANICAS DO TITULO PRINCIPAL

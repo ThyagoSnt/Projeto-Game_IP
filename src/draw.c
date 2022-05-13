@@ -11,10 +11,8 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.foreg[set.map].width*4 + background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	//FLOOR
-	if(set.map == 0){
-		DrawTextureEx(background.floor, (Vector2){ 0, 740 }, 0.0f, 4.0f, WHITE);
-		DrawTextureEx(background.floor, (Vector2){ 620, 740 }, 0.0f, 4.0f, WHITE);
-	}
+	DrawTextureEx(background.floorg, (Vector2){ background.floor, 57 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.floorg, (Vector2){ background.floorg.width*3 + background.floor, 57 }, 0.0f, 3.0f, WHITE);
 
 	//PLATAFORMA
 	DrawTextureRec(life.portion,(Rectangle){(life.portion.width/3)*(set.framesCounter % 4), 0, life.portion.width/3, life.portion.height},(Vector2){plataforma.position.x + 25,plataforma.position.y - 70},WHITE);

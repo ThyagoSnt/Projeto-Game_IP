@@ -49,10 +49,11 @@ typedef struct{ //TEXTURAS BACKGROUND DO GAME
 	float back;
 	float mid;
 	float fore;
-	Texture2D backg[3];
-	Texture2D midg[3];
-	Texture2D foreg[3];
-	Texture2D floor;
+	float floor;
+	Texture2D backg[2];
+	Texture2D midg[2];
+	Texture2D foreg[2];
+	Texture2D floorg;
 } Background;
 
 typedef struct{ //BACKGROUND MENU

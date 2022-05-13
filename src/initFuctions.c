@@ -6,6 +6,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	background->back = 0.0f;
 	background->mid = 0.0f;
 	background->fore = 0.0f;
+	background->floor = 0.0f;
 
 	//MECANICAS DE MENU
 	menu->start = 1;
@@ -40,7 +41,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->hp = 12;
 	fanatico->direction = -1;
 	fanatico->stop = 0;
-	fanatico->enemyPosition = (Vector2){3350, 590};
+	fanatico->enemyPosition = (Vector2){3350, 580};
 	fanatico->rec.width = fanatico->stop_right.width;
 	fanatico->rec.height = fanatico->stop_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;
