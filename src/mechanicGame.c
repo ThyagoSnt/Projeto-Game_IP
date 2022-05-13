@@ -44,7 +44,6 @@ void setRec(Player *player,Fanatico *fanatico, Plataform * plataform, Heart *lif
 	life->portionRec.y = plataform->position.y - 70;
 	life->venenoRec.x = plataform->position.x + 100;
 	life->venenoRec.y = plataform->position.y + 50;
-
 }
 
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico){
@@ -65,10 +64,10 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 			platafoma->position.x -= 0.5;
 			set->steps++;
 			player->characterPosition.x = 560;
-			background->back -= 0.1f;
+			background->back -= 0.2f;
 			background->mid -= 0.5f;
-			background->fore -= 1.4f;
-			background->floor -= 0.4f;
+			background->fore -= 1.0f;
+			background->floor -= 1.0f;
 			fanatico->enemyPosition.x -= 2;
 		}
 		player->direction = 1;
@@ -165,7 +164,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		background->mid = 0;
 	if (background->fore <= -background->foreg[set->map].width*4)
 		background->fore = 0;
-	if (background->floor <= -background->floorg.width*4)
+	if (background->floor <= -background->floorg[set->map].width*4)
 	background->floor = 0;
 }
 

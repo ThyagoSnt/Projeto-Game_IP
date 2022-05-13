@@ -11,8 +11,8 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.foreg[set.map].width*4 + background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	//FLOOR
-	DrawTextureEx(background.floorg, (Vector2){ background.floor, 57 }, 0.0f, 3.0f, WHITE);
-	DrawTextureEx(background.floorg, (Vector2){ background.floorg.width*3 + background.floor, 57 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floor, 57 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*3 + background.floor, 57 }, 0.0f, 3.0f, WHITE);
 
 	//PLATAFORMA
 	DrawRectangleLines(plataforma.position.x + 100,plataforma.position.y + 200, life.veneno.width/3,life.veneno.height,BLANK);

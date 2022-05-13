@@ -58,7 +58,7 @@ typedef struct{ //TEXTURAS BACKGROUND DO GAME
 	Texture2D backg[2];
 	Texture2D midg[2];
 	Texture2D foreg[2];
-	Texture2D floorg;
+	Texture2D floorg[2];
 } Background;
 
 typedef struct{ //BACKGROUND MENU

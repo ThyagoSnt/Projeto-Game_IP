@@ -11,10 +11,7 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	life->heartFull = LoadTexture("../assets/gui/Heart1.png");
 	life->heartEmpty = LoadTexture("../assets/gui/Heart2.png");
 	life->portion = LoadTexture("../assets/gui/portion.png");
-<<<<<<< HEAD
-=======
 	life->veneno = LoadTexture("../assets/gui/veneno.png");
->>>>>>> 98f69d891a0e7609cf324fe7dffdae3053080133
 
 	//Plataforma
 	plataforma->plataform = LoadTexture("../assets/img_teste/plat.png");
@@ -26,7 +23,8 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	background->backg[1] = LoadTexture("../assets/background/background2.png");
 	background->midg[1] = LoadTexture("../assets/background/midground2.png");
 	background->foreg[1] = LoadTexture("../assets/background/foreground2.png");
-	background->floorg = LoadTexture("../assets/background/floor1.png");
+	background->floorg[0] = LoadTexture("../assets/background/floor1.png");
+	background->floorg[1] = LoadTexture("../assets/background/floor1.png");
 
 	menu->background = LoadTexture("../assets/background/title_game.png");
 
@@ -45,7 +43,8 @@ void UnloadAllTexture(Player *player, Heart *life,Background *background,Platafo
 	UnloadTexture(background->backg[1]);
 	UnloadTexture(background->midg[1]);
 	UnloadTexture(background->foreg[1]);
-	UnloadTexture(background->floorg);
+	UnloadTexture(background->floorg[0]);
+	UnloadTexture(background->floorg[1]);
 
 	UnloadTexture(menu->background);
 
