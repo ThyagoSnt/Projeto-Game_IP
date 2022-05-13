@@ -17,6 +17,7 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 	}
 
 	//PLATAFORMA
+	DrawTextureRec(life.portion,(Rectangle){(life.portion.width/3)*(set.framesCounter % 4), 0, life.portion.width/3, life.portion.height},(Vector2){plataforma.position.x + 25,plataforma.position.y - 70},WHITE);
 	DrawRectangleLinesEx(plataforma.rec,1,BLANK);
 	DrawTextureEx(plataforma.plataform,plataforma.position,0,1,WHITE);
 	
