@@ -369,13 +369,19 @@ else
     MAKEFILE_PARAMS = $(PROJECT_NAME)
 endif
 
+ifeq ($(PLATFORM_OS),LINUX)
+	REMOVE = rm -f	Projeto
+else
+	REMOVE = del /f Projeto.exe
+endif
+
 # Default target entry
 # NOTE: We call this Makefile target or Makefile.Android target
-all:
+all: myclean
 	$(MAKE) $(MAKEFILE_PARAMS)
 
 # Project target defined by PROJECT_NAME
-$(PROJECT_NAME): 
+$(PROJECT_NAME):
 	$(CC) -o $(PROJECT_NAME)$(EXT) $(wildcard ./*/*.c  ./*.c) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
 
 # Compile source files
@@ -385,6 +391,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM)
 
 # Clean everything
+
+myclean:
+	$(REMOVE)
 clean:
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),WINDOWS)
