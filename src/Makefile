@@ -370,9 +370,9 @@ else
 endif
 
 ifeq ($(PLATFORM_OS),LINUX)
-	REMOVE = rm -f	Projeto Projeto.exe
+	REMOVE = rm -f	Projeto
 else
-	REMOVE = del /f Projeto Projeto.exe
+	REMOVE = del /f Projeto.exe
 endif
 
 # Default target entry
