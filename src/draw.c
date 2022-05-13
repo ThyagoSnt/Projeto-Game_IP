@@ -12,10 +12,11 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.foreg[set.map].width*4 + background.fore, 40 }, 0.0f, 4.0f, WHITE);
 
 	//PLATAFORMA
+	DrawRectangleLines(plataforma.position.x + 25,plataforma.position.y - 70, life.portion.width/3,life.portion.height,BLANK);
 	DrawTextureRec(life.portion,(Rectangle){(life.portion.width/3)*(set.framesCounter % 4), 0, life.portion.width/3, life.portion.height},(Vector2){plataforma.position.x + 25,plataforma.position.y - 70},WHITE);
 	DrawRectangleLinesEx(plataforma.rec,1,BLANK);
 	DrawTextureEx(plataforma.plataform,plataforma.position,0,1,WHITE);
-	
+
 	//ANIMACAO DO PLAYER
 	DrawRectangleLinesEx(player.rec,1.0,BLANK);
 	if((player.direction == 1 || player.direction == 0) && player.stop == 0)

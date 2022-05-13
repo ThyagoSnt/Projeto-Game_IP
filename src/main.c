@@ -38,7 +38,7 @@ int main(void){
 
 	InitAudioDevice();
 	LoadAllTexture(&player,&life,&background,&plataform,&menu,&set, &fanatico); // CARREGANDO TODAS AS TEXTURAS
-	InitVar(&background,&plataform,&set,&player,&menu, &fanatico); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
+	InitVar(&background,&plataform,&set,&player,&menu, &fanatico,&life); //VARIAVEIS DE MOVIMENTO DO BACKGROUND
 	LoadAllMusic(&set.music);
 	SetVolume(&set.music);
 
@@ -119,7 +119,7 @@ int main(void){
 	UnloadMusicStream(set.music.jump);
 	UnloadMusicStream(set.music.run);
 	UnloadMusicStream(set.music.natureza);
-	
+
 	//FECHANDO OS SISTEMAS DE AUDIO E A TELA
 	CloseAudioDevice();
 	CloseWindow();

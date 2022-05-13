@@ -43,6 +43,11 @@ typedef struct{ //ANIMACAO DA VIDA
 	Texture2D heartFull;
 	Texture2D heartEmpty;
 	Texture2D portion;
+	Texture2D veneno;
+	Rectangle portionRec;
+	Rectangle venenoRec;
+	int getPortion;
+	int getVeneno;
 }Heart;
 
 typedef struct{ //TEXTURAS BACKGROUND DO GAME
@@ -92,7 +97,7 @@ typedef enum GameScreen{ //ESTRUTURA DE TELAS
 
 void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico);
 void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico);
-void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico);
+void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *recP);
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico);
 void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music);
 void MenuMechanics(GameScreen *currentScreen, Menu *menu);
