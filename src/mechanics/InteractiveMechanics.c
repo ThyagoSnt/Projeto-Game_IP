@@ -4,7 +4,7 @@ void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *
 	if(player->vida == 0)
 		*currentScreen = GAME_OVER; //TELA DE MORTE
 
-	if(set->steps == 7800){ //TROCA DE MAPA
+	if(set->steps == 8220){ //TROCA DE MAPA
 		set->map = 1;
 		life->getPortion=1;
 		life->getVeneno=1;

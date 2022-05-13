@@ -14,13 +14,13 @@ void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player){
 		StopMusicStream(set->music.start);
 	}
 
-	if((fanatico->enemyPosition.x - player->characterPosition.x > 300) && (fanatico->enemyPosition.x - player->characterPosition.x < 2000)){
+	if((fanatico->enemyPosition.x - player->characterPosition.x > 300) && (fanatico->enemyPosition.x - player->characterPosition.x < 20000)){
 		fanatico->stop = 0;
 		fanatico->atack = 0;
 		fanatico->direction = -1;
 		fanatico->enemyPosition.x -= 1.3;
 	}
-	else if((fanatico->enemyPosition.x - player->characterPosition.x < -300) && (fanatico->enemyPosition.x - player->characterPosition.x > -2000)){
+	else if((fanatico->enemyPosition.x - player->characterPosition.x < -300) && (fanatico->enemyPosition.x - player->characterPosition.x > -20000)){
 		fanatico->stop = 0;
 		fanatico->atack = 0;
 		fanatico->direction = 1;

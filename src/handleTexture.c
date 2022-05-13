@@ -24,7 +24,7 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	background->midg[1] = LoadTexture("../assets/background/midground2.png");
 	background->foreg[1] = LoadTexture("../assets/background/foreground2.png");
 	background->floorg[0] = LoadTexture("../assets/background/floor1.png");
-	background->floorg[1] = LoadTexture("../assets/background/floor1.png");
+	background->floorg[1] = LoadTexture("../assets/background/floor2.png");
 
 	menu->background = LoadTexture("../assets/background/title_game.png");
 	menu->title = LoadTexture("../assets/background/title.png");
