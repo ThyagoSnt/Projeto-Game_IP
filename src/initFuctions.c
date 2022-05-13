@@ -1,6 +1,6 @@
 #include "../include/game.h"
 
-void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico){
+void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *life){
 
 	//MECANICA DE ROLAGEM DE MAPA
 	background->back = 0.0f;
@@ -13,8 +13,15 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	menu->inGame = 1;
 	menu->exit = 1;
 
+	//retangulo da porção
+	life->portionRec.width = life->portion.width - 25;
+	life->portionRec.height = life->portion.height - 25;
+	life->getPortion = 1;
+	life->getVeneno = 1;
+	life->venenoRec.width = life->veneno.width - 25;
+	life->venenoRec.height = life->veneno.height - 25;
 	//ATRIBUTOS PLATAFORMA
-	platafoma->position = (Vector2){1200,500};
+	platafoma->position = (Vector2){1200,600};
 	platafoma->rec.width = platafoma->plataform.width;
 	platafoma->rec.height = platafoma->plataform.height;
 

@@ -33,20 +33,25 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 	}
 }
 
-void setRec(Player *player,Fanatico *fanatico, Plataform * plataform){ //SETANDO AS COLISOES
+void setRec(Player *player,Fanatico *fanatico, Plataform * plataform, Heart *life){ //SETANDO AS COLISOES
 	player->rec.x = player->characterPosition.x + 50;
 	player->rec.y = player->characterPosition.y;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y;
 	plataform->rec.x = plataform->position.x;
 	plataform->rec.y = plataform->position.y;
+	life->portionRec.x = plataform->position.x + 20;
+	life->portionRec.y = plataform->position.y - 70;
+	life->venenoRec.x = plataform->position.x + 100;
+	life->venenoRec.y = plataform->position.y + 50;
+
 }
 
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico){
 
 	UpdateMusicStream(set->music.natureza);
 	UpdateMusicStream(set->music.start);
-	setRec(player,fanatico,platafoma);
+	setRec(player,fanatico,platafoma,life);
 
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = MENU;
@@ -54,7 +59,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	//ALTERANDO A POSICAO DO PLAYER NO EIXO X
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
-		player->characterPosition.x += 1.5f;
+		player->characterPosition.x += 1.7f;
 		UpdateMusicStream(set->music.run);
 		if(player->characterPosition.x > 560){
 			platafoma->position.x -= 0.5;
@@ -71,7 +76,7 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	else if(IsKeyDown(KEY_A) && player->characterPosition.x > 0){ //MOVIMENTO DO PLAYER PARA ESQUERDA
 		UpdateMusicStream(set->music.run);
 		player->stop = 0;
-		player->characterPosition.x -= 1.5f;
+		player->characterPosition.x -= 1.7f;
 		player->direction = -1;
 	}
 
@@ -87,10 +92,38 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	if(player->vida == 0)
 		*currentScreen = GAME_OVER; //TELA DE MORTE
 
-	/* if(set->steps == 3600){ //TROCA DE MAPA
-		set->map = 1;
+	if(set->steps == 3600){ //TROCA DE MAPA
+		//set->map = 1;
 		set->steps = 0;
-	} */
+		life->getPortion=1;
+		life->getVeneno=1;
+
+	}
+
+
+	//Mecanica da porção
+	if(CheckCollisionRecs(player->rec,life->portionRec) && life->getPortion)
+	{
+		life->getPortion=0;
+		if ((player->vida <= 4))
+		{
+			player->vida++;
+			life->portion.height = 0;
+		}
+
+	}
+	//Mecanica da porção
+	if(CheckCollisionRecs(player->rec,life->venenoRec) && life->getVeneno)
+	{
+		life->getVeneno=0;
+		if ((player->vida > 0))
+		{
+			player->vida--;
+			life->veneno.height = 0;
+		}
+
+	}
+
 
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
 	if(set->steps  > 3000 && set->steps < 3400){

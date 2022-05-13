@@ -15,10 +15,13 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 	DrawTextureEx(background.floorg, (Vector2){ background.floorg.width*3 + background.floor, 57 }, 0.0f, 3.0f, WHITE);
 
 	//PLATAFORMA
+	DrawRectangleLines(plataforma.position.x + 100,plataforma.position.y + 200, life.veneno.width/3,life.veneno.height,BLANK);
+	DrawTextureRec(life.veneno,(Rectangle){(life.veneno.width/3)*(set.framesCounter % 4), 0, life.veneno.width/3, life.veneno.height},(Vector2){plataforma.position.x + 100,plataforma.position.y + 50},WHITE);
+	DrawRectangleLines(plataforma.position.x + 25,plataforma.position.y - 70, life.portion.width/3,life.portion.height,BLANK);
 	DrawTextureRec(life.portion,(Rectangle){(life.portion.width/3)*(set.framesCounter % 4), 0, life.portion.width/3, life.portion.height},(Vector2){plataforma.position.x + 25,plataforma.position.y - 70},WHITE);
 	DrawRectangleLinesEx(plataforma.rec,1,BLANK);
 	DrawTextureEx(plataforma.plataform,plataforma.position,0,1,WHITE);
-	
+
 	//ANIMACAO DO PLAYER
 	DrawRectangleLinesEx(player.rec,1.0,BLANK);
 	if((player.direction == 1 || player.direction == 0) && player.stop == 0)
