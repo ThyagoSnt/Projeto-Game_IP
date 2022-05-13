@@ -24,7 +24,7 @@
 .PHONY: all clean
 
 # Define required raylib variables
-PROJECT_NAME       ?= Projeto 
+PROJECT_NAME       ?= Projeto
 RAYLIB_VERSION     ?= 3.8.0
 ## @TODO: Mude aqui para o caminho de onde está o raylib
 RAYLIB_PATH        ?= C:/raylib/raylib/src
@@ -168,7 +168,7 @@ ifeq ($(PLATFORM),PLATFORM_RPI)
 endif
 ifeq ($(PLATFORM),PLATFORM_WEB)
     # HTML5 emscripten compiler
-    # WARNING: To compile to HTML5, code must be redesigned 
+    # WARNING: To compile to HTML5, code must be redesigned
     # to use emscripten.h and emscripten_set_main_loop()
     CC = emcc
 endif
@@ -305,12 +305,12 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
         # Libraries for Debian GNU/Linux desktop compiling
         # NOTE: Required packages: libegl1-mesa-dev
         LDLIBS = -lraylib -lGL -lm -lpthread -ldl -lrt
-        
+
         # On X11 requires also below libraries
         LDLIBS += -lX11
         # NOTE: It seems additional libraries are not required any more, latest GLFW just dlopen them
         #LDLIBS += -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor
-        
+
         # On Wayland windowing system, additional libraries requires
         ifeq ($(USE_WAYLAND_DISPLAY),TRUE)
             LDLIBS += -lwayland-client -lwayland-cursor -lwayland-egl -lxkbcommon
@@ -362,7 +362,7 @@ OBJS ?= *.c
 
 # For Android platform we call a custom Makefile.Android
 ifeq ($(PLATFORM),PLATFORM_ANDROID)
-    MAKEFILE_PARAMS = -f Makefile.Android 
+    MAKEFILE_PARAMS = -f Makefile.Android
     export PROJECT_NAME
     export SRC_DIR
 else
@@ -375,8 +375,8 @@ all:
 	$(MAKE) $(MAKEFILE_PARAMS)
 
 # Project target defined by PROJECT_NAME
-$(PROJECT_NAME): $(OBJS)
-	$(CC) -o $(PROJECT_NAME)$(EXT) $(OBJS) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
+$(PROJECT_NAME): 
+	$(CC) -o $(PROJECT_NAME)$(EXT) $(wildcard ./*/*.c  ./*.c) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
 
 # Compile source files
 # NOTE: This pattern will compile every module defined on $(OBJS)

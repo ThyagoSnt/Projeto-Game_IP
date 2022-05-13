@@ -1,5 +1,8 @@
 #include "../../include/game.h"
 
+static int	descer = 0;
+static int colision = 0;
+
 void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *fanatico,Plataform *platafoma)
 {
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
