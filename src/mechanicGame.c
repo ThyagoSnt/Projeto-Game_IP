@@ -42,6 +42,8 @@ void setRec(Player *player,Fanatico *fanatico, Plataform * plataform, Heart *lif
 	plataform->rec.y = plataform->position.y;
 	life->portionRec.x = plataform->position.x + 20;
 	life->portionRec.y = plataform->position.y - 70;
+	life->venenoRec.x = plataform->position.x + 100;
+	life->venenoRec.y = plataform->position.y + 50;
 
 }
 
@@ -93,6 +95,8 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		//set->map = 1;
 		set->steps = 0;
 		life->getPortion=1;
+		life->getVeneno=1;
+
 	}
 
 
@@ -104,6 +108,17 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 		{
 			player->vida++;
 			life->portion.height = 0;
+		}
+
+	}
+	//Mecanica da porção
+	if(CheckCollisionRecs(player->rec,life->venenoRec) && life->getVeneno)
+	{
+		life->getVeneno=0;
+		if ((player->vida > 0))
+		{
+			player->vida--;
+			life->veneno.height = 0;
 		}
 
 	}

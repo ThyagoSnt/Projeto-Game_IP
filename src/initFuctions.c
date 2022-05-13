@@ -16,6 +16,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	life->portionRec.width = life->portion.width - 25;
 	life->portionRec.height = life->portion.height - 25;
 	life->getPortion = 1;
+	life->getVeneno = 1;
 	life->venenoRec.width = life->veneno.width - 25;
 	life->venenoRec.height = life->veneno.height - 25;
 	//ATRIBUTOS PLATAFORMA
