@@ -12,10 +12,3 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	InteractiveMechanics(player,set,life,currentScreen);
 	EnvironmentMechanic(background,set);
 }
-
-
-//TESTE DE ALTERAR A VIDA COM AS SETAS DO TECLADO
-	// if(IsKeyPressed(KEY_RIGHT) && (player->vida <= 4))
-	// 	player->vida++;
-	// if(IsKeyPressed(KEY_LEFT) && (player->vida >= 1))
-	// 	player->vida--;

@@ -1,7 +1,6 @@
 #include "../include/game.h"
 
 void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *life){
-
 	//MECANICA DE ROLAGEM DE MAPA
 	background->back = 0.0f;
 	background->mid = 0.0f;
@@ -12,6 +11,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	menu->start = 1;
 	menu->inGame = 1;
 	menu->exit = 1;
+	menu->restart = 1;
 
 	//retangulo da porção
 	life->portionRec.width = life->portion.width - 25;
@@ -44,13 +44,15 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	player->rec.height = player->personStopLeft.height;
 
 	//ATRIBUTOS DO FANATICO
-	fanatico->damage = 3;
+	fanatico->damage = 2;
 	fanatico->hp = 12;
 	fanatico->direction = -1;
 	fanatico->stop = 0;
+	fanatico->atack = 0;
+	fanatico->die = 0;
 	fanatico->enemyPosition = (Vector2){3350, 580};
-	fanatico->rec.width = fanatico->stop_right.width;
-	fanatico->rec.height = fanatico->stop_right.height;
+	fanatico->rec.width = fanatico->idle_right.width;
+	fanatico->rec.height = fanatico->idle_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y; //POSICAO INICIAL DO FANATICO
 }

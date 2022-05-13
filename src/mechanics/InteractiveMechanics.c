@@ -1,33 +1,27 @@
 #include "../../include/game.h"
 
-void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *currentScreen)
-{
+void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *currentScreen){
 	if(player->vida == 0)
 		*currentScreen = GAME_OVER; //TELA DE MORTE
 
-	if(set->steps == 3600){ //TROCA DE MAPA
-		//set->map = 1;
-		set->steps = 0;
+	if(set->steps == 7800){ //TROCA DE MAPA
+		set->map = 1;
 		life->getPortion=1;
 		life->getVeneno=1;
-
 	}
 
-
 	//Mecanica da porção
-	if(CheckCollisionRecs(player->rec,life->portionRec) && life->getPortion)
-	{
+	if(CheckCollisionRecs(player->rec,life->portionRec) && life->getPortion){
 		life->getPortion=0;
 		if ((player->vida <= 4))
 		{
 			player->vida++;
 			life->portion.height = 0;
 		}
-
 	}
+
 	//Mecanica da porção
-	if(CheckCollisionRecs(player->rec,life->venenoRec) && life->getVeneno)
-	{
+	if(CheckCollisionRecs(player->rec,life->venenoRec) && life->getVeneno){
 		life->getVeneno=0;
 		if ((player->vida > 0))
 		{

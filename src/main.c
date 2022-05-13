@@ -1,6 +1,6 @@
 #include "../include/game.h"
-void LoadAllMusic(Game_music *music)
-{
+
+void LoadAllMusic(Game_music *music){
 	music->menu = LoadMusicStream("../assets/audio/music.mp3");
 	music->jump = LoadMusicStream("../assets/audio/jump.mp3");
 	music->run = LoadMusicStream("../assets/audio/correndo.mp3");
@@ -16,11 +16,11 @@ void LoadAllMusic(Game_music *music)
 	PlayMusicStream(music->startFanatic);
 }
 
-void SetVolume(Game_music *music)
-{
+void SetVolume(Game_music *music){
 	SetMusicVolume(music->natureza,0.1);
 	SetMusicVolume(music->start,0.5);
 }
+
 int main(void){
 	//INICIANDO AS STRUCTS
 	Player		player;
@@ -64,11 +64,8 @@ int main(void){
 			case MENU: //MECANICAS DA TELA DE MENU
 				MenuMechanics(&currentScreen, &menu);
 				break;
-			case OPTIONS: //MECANICA DAS OPCOES
-				OptionsMechanics(&currentScreen, &menu);
-				break;
-			case SAVEGAME: //MECANICA DO SAVEGAME
-				SaveMechanics(&currentScreen, &menu);
+			case RESTART: //MECANICA DO RESTART
+				RestartMechanics(&currentScreen, &menu);
 				break;
 			case EXIT: //MECANICA DO EXIT
 				ExitMechanics(&currentScreen, &menu);
@@ -93,14 +90,11 @@ int main(void){
 				case MENU: //TELA DO MENU EM JOGO
 					DrawMenu(menu);
 					break;
-				case OPTIONS: //TELA  DAS OPCOES
-					DrawOptions(menu);
+				case RESTART: //TELA DO RESTART
+					DrawRestart(menu);
 					break;
 				case EXIT: //TELA DO EXIT
 					DrawExit(menu);
-					break;
-				case SAVEGAME: //TELA DO SAVEGAME
-					DrawSave(menu);
 					break;
 				case GAMEPLAY: //TELA DO JOGO
 					DrawGamePlay(background, set, plataform,player, life, fanatico);

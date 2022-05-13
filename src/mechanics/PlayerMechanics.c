@@ -3,8 +3,7 @@
 static int	descer = 0;
 static int colision = 0;
 
-void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *fanatico,Plataform *platafoma)
-{
+void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *fanatico,Plataform *platafoma){
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
 		player->characterPosition.x += 1.7f;
@@ -48,9 +47,9 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 			player->canJump = 2;
 	}
 	else{
-		if((player->canJump == 1) && ((player->characterPosition.y != 300)))
+		if((player->canJump == 1) && ((player->characterPosition.y != 450)))
 			player->characterPosition.y -= 2;
-		if(player->characterPosition.y == 300)
+		if(player->characterPosition.y == 450)
 			player->canJump = 2;
 		if((player->canJump == 2) && (((player->characterPosition.y != 628) && !colision) || descer))
 			player->characterPosition.y += 2;
@@ -60,8 +59,7 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 }
 
 //ALTERANDO A POSICAO DO PLAYER NO EIXO X
-void PlayerMechanics(Player *player, SetGame *set, Background *background,Fanatico *fanatico,Plataform *platafoma)
-{
+void PlayerMechanics(Player *player, SetGame *set, Background *background,Fanatico *fanatico,Plataform *platafoma){
 	runMechanics(player,set,background,fanatico,platafoma);
 	jumpMechanics(player,platafoma,set);
 }
