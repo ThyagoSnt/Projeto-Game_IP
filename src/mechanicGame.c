@@ -86,18 +86,13 @@ void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Pla
 	if(player->vida == 0)
 		*currentScreen = GAME_OVER; //TELA DE MORTE
 
-	if(set->steps == 3600){ //TROCA DE MAPA
+	/* if(set->steps == 3600){ //TROCA DE MAPA
 		set->map = 1;
 		set->steps = 0;
-	}
+	} */
 
 	//MECANICA DE MOVIMENTO & HIT DO FANATICO
-<<<<<<< HEAD
 	if(set->steps  > 3000 && set->steps < 3400){
-=======
-	if(set->steps  > 3000 && set->steps < 300)
-	{
->>>>>>> f4d5ff837d2a20ecd586752a6e0c229266bb94a2
 		if(fanatico->enemyPosition.x - player->characterPosition.x < 0)
 			fanatico->enemyPosition.x += 2.0;
 		else

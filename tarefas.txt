@@ -1,8 +1,10 @@
-(....)Frutas para dar um up ou um down no personagem
-(....)Controle de velocidade do fanático
-(Allan)música (Menu,game,introdução);
-(Thyago)Organizar o Menu
-(....)Organizar as informações(nossa história)
-(....)criar a entrada do jogo com o vídeo que tu mandou
-(....)Portal no final ou algo que indique que acabou a fase
-(....)Posições das plataformas e frutas
+(Allan)Frutas para dar um up ou um down no personagem;
+(....)Controle de velocidade do fanático;
+(....)Criar a intro do game;
+(....)Ponto final da fase;
+(....)Posições das plataformas;
+(....)Posiçoes das frutas;
+
+(....)Procurar e Organizar as imagens;
+
+(....)Organizar as informações da história;
