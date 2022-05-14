@@ -87,7 +87,7 @@
 	} Plataform;
 
 	typedef enum GameScreen{ //ESTRUTURA DE TELAS
-		TITLE, MENU, GAMEPLAY, INFO, GAME_OVER, RESTART, EXIT
+		TITLE, MENU, GAMEPLAY, INFO,WIN,GAME_OVER, RESTART, EXIT
 	} GameScreen;
 
 #endif

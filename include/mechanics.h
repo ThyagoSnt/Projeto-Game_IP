@@ -12,3 +12,4 @@ void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set);
 void OptionsMechanics(GameScreen *currentScreen, Menu *menu);
 void SaveMechanics(GameScreen *currentScreen, Menu *menu);
 void ExitMechanics(GameScreen *currentScreen, Menu *menu);
+void WinMechanics(GameScreen *currentScreen);
