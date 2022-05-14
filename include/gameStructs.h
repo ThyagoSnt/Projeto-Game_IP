@@ -69,6 +69,7 @@
 		Music	menu;
 		Music	ataqueFanatic;
 		Music	startFanatic;
+		Music	ataqueFantic;
 	}Game_music;
 
 	typedef struct{ //VARIAVEIS DE AUXILIO

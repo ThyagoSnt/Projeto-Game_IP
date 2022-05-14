@@ -8,8 +8,8 @@ void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *
 		player->stop = 0;
 		player->characterPosition.x += 1.7f;
 		UpdateMusicStream(set->music.run);
-		if(player->characterPosition.x > 650 && set->steps < 7900){
-			platafoma->position.x -= 1;
+		if(player->characterPosition.x > 650 && set->steps < 10000){
+			plataform->position.x -= 1;
 			set->steps++;
 			player->characterPosition.x = 650;
 			background->scroll -= 1.0f;

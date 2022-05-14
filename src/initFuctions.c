@@ -1,6 +1,8 @@
 #include "../include/game.h"
 
 void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *life){
+
+	int number = random();
 	//MECANICA DE ROLAGEM DE MAPA
 	background->scroll = 0.0f;
 
@@ -21,12 +23,8 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	life->venenoRec.height = life->veneno.height - 25;
 
 	//ATRIBUTOS PLATAFORMA
-<<<<<<< HEAD
-	platafoma->position = (Vector2){1200,600};
 	platafoma->storePositon = 1200;
-=======
 	platafoma->position = (Vector2){1200,580};
->>>>>>> bf018f65cebc200128f08369b9775ee1ed6e1bb7
 	platafoma->rec.width = platafoma->plataform.width;
 	platafoma->rec.height = platafoma->plataform.height;
 
@@ -57,7 +55,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->atack = 0;
 	fanatico->die = 0;
 	fanatico->enemyPosition = (Vector2){3350, 560};
-	fanatico->rec.width = fanatico->idle_right.width;
+	fanatico->rec.width = fanatico->idle_right.width / 6;
 	fanatico->rec.height = fanatico->idle_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y; //POSICAO INICIAL DO FANATICO

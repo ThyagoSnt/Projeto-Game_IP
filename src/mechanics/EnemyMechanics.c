@@ -2,7 +2,7 @@
 
 //MECANICA DE MOVIMENTO & HIT DO FANATICO
 void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player){
-	if(set->steps > 3000 && set->steps < 3400){
+	if(set->steps > 3000 && set->steps < 3400 || set->steps > 6000 && set->steps < 6400 || set->steps > 9000 && set->steps < 9400 || set->steps > 12000 && set->steps < 12400){
 		if(fanatico->enemyPosition.x - player->characterPosition.x < 0)
 			fanatico->enemyPosition.x += 3.0;
 		else
@@ -48,6 +48,7 @@ void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player){
 		player->esperaHit--;
 
 	if(CheckCollisionRecs(player->rec,fanatico->rec) && player->esperaHit == 0){
+		player->vida --;
 		player->esperaHit = 451;
 	}
 }
