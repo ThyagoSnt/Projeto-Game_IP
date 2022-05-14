@@ -1,5 +1,14 @@
 #include "../../include/game.h"
 
+<<<<<<< HEAD
+void DrawEnvironment(Background background, SetGame set){ //CENARIOS DO FUNDO
+
+	DrawTextureEx(background.mapa, (Vector2){ background.scroll, 20 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.mapa, (Vector2){ background.mapa.width*3 + background.scroll, - 20 }, 0.0f, 3.0f, WHITE);
+
+	DrawRectangle(background.mapa.width, 608, 200, 100, YELLOW);
+}
+=======
 void DrawEnvironment(Background background, SetGame set){
 	//CENARIOS DO FUNDO
 	DrawTextureEx(background.backg[set.map], (Vector2){ background.back, 40 }, 0.0f, 4.0f, WHITE);
@@ -14,3 +23,4 @@ void DrawEnvironment(Background background, SetGame set){
 	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floor, 57 }, 0.0f, 3.0f, WHITE);
 	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*3 + background.floor, - 57 }, 0.0f, 3.0f, WHITE);
 }
+>>>>>>> 52aa243e51b90f149a3bbf7018daa25b16df96d6

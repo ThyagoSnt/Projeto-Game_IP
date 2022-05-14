@@ -8,14 +8,11 @@ void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *
 		player->stop = 0;
 		player->characterPosition.x += 1.7f;
 		UpdateMusicStream(set->music.run);
-		set->steps++;
-		background->back -= 0.2f;
-		background->mid -= 0.5f;
-		background->fore -= 1.0f;
-		background->floor -= 1.0f;
-		plataform->position.x -= 1;
-		if(player->characterPosition.x > 560){
-			player->characterPosition.x = 560;
+		if(player->characterPosition.x > 650 && set->steps < 7900){
+			platafoma->position.x -= 1;
+			set->steps++;
+			player->characterPosition.x = 650;
+			background->scroll -= 1.0f;
 			fanatico->enemyPosition.x -= 2;
 		}
 		player->direction = 1;
@@ -51,9 +48,9 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 			player->characterPosition.y -= 2;
 		if(player->characterPosition.y == 450)
 			player->canJump = 2;
-		if((player->canJump == 2) && (((player->characterPosition.y != 628) && !colision) || descer))
+		if((player->canJump == 2) && (((player->characterPosition.y != 608) && !colision) || descer))
 			player->characterPosition.y += 2;
-		if(player->characterPosition.y == 628)
+		if(player->characterPosition.y == 608)
 			player->canJump = 0;
 	}
 }

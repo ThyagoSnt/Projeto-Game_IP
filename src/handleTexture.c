@@ -17,14 +17,7 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	plataforma->plataform = LoadTexture("../assets/img_teste/plat.png");
 
 	//TELAS DE FUNDO
-	background->backg[0] = LoadTexture("../assets/background/background1.png");
-	background->midg[0] = LoadTexture("../assets/background/midground1.png");
-	background->foreg[0] = LoadTexture("../assets/background/foreground1.png");
-	background->backg[1] = LoadTexture("../assets/background/background2.png");
-	background->midg[1] = LoadTexture("../assets/background/midground2.png");
-	background->foreg[1] = LoadTexture("../assets/background/foreground2.png");
-	background->floorg[0] = LoadTexture("../assets/background/floor1.png");
-	background->floorg[1] = LoadTexture("../assets/background/floor2.png");
+	background->mapa = LoadTexture("../assets/background/mapa.png");
 
 	menu->background = LoadTexture("../assets/background/title_game.png");
 	menu->title = LoadTexture("../assets/background/title.png");
@@ -42,14 +35,7 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 
 void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico){
 	//DESCARREGANDO AS TEXTURAS
-	UnloadTexture(background->backg[0]);
-	UnloadTexture(background->midg[0]);
-	UnloadTexture(background->foreg[0]);
-	UnloadTexture(background->backg[1]);
-	UnloadTexture(background->midg[1]);
-	UnloadTexture(background->foreg[1]);
-	UnloadTexture(background->floorg[0]);
-	UnloadTexture(background->floorg[1]);
+	UnloadTexture(background->mapa);
 
 	UnloadTexture(menu->background);
 	UnloadTexture(menu->title);

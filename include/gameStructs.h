@@ -48,14 +48,8 @@
 	}Heart;
 
 	typedef struct{ //TEXTURAS BACKGROUND DO GAME
-		float back;
-		float mid;
-		float fore;
-		float floor;
-		Texture2D backg[2];
-		Texture2D midg[2];
-		Texture2D foreg[2];
-		Texture2D floorg[2];
+		float scroll;
+		Texture2D mapa;
 	} Background;
 
 	typedef struct{ //BACKGROUND MENU
@@ -83,6 +77,7 @@
 		int	framesCounter;
 		int	steps;
 		int	gameOver;
+		Vector2 finalFase;
 		Game_music music;
 	} SetGame;
 
