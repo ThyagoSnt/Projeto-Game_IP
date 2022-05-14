@@ -1,6 +1,8 @@
 #include "../include/game.h"
 
 void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *life){
+
+	int number = random();
 	//MECANICA DE ROLAGEM DE MAPA
 	background->scroll = 0.0f;
 
@@ -13,12 +15,15 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	//retangulo da porção
 	life->portionRec.width = life->portion.width - 25;
 	life->portionRec.height = life->portion.height - 25;
-	life->getPortion = 1;
-	life->getVeneno = 1;
+	if(number%2 ==0)
+		life->getPortion = 1;
+	else
+		life->getVeneno = 1;
 	life->venenoRec.width = life->veneno.width - 25;
 	life->venenoRec.height = life->veneno.height - 25;
 
 	//ATRIBUTOS PLATAFORMA
+	platafoma->storePositon = 1200;
 	platafoma->position = (Vector2){1200,580};
 	platafoma->rec.width = platafoma->plataform.width;
 	platafoma->rec.height = platafoma->plataform.height;
@@ -52,8 +57,13 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->stop = 0;
 	fanatico->atack = 0;
 	fanatico->die = 0;
+<<<<<<< HEAD
 	fanatico->enemyPosition = (Vector2){3350, 430};
 	fanatico->rec.width = fanatico->idle_right.width;
+=======
+	fanatico->enemyPosition = (Vector2){3350, 560};
+	fanatico->rec.width = fanatico->idle_right.width / 6;
+>>>>>>> e4914df21c23672814fe681b62f313fcf9312f74
 	fanatico->rec.height = fanatico->idle_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y; //POSICAO INICIAL DO FANATICO

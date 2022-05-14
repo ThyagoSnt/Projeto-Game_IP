@@ -7,6 +7,7 @@ void LoadAllMusic(Game_music *music){
 	music->natureza = LoadMusicStream("../assets/audio/natureza.mp3");
 	music->start = LoadMusicStream("../assets/audio/start_game.wav");
 	music->startFanatic = LoadMusicStream("../assets/audio/fanatic.wav");
+	music->ataqueFantic = LoadMusicStream("../assets/audio/atackFanatic.mp3");
 
 	PlayMusicStream(music->menu);
 	PlayMusicStream(music->jump);
@@ -14,6 +15,9 @@ void LoadAllMusic(Game_music *music){
 	PlayMusicStream(music->natureza);
 	PlayMusicStream(music->start);
 	PlayMusicStream(music->startFanatic);
+	PlayMusicStream(music->ataqueFantic);
+
+
 }
 
 void SetVolume(Game_music *music){
@@ -32,7 +36,9 @@ int main(void){
 	GameScreen	currentScreen = TITLE; //SETANDO O INICIO DO GAME NA TELA DE TITULO DO GAME
 	SetGame		set;
 	Plataform	plataform;
+	Rectangle final;
 
+	final =(Rectangle){screenWidth - 100,screenHeight - 200,200, 200};
 	//INICIANDO O SISTEMA DO JOGO
 	InitWindow(screenWidth, screenHeight, "Projeto_versao_0.1"); //INICIAdd
 	SetExitKey(KEY_RIGHT_CONTROL);
@@ -56,6 +62,9 @@ int main(void){
 		// if(set.steps % 3000 == 0 && set.steps != 0)
 		// 	currentScreen = WIN;
 
+		if(set.steps > 9000)
+			if(CheckCollisionRecs(player.rec,final))
+				currentScreen = WIN;
 		switch(currentScreen){
 			case TITLE: //MECANICAS DA TELA DO TITULO DO GAME
 				TitleMechanics(&currentScreen,&menu,&set.music.menu);
@@ -112,6 +121,7 @@ int main(void){
 					DrawGameOver();
 					break;
 			}
+			DrawRectangleLines(screenWidth - 100,screenHeight -200,200,200,RED);
 		EndDrawing();
 	}
 
