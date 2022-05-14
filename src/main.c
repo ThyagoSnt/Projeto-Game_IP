@@ -50,9 +50,10 @@ int main(void){
 			set.time = 0.0f;
 			set.framesCounter += 1;
 		}
-		if(IsKeyPressed(KEY_F11)){
+		if(IsKeyPressed(KEY_F11))
 			ToggleFullscreen();
-		}
+		if(set.steps % 3000 == 0 && set.steps != 0)
+			currentScreen = WIN;
 
 		switch(currentScreen){
 			case TITLE: //MECANICAS DA TELA DO TITULO DO GAME
@@ -63,6 +64,9 @@ int main(void){
 				break;
 			case MENU: //MECANICAS DA TELA DE MENU
 				MenuMechanics(&currentScreen, &menu);
+				break;
+			case WIN:
+				WinMechanics(&currentScreen);
 				break;
 			case OPTIONS: //MECANICA DAS OPCOES
 				OptionsMechanics(&currentScreen, &menu);
@@ -92,6 +96,9 @@ int main(void){
 					break;
 				case MENU: //TELA DO MENU EM JOGO
 					DrawMenu(menu);
+					break;
+				case WIN:
+					DrawGameWin();
 					break;
 				case OPTIONS: //TELA  DAS OPCOES
 					DrawOptions(menu);

@@ -12,5 +12,6 @@
 	void DrawOptions(Menu menu);
 	void DrawSave(Menu menu);
 	void DrawExit(Menu menu);
+	void DrawGameWin();
 	void DrawGameOver();
 #endif

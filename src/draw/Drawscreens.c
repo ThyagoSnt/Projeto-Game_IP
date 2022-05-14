@@ -63,8 +63,15 @@ void DrawExit(Menu menu){
 }
 
 //DESENHO DO GAMEOVER
+
+void DrawGameWin(){
+	ClearBackground(BLACK);
+	DrawText("Win Game",screenWidth/2 - 200,screenHeight/2 - 100,100,GREEN);
+	DrawText("Press ESC to jump to Title Menu",screenWidth/2 - 400,screenHeight/2 +10,50,WHITE);
+}
+
 void DrawGameOver(){
 	ClearBackground(BLACK);
-	DrawText("Game Over",screenWidth/2 -150,screenHeight/2 - 50,50,WHITE);
-	DrawText("Press ESC to jump to Title Menu",screenWidth/2 - 320,screenHeight/2 +10,50,WHITE);
+	DrawText("Game Over",screenWidth/2 -200,screenHeight/2 - 100,100,RED);
+	DrawText("Press ESC to jump to Title Menu",screenWidth/2 - 400,screenHeight/2 + 10,50,WHITE);
 }

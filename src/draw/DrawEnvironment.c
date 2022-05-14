@@ -12,8 +12,8 @@ void DrawEnvironment(Background background, SetGame set)
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	DrawTextureEx(background.foreg[set.map], (Vector2){ background.foreg[set.map].width*4 + background.fore, 40 }, 0.0f, 4.0f, WHITE);
 	//FLOOR
-	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floor, screenHeight - 57 }, 0.0f, 3.0f, WHITE);
-	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*3 + background.floor, screenHeight - 57 }, 0.0f, 3.0f, WHITE);
-	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*6 + background.floor, screenHeight - 57 }, 0.0f, 3.0f, WHITE);
-	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*9 + background.floor, screenHeight - 57 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floor, 57 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*3 + background.floor,  57 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*6 + background.floor,  57 }, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(background.floorg[set.map], (Vector2){ background.floorg[set.map].width*9 + background.floor,  57 }, 0.0f, 3.0f, WHITE);
 }
