@@ -2,24 +2,15 @@
 
 static int	descer = 0;
 static int colision = 0;
-void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *fanatico,Plataform *plataform){
 
-<<<<<<< HEAD
 //MECANICA DE CORRIDA
 void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *fanatico,Plataform *platafoma){
-=======
->>>>>>> e4914df21c23672814fe681b62f313fcf9312f74
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
 		player->characterPosition.x += 1.7f;
 		UpdateMusicStream(set->music.run);
-<<<<<<< HEAD
 		if(player->characterPosition.x > 580 && set->steps < 7900){
 			platafoma->position.x -= 0.5;
-=======
-		if(player->characterPosition.x > 650 && set->steps < 10000){
-			plataform->position.x -= 1;
->>>>>>> e4914df21c23672814fe681b62f313fcf9312f74
 			set->steps++;
 			player->characterPosition.x = 580;
 			background->scroll -= 1.0f;
@@ -35,31 +26,29 @@ void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *
 	}
 
 	//COLISAO COM A PORTA
-	if(CheckCollisionRecs(player->rec, set->finalRec))
+	if(CheckCollisionRecs(player->rec, set->finalRec)){
 		set->final = 1;
-	else
+	}
+	else{
 		set->final = 0;
+	}
 }
 
-<<<<<<< HEAD
 //MECANICA DE PULO
 void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){ //MECANICA DE PULO
 	colision = 0;
-=======
-void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
->>>>>>> e4914df21c23672814fe681b62f313fcf9312f74
 
 	colision = 0;
 	if(CheckCollisionRecs(player->rec,plataform->rec))
 		colision = 1;
 	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))
 		player->canJump = 1;
-	if(player->canJump!= 0 && !colision)
+	if(player->canJump != 0 && !colision)
 		UpdateMusicStream(set->music.jump);
 	if(colision){
 		if(player->characterPosition.y > plataform->position.y){
 			descer = 1;
-			player->characterPosition.y += 2;
+			//player->characterPosition.y += 2;
 			player->canJump = 2;
 		}
 		else
@@ -74,6 +63,10 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
 			player->characterPosition.y += 2;
 		if(player->characterPosition.y == 608)
 			player->canJump = 0;
+	}
+	if(player->characterPosition.y > 608){
+		player->characterPosition.y = 608;
+		player->canJump = 0;
 	}
 }
 

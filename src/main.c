@@ -17,7 +17,6 @@ void LoadAllMusic(Game_music *music){
 	PlayMusicStream(music->startFanatic);
 	PlayMusicStream(music->ataqueFantic);
 
-
 }
 
 void SetVolume(Game_music *music){
@@ -72,6 +71,9 @@ int main(void){
 			case INFO: //MECANICAS DA TELA DE INFO
 				InfoMechanics(&currentScreen,&menu,&set.music.menu);
 				break;
+			case HISTORY:
+				HistoryMechanics(&currentScreen);
+				break;
 			case MENU: //MECANICAS DA TELA DE MENU
 				MenuMechanics(&currentScreen, &menu);
 				break;
@@ -79,7 +81,9 @@ int main(void){
 				WinMechanics(&currentScreen);
 				break;
 			case RESTART: //MECANICA DO RESTART
-				RestartMechanics(&currentScreen, &menu);
+				RestartMechanics(&currentScreen, &menu, &set);
+				if(set.reset == 1)
+						InitVar(&background,&plataform,&set,&player,&menu, &fanatico,&life);
 				break;
 			case EXIT: //MECANICA DO EXIT
 				ExitMechanics(&currentScreen, &menu);
@@ -101,11 +105,14 @@ int main(void){
 				case INFO: //TELA DE INFORMACOES
 					DrawInfo(menu);
 					break;
+				case HISTORY:
+					DrawHistory(menu);
+					break;
 				case MENU: //TELA DO MENU EM JOGO
 					DrawMenu(menu);
 					break;
 				case WIN:
-					DrawGameWin();
+					DrawGameWin(menu);
 					break;
 				case RESTART: //TELA DO RESTART
 					DrawRestart(menu);

@@ -2,7 +2,7 @@
 
 void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *life){
 
-	int number = random();
+	int number = rand();
 	//MECANICA DE ROLAGEM DE MAPA
 	background->scroll = 0.0f;
 
@@ -35,6 +35,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	set->steps = 0;
 	set->gameOver = 0;
 	set->final = 0;
+	set->reset = 0;
 	set->finalVet = (Vector2){890, 608};
 	set->finalRec.width = player->personStopLeft.width - 60;
 	set->finalRec.height = player->personStopLeft.height;
@@ -57,13 +58,8 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->stop = 0;
 	fanatico->atack = 0;
 	fanatico->die = 0;
-<<<<<<< HEAD
 	fanatico->enemyPosition = (Vector2){3350, 430};
 	fanatico->rec.width = fanatico->idle_right.width;
-=======
-	fanatico->enemyPosition = (Vector2){3350, 560};
-	fanatico->rec.width = fanatico->idle_right.width / 6;
->>>>>>> e4914df21c23672814fe681b62f313fcf9312f74
 	fanatico->rec.height = fanatico->idle_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y; //POSICAO INICIAL DO FANATICO

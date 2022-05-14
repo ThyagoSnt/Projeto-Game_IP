@@ -7,4 +7,3 @@ void DrawGamePlay(Background background,SetGame set,Plataform plataforma ,Player
 	DrawEnemy(fanatico,set);
 	DrawMyText(set);
 }
-

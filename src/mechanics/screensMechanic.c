@@ -18,11 +18,13 @@ void MenuMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO MENU
 	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 2)
 		*currentScreen = RESTART;
 	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 3)
+		*currentScreen = HISTORY;
+	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 4)
 		*currentScreen = EXIT;
 
 	if(IsKeyPressed(KEY_UP) && (menu->inGame) > 1)
 		menu->inGame--;
-	else if(IsKeyPressed(KEY_DOWN) && (menu->inGame) < 3)
+	else if(IsKeyPressed(KEY_DOWN) && (menu->inGame) < 4)
 		menu->inGame++;
 }
 
@@ -32,12 +34,12 @@ void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music){ //MECANI
 		*currentScreen = TITLE;
 }
 
-void RestartMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO RESTART
+void RestartMechanics(GameScreen *currentScreen, Menu *menu, SetGame *set){ //MECANICAS DO RESTART
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = MENU;
 
 	if(IsKeyPressed(KEY_ENTER) && (menu->restart == 1))
-		*currentScreen = MENU;
+		set->reset = 1;
 	else if(IsKeyPressed(KEY_ENTER) && (menu->restart == 2))
 		*currentScreen = MENU;
 
@@ -45,6 +47,9 @@ void RestartMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO RES
 		menu->restart = 1;
 	else if(IsKeyPressed(KEY_RIGHT))
 		menu->restart = 2;
+
+	if(set->reset == 1)
+		*currentScreen = TITLE;
 }
 
 void ExitMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO EXIT
@@ -63,13 +68,18 @@ void ExitMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO EXIT
 }
 
 void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set){ //MECANICAS DO GAMEOVER
-	if(IsKeyPressed(KEY_ESCAPE)){
+	if((IsKeyPressed(KEY_ESCAPE)) || (IsKeyPressed(KEY_ENTER))){
 		player->vida = 4;
 		*currentScreen = TITLE;
 	}
 }
 
 void WinMechanics(GameScreen *currentScreen){
-	if(IsKeyPressed(KEY_ESCAPE))
+	if((IsKeyPressed(KEY_ESCAPE)) || (IsKeyPressed(KEY_ENTER)))
 		*currentScreen = TITLE;
+}
+
+void HistoryMechanics(GameScreen *currentScreen){
+	if((IsKeyPressed(KEY_ESCAPE)) || (IsKeyPressed(KEY_ENTER)))
+		*currentScreen = MENU;
 }

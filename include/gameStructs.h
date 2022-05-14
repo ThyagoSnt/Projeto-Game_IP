@@ -55,6 +55,9 @@
 	typedef struct{ //BACKGROUND MENU
 		Texture2D	background;
 		Texture2D	title;
+		Texture2D	history;
+		Texture2D	win;
+		Texture2D	gameover;
 		int	start;
 		int inGame;
 		int exit;
@@ -79,6 +82,7 @@
 		int	steps;
 		int	gameOver;
 		int final;
+		int reset;
 		Rectangle finalRec;
 		Vector2 finalVet;
 		Game_music music;
@@ -92,7 +96,7 @@
 	} Plataform;
 
 	typedef enum GameScreen{ //ESTRUTURA DE TELAS
-		TITLE, MENU, GAMEPLAY, INFO, WIN, GAME_OVER, RESTART, EXIT
+		TITLE, MENU, GAMEPLAY, INFO, HISTORY, WIN, GAME_OVER, RESTART, EXIT
 	} GameScreen;
 
 #endif
