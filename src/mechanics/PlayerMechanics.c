@@ -2,20 +2,20 @@
 
 static int	descer = 0;
 static int colision = 0;
+void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *fanatico,Plataform *plataform){
 
-void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *fanatico,Plataform *platafoma){
 	if(IsKeyDown(KEY_D) && (player->characterPosition.x + player->characterRadius < screenWidth)){ //MOVIMENTO DO PLAYER PARA DIREITA
 		player->stop = 0;
 		player->characterPosition.x += 1.7f;
 		UpdateMusicStream(set->music.run);
+		set->steps++;
+		background->back -= 0.2f;
+		background->mid -= 0.5f;
+		background->fore -= 1.0f;
+		background->floor -= 1.0f;
+		plataform->position.x -= 1;
 		if(player->characterPosition.x > 560){
-			platafoma->position.x -= 0.5;
-			set->steps++;
 			player->characterPosition.x = 560;
-			background->back -= 0.2f;
-			background->mid -= 0.5f;
-			background->fore -= 1.0f;
-			background->floor -= 1.0f;
 			fanatico->enemyPosition.x -= 2;
 		}
 		player->direction = 1;
@@ -29,8 +29,8 @@ void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *
 }
 
 void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){
-	colision = 0;
 
+	colision = 0;
 	if(CheckCollisionRecs(player->rec,plataform->rec))
 		colision = 1;
 	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))

@@ -2,6 +2,8 @@
 
 void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *life){
 	//MECANICA DE ROLAGEM DE MAPA
+	int number= random();
+
 	background->back = 0.0f;
 	background->mid = 0.0f;
 	background->fore = 0.0f;
@@ -16,12 +18,15 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	//retangulo da porção
 	life->portionRec.width = life->portion.width - 25;
 	life->portionRec.height = life->portion.height - 25;
-	life->getPortion = 1;
-	life->getVeneno = 1;
+	if(number%2 ==0)
+		life->getPortion = 1;
+	else
+		life->getVeneno = 1;
 	life->venenoRec.width = life->veneno.width - 25;
 	life->venenoRec.height = life->veneno.height - 25;
 	//ATRIBUTOS PLATAFORMA
 	platafoma->position = (Vector2){1200,600};
+	platafoma->storePositon = 1200;
 	platafoma->rec.width = platafoma->plataform.width;
 	platafoma->rec.height = platafoma->plataform.height;
 

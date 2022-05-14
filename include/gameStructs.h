@@ -44,6 +44,7 @@
 		Rectangle venenoRec;
 		int getPortion;
 		int getVeneno;
+		int up;
 	}Heart;
 
 	typedef struct{ //TEXTURAS BACKGROUND DO GAME
@@ -87,6 +88,7 @@
 
 	typedef struct{ //MECANICAS DE COLISAO
 		Vector2 position;
+		float storePositon;
 		Texture2D plataform;
 		Rectangle rec;
 	} Plataform;

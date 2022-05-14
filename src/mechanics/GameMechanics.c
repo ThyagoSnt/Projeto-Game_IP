@@ -1,14 +1,14 @@
 #include "../../include/game.h"
 
-void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico){
+void GameMechanics(Background *background,SetGame *set,Plataform *plataform, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico){
 
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = MENU;
 	UpdateMusicStream(set->music.natureza);
 	UpdateMusicStream(set->music.start);
-	setRec(player,fanatico,platafoma,life);
-	PlayerMechanics(player,set,background,fanatico,platafoma);
+	setRec(player,fanatico,plataform,life);
+	PlayerMechanics(player,set,background,fanatico,plataform);
 	EnemyMechanics(fanatico,set,player);
-	InteractiveMechanics(player,set,life,currentScreen);
+	InteractiveMechanics(player,set,life,currentScreen,plataform);
 	EnvironmentMechanic(background,set);
 }

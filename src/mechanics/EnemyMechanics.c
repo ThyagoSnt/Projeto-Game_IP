@@ -4,9 +4,9 @@
 void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player){
 	if(set->steps > 3000 && set->steps < 3400){
 		if(fanatico->enemyPosition.x - player->characterPosition.x < 0)
-			fanatico->enemyPosition.x += 2.0;
+			fanatico->enemyPosition.x += 3.0;
 		else
-			fanatico->enemyPosition.x -= 2.0;
+			fanatico->enemyPosition.x -= 3.0;
 	}
 
 	if(fanatico->enemyPosition.x < 1000){
@@ -14,13 +14,25 @@ void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player){
 		StopMusicStream(set->music.start);
 	}
 
-	if((fanatico->enemyPosition.x - player->characterPosition.x > 300) && (fanatico->enemyPosition.x - player->characterPosition.x < 20000)){
+	if((fanatico->enemyPosition.x - player->characterPosition.x > 500) && (fanatico->enemyPosition.x - player->characterPosition.x < 20000)){
+		fanatico->stop = 0;
+		fanatico->atack = 0;
+		fanatico->direction = -1;
+		fanatico->enemyPosition.x -= 3.0;
+	}
+	else if((fanatico->enemyPosition.x - player->characterPosition.x < -500) && (fanatico->enemyPosition.x - player->characterPosition.x > -20000)){
+		fanatico->stop = 0;
+		fanatico->atack = 0;
+		fanatico->direction = 1;
+		fanatico->enemyPosition.x += 3.0;
+	}
+	if((fanatico->enemyPosition.x - player->characterPosition.x > 50) && (fanatico->enemyPosition.x - player->characterPosition.x < 20000)){
 		fanatico->stop = 0;
 		fanatico->atack = 0;
 		fanatico->direction = -1;
 		fanatico->enemyPosition.x -= 1.3;
 	}
-	else if((fanatico->enemyPosition.x - player->characterPosition.x < -300) && (fanatico->enemyPosition.x - player->characterPosition.x > -20000)){
+	else if((fanatico->enemyPosition.x - player->characterPosition.x < -50) && (fanatico->enemyPosition.x - player->characterPosition.x > -20000)){
 		fanatico->stop = 0;
 		fanatico->atack = 0;
 		fanatico->direction = 1;
@@ -32,10 +44,10 @@ void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player){
 	else
 		fanatico->stop = 1;
 
-	/* if(player->esperaHit != 0)
+	 if(player->esperaHit != 0)
 		player->esperaHit--;
 
 	if(CheckCollisionRecs(player->rec,fanatico->rec) && player->esperaHit == 0){
 		player->esperaHit = 451;
-	} */
+	}
 }
