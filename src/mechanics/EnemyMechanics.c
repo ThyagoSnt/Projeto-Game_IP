@@ -9,33 +9,45 @@ void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player){
 			fanatico->enemyPosition.x -= 2.0;
 	}
 
-	if(fanatico->enemyPosition.x < 1000){
+	if(fanatico->enemyPosition.x < 3000){
 		UpdateMusicStream(set->music.startFanatic);
 		StopMusicStream(set->music.start);
 	}
 
-	if((fanatico->enemyPosition.x - player->characterPosition.x > 300) && (fanatico->enemyPosition.x - player->characterPosition.x < 20000)){
+	if(player->esperaHit != 0)
+		player->esperaHit--;
+
+	if((fanatico->enemyPosition.x - player->characterPosition.x > 300) &&
+	(fanatico->enemyPosition.x - player->characterPosition.x < 2000)
+	){
 		fanatico->stop = 0;
 		fanatico->atack = 0;
 		fanatico->direction = -1;
-		fanatico->enemyPosition.x -= 1.3;
+		fanatico->enemyPosition.x -= 0.7;
 	}
-	else if((fanatico->enemyPosition.x - player->characterPosition.x < -300) && (fanatico->enemyPosition.x - player->characterPosition.x > -20000)){
+	else if((fanatico->enemyPosition.x - player->characterPosition.x < -300) &&
+	(fanatico->enemyPosition.x - player->characterPosition.x > -2000)
+	){
 		fanatico->stop = 0;
 		fanatico->atack = 0;
 		fanatico->direction = 1;
-		fanatico->enemyPosition.x += 1.3;
+		fanatico->enemyPosition.x += 0.7;
 	}
-	else if((fanatico->enemyPosition.x - player->characterPosition.x > -100) && (fanatico->enemyPosition.x - player->characterPosition.x < 100)){
-		fanatico->atack = 1;
-	}
-	else
+	else{
 		fanatico->stop = 1;
+	}
 
-	/* if(player->esperaHit != 0)
-		player->esperaHit--;
+	if(CheckCollisionRecs(player->rec,fanatico->rec) &&
+	(player->esperaHit == 0) && (fanatico->atack == 0) &&
+	(fanatico->enemyPosition.x - player->characterPosition.x < 80) &&
+	(fanatico->enemyPosition.x - player->characterPosition.x > -80)
+	){
+		fanatico->atack = 1;
+		player->vida--;
+		player->esperaHit = 1200;
+	}
 
-	if(CheckCollisionRecs(player->rec,fanatico->rec) && player->esperaHit == 0){
-		player->esperaHit = 451;
-	} */
+	if((fanatico->enemyPosition.x - player->characterPosition.x < -2000) || (fanatico->enemyPosition.x - player->characterPosition.x > 2000)){
+		fanatico->enemyPosition.x = player->characterPosition.x + 1000;
+	}
 }

@@ -29,17 +29,20 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	set->framesCounter = 0;
 	set->steps = 0;
 	set->gameOver = 0;
-	set->finalFase = (Vector2){background->mapa.width, 608};
+	set->final = 0;
+	set->finalVet = (Vector2){890, 608};
+	set->finalRec.width = player->personStopLeft.width - 60;
+	set->finalRec.height = player->personStopLeft.height;
 
 	//ATRIBUTOS DO PLAYER
 	player->stop = 1;
 	player->canJump = 0;
-	player->vida = 3;
+	player->vida = 5;
 	player->direction = 0;
 	player->esperaHit = 0;
 	player->characterRadius = 125;
 	player->characterPosition = (Vector2){240, 608}; //POSICAO INICIAL DO PLAYER
-	player->rec.width = player->personStopLeft.width - 100;
+	player->rec.width = player->personStopLeft.width - 60;
 	player->rec.height = player->personStopLeft.height;
 
 	//ATRIBUTOS DO FANATICO
@@ -49,7 +52,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->stop = 0;
 	fanatico->atack = 0;
 	fanatico->die = 0;
-	fanatico->enemyPosition = (Vector2){3350, 560};
+	fanatico->enemyPosition = (Vector2){3350, 430};
 	fanatico->rec.width = fanatico->idle_right.width;
 	fanatico->rec.height = fanatico->idle_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;

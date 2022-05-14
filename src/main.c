@@ -17,8 +17,9 @@ void LoadAllMusic(Game_music *music){
 }
 
 void SetVolume(Game_music *music){
-	SetMusicVolume(music->natureza,0.1);
-	SetMusicVolume(music->start,0.5);
+	SetMusicVolume(music->natureza,0.2);
+	SetMusicVolume(music->start,0.3);
+	SetMusicVolume(music->startFanatic, 0.3);
 }
 
 int main(void){

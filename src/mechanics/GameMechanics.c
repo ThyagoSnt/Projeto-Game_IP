@@ -2,7 +2,7 @@
 
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico){
 
-	if(IsKeyPressed(KEY_ESCAPE))
+	if(IsKeyDown(KEY_ESCAPE))
 		*currentScreen = MENU;
 	UpdateMusicStream(set->music.natureza);
 	UpdateMusicStream(set->music.start);

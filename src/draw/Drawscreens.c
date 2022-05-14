@@ -26,17 +26,24 @@ void DrawTitle(Menu menu){
 
 //DESENHO DA INFO
 void DrawInfo(Menu menu){
-	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
-	DrawText("INFO SCREEN", 50, 120, 40, BLACK);
-	DrawText("PRESS ESC TO JUMP TO MENU SCREEN", 50, 160, 20, BLACK);
+	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, GRAY);
+	DrawText("INFO MECANICS", (menu.background.width - 50)/2, 120, 60, RED);
+	DrawText("PRESS ESC TO JUMP TO TITLE GAME", (menu.background.width)/2, 185, 20, RED);
+
+	DrawText("<MECANICS>", (menu.background.width)/2, (menu.background.height + 100)/2, 40, WHITE);
+	DrawText("[D]: RIGHT", (menu.background.width)/2, (menu.background.height + 220)/2, 40, WHITE);
+	DrawText("[A]: LEFT", (menu.background.width)/2, (menu.background.height + 340)/2, 40, WHITE);
+	DrawText("[SPACE]: JUMP", (menu.background.width)/2, (menu.background.height + 460)/2, 40, WHITE);
+	DrawText("[ENTER]: INTERACTIONS", (menu.background.width)/2, (menu.background.height + 580)/2, 40, WHITE);
+	DrawText("[F11]: FULL SCREEN", (menu.background.width)/2, (menu.background.height + 700)/2, 40, WHITE);
 }
 
 //DESENHO DO RESTART
 void DrawRestart(Menu menu){
-	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, WHITE);
-	DrawText("DO YOU REALLY WANT TO RESTART THIS LEVEL?", 120, 250, 40, BLACK);
-	DrawText("YES", (menu.background.width + 80)/2, (menu.background.height + 200)/2, 40, BLACK);
-	DrawText("NO", (menu.background.width + 360)/2, (menu.background.height + 200)/2, 40, BLACK);
+	DrawTextureEx(menu.background, (Vector2){ 0, 50}, 0.0f, 1.37f, GRAY);
+	DrawText("DO YOU REALLY WANT TO RESTART THIS LEVEL?", 120, 250, 40, WHITE);
+	DrawText("YES", (menu.background.width + 80)/2, (menu.background.height + 200)/2, 40, WHITE);
+	DrawText("NO", (menu.background.width + 360)/2, (menu.background.height + 200)/2, 40, WHITE);
 
 	if(menu.restart == 1)
 		DrawRectangleLines((menu.background.width + 70)/2,(menu.background.height + 195)/2,95,40,RED);
@@ -61,7 +68,7 @@ void DrawExit(Menu menu){
 
 void DrawGameWin(){
 	ClearBackground(BLACK);
-	DrawText("Win Game",screenWidth/2 - 200,screenHeight/2 - 100,100,GREEN);
+	DrawText("YOU WIN THE GAME",screenWidth/2 - 200,screenHeight/2 - 100,100,GREEN);
 	DrawText("Press ESC to jump to Title Menu",screenWidth/2 - 400,screenHeight/2 +10,50,WHITE);
 }
 

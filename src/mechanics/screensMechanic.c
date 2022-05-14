@@ -69,9 +69,7 @@ void OverMechanics(GameScreen *currentScreen, Player *player, SetGame *set){ //M
 	}
 }
 
-
-void WinMechanics(GameScreen *currentScreen)
-{
+void WinMechanics(GameScreen *currentScreen){
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = TITLE;
 }

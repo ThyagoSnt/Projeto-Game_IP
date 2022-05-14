@@ -2,7 +2,6 @@ void PlayerMechanics(Player *player, SetGame *set, Background *background,Fanati
 void EnemyMechanics(Fanatico *fanatico, SetGame *set, Player *player);
 void EnvironmentMechanic(Background *background,SetGame *set);
 void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *currentScreen);
-void jumpMechanics(Player *player, Plataform *plataform, SetGame *set);
 void setRec(Player *player,Fanatico *fanatico, Plataform * plataform, Heart *life);
 void GameMechanics(Background *background,SetGame *set,Plataform *platafoma, Player *player, Heart *life, GameScreen *currentScreen, Fanatico *fanatico);
 void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music);

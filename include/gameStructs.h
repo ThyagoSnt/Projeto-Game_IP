@@ -76,7 +76,9 @@
 		int	framesCounter;
 		int	steps;
 		int	gameOver;
-		Vector2 finalFase;
+		int final;
+		Rectangle finalRec;
+		Vector2 finalVet;
 		Game_music music;
 	} SetGame;
 
@@ -87,7 +89,7 @@
 	} Plataform;
 
 	typedef enum GameScreen{ //ESTRUTURA DE TELAS
-		TITLE, MENU, GAMEPLAY, INFO,WIN,GAME_OVER, RESTART, EXIT
+		TITLE, MENU, GAMEPLAY, INFO, WIN, GAME_OVER, RESTART, EXIT
 	} GameScreen;
 
 #endif

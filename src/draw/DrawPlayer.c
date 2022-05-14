@@ -1,8 +1,8 @@
 #include "../../include/game.h"
 
-void DrawPlayer(Player player, SetGame set,Heart life){
+void DrawPlayer(Player player, SetGame set,	Heart life){
 	//ANIMACAO DO PLAYER
-	DrawRectangleLinesEx(player.rec,1.0,BLANK);
+	DrawRectangleLinesEx(player.rec,1.0,WHITE);
 	if((player.direction == 1 || player.direction == 0) && player.stop == 0)
 		DrawTextureRec(player.personRight, (Rectangle){(player.personRight.width/6)*(set.framesCounter % 6), 0, player.personRight.width/6, player.personRight.height}, player.characterPosition, WHITE);
 	else if(player.direction == -1 && player.stop == 0)
@@ -24,4 +24,3 @@ void DrawPlayer(Player player, SetGame set,Heart life){
 	if(player.vida == 5) DrawTextureEx(life.heartFull, (Vector2){255, 55}, 0.0f, 3.0f, WHITE);
 		DrawTextureEx(life.heartEmpty, (Vector2){255, 55}, 0.0f, 3.0f, WHITE);
 }
-

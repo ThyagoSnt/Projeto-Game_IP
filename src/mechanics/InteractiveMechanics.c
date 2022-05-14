@@ -10,6 +10,10 @@ void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *
 		life->getVeneno=1;
 	}
 
+	if((set->final == 1) && IsKeyDown(KEY_ENTER)){
+		*currentScreen = WIN;
+	}
+
 	//Mecanica da porção
 	if(CheckCollisionRecs(player->rec,life->portionRec) && life->getPortion){
 		life->getPortion=0;
@@ -30,5 +34,4 @@ void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *
 		}
 
 	}
-
 }
