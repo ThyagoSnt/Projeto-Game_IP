@@ -1,7 +1,6 @@
 #include "../../include/game.h"
 
-void DrawPlayer(Player player, SetGame set,Heart life)
-{
+void DrawPlayer(Player player, SetGame set,Heart life){
 	//ANIMACAO DO PLAYER
 	DrawRectangleLinesEx(player.rec,1.0,BLANK);
 	if((player.direction == 1 || player.direction == 0) && player.stop == 0)

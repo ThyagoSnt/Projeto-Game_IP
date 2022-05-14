@@ -1,5 +1,6 @@
 #ifndef STRUCTS_H
 #define STRUCT_H
+
 	typedef struct{ //ATRIBUTOS DO PLAYER
 		int vida;
 		int canJump;
@@ -20,11 +21,17 @@
 		int damage;
 		int direction;
 		int stop;
+		int atack;
+		int die;
 		Vector2 enemyPosition;
 		Texture2D walk_right;
 		Texture2D walk_left;
-		Texture2D stop_left;
-		Texture2D stop_right;
+		Texture2D idle_left;
+		Texture2D idle_right;
+		Texture2D die_right;
+		Texture2D die_left;
+		Texture2D atack_left;
+		Texture2D atack_right;
 		Rectangle rec;
 	}Fanatico;
 
@@ -52,9 +59,11 @@
 
 	typedef struct{ //BACKGROUND MENU
 		Texture2D	background;
+		Texture2D	title;
 		int	start;
 		int inGame;
 		int exit;
+		int restart;
 	} Menu;
 
 	typedef struct{
@@ -83,6 +92,7 @@
 	} Plataform;
 
 	typedef enum GameScreen{ //ESTRUTURA DE TELAS
-		TITLE, MENU, GAMEPLAY, INFO,WIN, GAME_OVER, OPTIONS, SAVEGAME, EXIT
+		TITLE, MENU, GAMEPLAY, INFO,WIN,GAME_OVER, RESTART, EXIT
 	} GameScreen;
+
 #endif

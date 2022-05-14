@@ -24,15 +24,20 @@ void LoadAllTexture(Player *player, Heart *life,Background *background,Plataform
 	background->midg[1] = LoadTexture("../assets/background/midground2.png");
 	background->foreg[1] = LoadTexture("../assets/background/foreground2.png");
 	background->floorg[0] = LoadTexture("../assets/background/floor1.png");
-	background->floorg[1] = LoadTexture("../assets/background/floor1.png");
+	background->floorg[1] = LoadTexture("../assets/background/floor2.png");
 
 	menu->background = LoadTexture("../assets/background/title_game.png");
+	menu->title = LoadTexture("../assets/background/title.png");
 
 	//FANATICO
 	fanatico->walk_right = LoadTexture("../assets/inimigos/Fanatico/walk_right.png");
 	fanatico->walk_left = LoadTexture("../assets/inimigos/Fanatico/walk_left.png");
-	fanatico->stop_right = LoadTexture("../assets/inimigos/Fanatico/stop_right.png");
-	fanatico->stop_left = LoadTexture("../assets/inimigos/Fanatico/stop_left.png");
+	fanatico->idle_right = LoadTexture("../assets/inimigos/Fanatico/idle_right.png");
+	fanatico->idle_left = LoadTexture("../assets/inimigos/Fanatico/idle_left.png");
+	fanatico->atack_right = LoadTexture("../assets/inimigos/Fanatico/atack_right.png");
+	fanatico->atack_left = LoadTexture("../assets/inimigos/Fanatico/atack_left.png");
+	fanatico->die_right = LoadTexture("../assets/inimigos/Fanatico/die_right.png");
+	fanatico->die_left = LoadTexture("../assets/inimigos/Fanatico/die_left.png");
 }
 
 void UnloadAllTexture(Player *player, Heart *life,Background *background,Plataform *plataforma, Menu *menu, SetGame *set, Fanatico *fanatico){
@@ -47,6 +52,7 @@ void UnloadAllTexture(Player *player, Heart *life,Background *background,Platafo
 	UnloadTexture(background->floorg[1]);
 
 	UnloadTexture(menu->background);
+	UnloadTexture(menu->title);
 
 	UnloadTexture(plataforma->plataform);
 	UnloadTexture(player->personRight);
@@ -56,8 +62,12 @@ void UnloadAllTexture(Player *player, Heart *life,Background *background,Platafo
 
 	UnloadTexture(fanatico->walk_right);
 	UnloadTexture(fanatico->walk_left);
-	UnloadTexture(fanatico->stop_right);
-	UnloadTexture(fanatico->stop_left);
+	UnloadTexture(fanatico->idle_right);
+	UnloadTexture(fanatico->idle_left);
+	UnloadTexture(fanatico->atack_right);
+	UnloadTexture(fanatico->atack_left);
+	UnloadTexture(fanatico->die_right);
+	UnloadTexture(fanatico->die_left);
 
 	UnloadTexture(life->heartFull);
 	UnloadTexture(life->heartEmpty);

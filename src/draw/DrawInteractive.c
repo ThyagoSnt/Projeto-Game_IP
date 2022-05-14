@@ -1,7 +1,6 @@
 #include "../../include/game.h"
 
-void DrawInteractive(Plataform plataform,Heart life, SetGame set)
-{
+void DrawInteractive(Plataform plataform,Heart life, SetGame set){
 	//PLATAFORMA
 	DrawRectangleLines(plataform.position.x + 100,plataform.position.y + 200, life.veneno.width/3,life.veneno.height,BLANK);
 	DrawTextureRec(life.veneno,(Rectangle){(life.veneno.width/3)*(set.framesCounter % 4), 0, life.veneno.width/3, life.veneno.height},(Vector2){plataform.position.x + 100,plataform.position.y + 50},WHITE);

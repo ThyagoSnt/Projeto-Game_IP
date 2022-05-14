@@ -16,15 +16,13 @@ void MenuMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO MENU
 	if(IsKeyPressed(KEY_ENTER) && menu->inGame == 1)
 		*currentScreen = TITLE;
 	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 2)
-		*currentScreen = OPTIONS;
+		*currentScreen = RESTART;
 	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 3)
-		*currentScreen = SAVEGAME;
-	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 4)
 		*currentScreen = EXIT;
 
 	if(IsKeyPressed(KEY_UP) && (menu->inGame) > 1)
 		menu->inGame--;
-	else if(IsKeyPressed(KEY_DOWN) && (menu->inGame) < 4)
+	else if(IsKeyPressed(KEY_DOWN) && (menu->inGame) < 3)
 		menu->inGame++;
 }
 
@@ -34,17 +32,25 @@ void InfoMechanics(GameScreen *currentScreen, Menu *menu,Music *music){ //MECANI
 		*currentScreen = TITLE;
 }
 
-void OptionsMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DA OPCOES
+void RestartMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO RESTART
 	if(IsKeyPressed(KEY_ESCAPE))
 		*currentScreen = MENU;
-}
 
-void SaveMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO SAVE
-	if(IsKeyPressed(KEY_ESCAPE))
+	if(IsKeyPressed(KEY_ENTER) && (menu->restart == 1))
 		*currentScreen = MENU;
+	else if(IsKeyPressed(KEY_ENTER) && (menu->restart == 2))
+		*currentScreen = MENU;
+
+	if(IsKeyPressed(KEY_LEFT))
+		menu->restart = 1;
+	else if(IsKeyPressed(KEY_RIGHT))
+		menu->restart = 2;
 }
 
 void ExitMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO EXIT
+	if(IsKeyPressed(KEY_ESCAPE))
+		*currentScreen = MENU;
+
 	if(IsKeyPressed(KEY_ENTER) && (menu->exit == 1))
 		exit(1);
 	else if(IsKeyPressed(KEY_ENTER) && (menu->exit == 2))

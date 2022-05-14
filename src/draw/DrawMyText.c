@@ -1,7 +1,6 @@
 #include "../../include/game.h"
 
-void DrawMyText(SetGame set)
-{
+void DrawMyText(SetGame set){
 		//TEXTO DE TESTE GAMEPLAY
 	if(set.map == 0){
 		DrawText("GAMEPLAY SCREEN", 50, 120, 40, BLACK);
