@@ -2,10 +2,7 @@
 
 void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *player,Menu *menu, Fanatico *fanatico, Heart *life){
 	//MECANICA DE ROLAGEM DE MAPA
-	background->back = 0.0f;
-	background->mid = 0.0f;
-	background->fore = 0.0f;
-	background->floor = 0.0f;
+	background->scroll = 0.0f;
 
 	//MECANICAS DE MENU
 	menu->start = 1;
@@ -20,8 +17,9 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	life->getVeneno = 1;
 	life->venenoRec.width = life->veneno.width - 25;
 	life->venenoRec.height = life->veneno.height - 25;
+
 	//ATRIBUTOS PLATAFORMA
-	platafoma->position = (Vector2){1200,600};
+	platafoma->position = (Vector2){1200,580};
 	platafoma->rec.width = platafoma->plataform.width;
 	platafoma->rec.height = platafoma->plataform.height;
 
@@ -31,6 +29,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	set->framesCounter = 0;
 	set->steps = 0;
 	set->gameOver = 0;
+	set->finalFase = (Vector2){background->mapa.width, 608};
 
 	//ATRIBUTOS DO PLAYER
 	player->stop = 1;
@@ -39,7 +38,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	player->direction = 0;
 	player->esperaHit = 0;
 	player->characterRadius = 125;
-	player->characterPosition = (Vector2){240, 628}; //POSICAO INICIAL DO PLAYER
+	player->characterPosition = (Vector2){240, 608}; //POSICAO INICIAL DO PLAYER
 	player->rec.width = player->personStopLeft.width - 100;
 	player->rec.height = player->personStopLeft.height;
 
@@ -50,7 +49,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->stop = 0;
 	fanatico->atack = 0;
 	fanatico->die = 0;
-	fanatico->enemyPosition = (Vector2){3350, 580};
+	fanatico->enemyPosition = (Vector2){3350, 560};
 	fanatico->rec.width = fanatico->idle_right.width;
 	fanatico->rec.height = fanatico->idle_right.height;
 	fanatico->rec.x = fanatico->enemyPosition.x;
