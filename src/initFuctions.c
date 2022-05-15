@@ -37,6 +37,8 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	set->final = 0;
 	set->reset = 0;
 	set->finalVet = (Vector2){890, 608};
+	set->finalRec.x = 890;
+	set->finalRec.y = 608;
 	set->finalRec.width = player->personStopLeft.width - 60;
 	set->finalRec.height = player->personStopLeft.height;
 

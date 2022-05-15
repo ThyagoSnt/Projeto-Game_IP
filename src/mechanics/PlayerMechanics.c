@@ -25,7 +25,7 @@ void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *
 		player->direction = -1;
 	}
 	//COLISAO COM A PORTA
-	if(CheckCollisionRecs(player->rec, set->finalRec)){
+	if(CheckCollisionRecs(player->rec, set->finalRec) && set->steps > 7800){
 		set->final = 1;
 	}
 	else{

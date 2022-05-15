@@ -69,7 +69,7 @@ void DrawExit(Menu menu){
 
 void DrawGameWin(Menu menu){
 	DrawTextureEx(menu.win, (Vector2){ 0, 50}, 0.0f, 1.37f, GRAY);
-	DrawText("VOCE CONSEGUIU!", (menu.win.width - 150)/2, 120, 60, RED);
+	DrawText("VOCE CONSEGUIU!", (menu.win.width - 150)/2, 120, 60, GREEN);
 
 	DrawText("VOCE ENCONTROU O MAGO ACMERLIN JUNTO DE UM MONITOR", (menu.win.width)/2-300, (menu.win.height + 100)/2, 20, WHITE);
 	DrawText("DA SUA DIMENSAO, ACMITO TE ENSINA O SEGREDO DE UMA ALOCACAO CORRETA", (menu.win.width)/2-300, (menu.win.height + 220)/2, 20, WHITE);
