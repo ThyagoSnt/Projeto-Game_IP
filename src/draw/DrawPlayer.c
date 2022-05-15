@@ -2,7 +2,7 @@
 
 void DrawPlayer(Player player, SetGame set,	Heart life){
 	//ANIMACAO DO PLAYER
-	DrawRectangleLinesEx(player.rec,1.0,WHITE);
+	DrawRectangleLinesEx(player.rec,1.0,BLANK);
 	if((player.direction == 1 || player.direction == 0) && player.stop == 0)
 		DrawTextureRec(player.personRight, (Rectangle){(player.personRight.width/6)*(set.framesCounter % 6), 0, player.personRight.width/6, player.personRight.height}, player.characterPosition, WHITE);
 	else if(player.direction == -1 && player.stop == 0)

@@ -50,7 +50,7 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	player->esperaHit = 0;
 	player->characterRadius = 125;
 	player->characterPosition = (Vector2){240, 608}; //POSICAO INICIAL DO PLAYER
-	player->rec.width = player->personStopLeft.width - 60;
+	player->rec.width = player->personStopLeft.width ;
 	player->rec.height = player->personStopLeft.height;
 
 	//ATRIBUTOS DO FANATICO
@@ -61,8 +61,8 @@ void InitVar(Background *background,Plataform *platafoma,SetGame *set,Player *pl
 	fanatico->atack = 0;
 	fanatico->die = 0;
 	fanatico->enemyPosition = (Vector2){3350, 430};
-	fanatico->rec.width = fanatico->idle_right.width;
-	fanatico->rec.height = fanatico->idle_right.height;
+	fanatico->rec.width = fanatico->idle_right.width - 100;
+	fanatico->rec.height = fanatico->idle_right.height - 100;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y; //POSICAO INICIAL DO FANATICO
 }

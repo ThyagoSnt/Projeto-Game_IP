@@ -2,7 +2,7 @@
 
 void setRec(Player *player,Fanatico *fanatico, Plataform * plataform, Heart *life){ //SETANDO AS COLISOES
 
-	player->rec.x = player->characterPosition.x + 50;
+	player->rec.x = player->characterPosition.x ;
 	player->rec.y = player->characterPosition.y;
 	fanatico->rec.x = fanatico->enemyPosition.x;
 	fanatico->rec.y = fanatico->enemyPosition.y;

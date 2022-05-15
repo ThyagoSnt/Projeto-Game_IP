@@ -1,8 +1,8 @@
 #include "../../include/game.h"
 
 void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *currentScreen,Plataform *plataform){
-	
-	if(set->steps % 1500 == 0 && set-> steps != 0)
+
+	if(set->steps % 2000 == 0 && set-> steps != 0)
 	{
 		plataform->position.x = plataform->storePositon;
 		plataform->position.y = rand() % 1000;
@@ -15,7 +15,7 @@ void InteractiveMechanics(Player *player, SetGame *set, Heart *life,GameScreen *
 	if(player->vida == 0)
 		*currentScreen = GAME_OVER; //TELA DE MORTE
 
-	if(set->steps % 1500 == 0){
+	if(set->steps % 2000 == 0){
 		int number = rand();
 		if(number %2 == 0){
 			life->getPortion=1;

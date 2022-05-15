@@ -60,7 +60,10 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){ //MECANI
 		if((player->canJump == 2 && !colision) || descer)
 			player->characterPosition.y += 2;
 		if(player->characterPosition.y == 608)
+		{
 			player->canJump = 0;
+			descer = 0;
+		}
 	}
 }
 
