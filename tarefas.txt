@@ -3,6 +3,6 @@
 (Allan)música (Menu,game,introdução);
 (Thyago)Organizar o Menu
 (....)Organizar as informações(nossa história)
-(....)criar a entrada do jogo com o vídeo que tu mandou
-(....)Portal no final ou algo que indique que acabou a fase
+(....)criar a entrada do jogo
+(....)Portal no final
 (....)Posições das plataformas e frutas

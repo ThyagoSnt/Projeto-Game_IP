@@ -12,7 +12,7 @@ void DrawMenu(Menu menu){
 		DrawRectangleLines((menu.background.width + 150)/2,(menu.background.height + 100)/2,220,40,RED);
 	else if(menu.inGame == 2)
 		DrawRectangleLines((menu.background.width + 150)/2,(menu.background.height + 220)/2,180,40,RED);
-		else if(menu.inGame == 3)
+	else if(menu.inGame == 3)
 		DrawRectangleLines((menu.background.width + 150)/2,(menu.background.height + 340)/2,180,40,RED);
 	else if(menu.inGame == 4)
 		DrawRectangleLines((menu.background.width + 150)/2,(menu.background.height + 460)/2,90,40,RED);
@@ -71,7 +71,7 @@ void DrawGameWin(Menu menu){
 	DrawTextureEx(menu.win, (Vector2){ 0, 50}, 0.0f, 1.37f, GRAY);
 	DrawText("VOCE CONSEGUIU!", (menu.win.width - 150)/2, 120, 60, RED);
 
-	DrawText("VOCE ENCONTROU O MAGO ACMITO JUNTO DE UM MONITOR", (menu.win.width)/2-300, (menu.win.height + 100)/2, 20, WHITE);
+	DrawText("VOCE ENCONTROU O MAGO ACMERLIN JUNTO DE UM MONITOR", (menu.win.width)/2-300, (menu.win.height + 100)/2, 20, WHITE);
 	DrawText("DA SUA DIMENSAO, ACMITO TE ENSINA O SEGREDO DE UMA ALOCACAO CORRETA", (menu.win.width)/2-300, (menu.win.height + 220)/2, 20, WHITE);
 	DrawText("AGORA VOCE PODERA REALIZAR A SUA FINAL TRANQUILAMENTE", (menu.win.width)/2-300, (menu.win.height + 340)/2, 20, WHITE);
 	DrawText("O MONITOR FANATICO CONTINUA VAGANDO NA FLORESTA DOS PONTEIROS ATE O DIA DE HOJE", (menu.win.width)/2-300, (menu.win.height + 460)/2, 20, WHITE);

@@ -13,6 +13,8 @@ void TitleMechanics(GameScreen *currentScreen, Menu *menu, Music *music){ //MECA
 }
 
 void MenuMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO MENU
+	if(IsKeyPressed(KEY_ESCAPE))
+		*currentScreen = MENU;
 	if(IsKeyPressed(KEY_ENTER) && menu->inGame == 1)
 		*currentScreen = TITLE;
 	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 2)
@@ -21,7 +23,6 @@ void MenuMechanics(GameScreen *currentScreen, Menu *menu){ //MECANICAS DO MENU
 		*currentScreen = HISTORY;
 	else if(IsKeyPressed(KEY_ENTER) && menu->inGame == 4)
 		*currentScreen = EXIT;
-
 	if(IsKeyPressed(KEY_UP) && (menu->inGame) > 1)
 		menu->inGame--;
 	else if(IsKeyPressed(KEY_DOWN) && (menu->inGame) < 4)
@@ -42,7 +43,6 @@ void RestartMechanics(GameScreen *currentScreen, Menu *menu, SetGame *set){ //ME
 		set->reset = 1;
 	else if(IsKeyPressed(KEY_ENTER) && (menu->restart == 2))
 		*currentScreen = MENU;
-
 	if(IsKeyPressed(KEY_LEFT))
 		menu->restart = 1;
 	else if(IsKeyPressed(KEY_RIGHT))

@@ -16,7 +16,6 @@ void LoadAllMusic(Game_music *music){
 	PlayMusicStream(music->start);
 	PlayMusicStream(music->startFanatic);
 	PlayMusicStream(music->ataqueFantic);
-
 }
 
 void SetVolume(Game_music *music){
@@ -92,6 +91,7 @@ int main(void){
 				GameMechanics(&background, &set,&plataform,&player, &life, &currentScreen, &fanatico);
 				break;
 			case GAME_OVER: //TELA DO GAMEOVER
+				InitVar(&background,&plataform,&set,&player,&menu, &fanatico,&life);
 				OverMechanics(&currentScreen, &player, &set);
 				break;
 		}
@@ -128,7 +128,6 @@ int main(void){
 					DrawGameOver();
 					break;
 			}
-			DrawRectangleLines(screenWidth - 100,screenHeight -200,200,200,RED);
 		EndDrawing();
 	}
 

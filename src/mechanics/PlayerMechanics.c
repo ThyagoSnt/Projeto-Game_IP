@@ -24,7 +24,6 @@ void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *
 		player->characterPosition.x -= 1.7f;
 		player->direction = -1;
 	}
-
 	//COLISAO COM A PORTA
 	if(CheckCollisionRecs(player->rec, set->finalRec)){
 		set->final = 1;
@@ -38,7 +37,6 @@ void runMechanics(Player *player,SetGame *set, Background *background,Fanatico *
 void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){ //MECANICA DE PULO
 	colision = 0;
 
-	colision = 0;
 	if(CheckCollisionRecs(player->rec,plataform->rec))
 		colision = 1;
 	if(IsKeyDown(KEY_SPACE) && (player->canJump == 0))
@@ -48,7 +46,7 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){ //MECANI
 	if(colision){
 		if(player->characterPosition.y > plataform->position.y){
 			descer = 1;
-			//player->characterPosition.y += 2;
+			player->characterPosition.y += 2;
 			player->canJump = 2;
 		}
 		else
@@ -63,10 +61,6 @@ void jumpMechanics(Player *player, Plataform *plataform, SetGame *set){ //MECANI
 			player->characterPosition.y += 2;
 		if(player->characterPosition.y == 608)
 			player->canJump = 0;
-	}
-	if(player->characterPosition.y > 608){
-		player->characterPosition.y = 608;
-		player->canJump = 0;
 	}
 }
 
